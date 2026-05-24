@@ -45,7 +45,7 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex flex-col leading-none select-none">
             <span
-              className="font-serif text-[1.15rem] tracking-[0.07em] transition-colors duration-500"
+              className="font-serif text-[1.55rem] tracking-[0.07em] transition-colors duration-500"
               style={{ color: forceLight ? "var(--charcoal)" : ivoryAlpha(0.96), fontWeight: 400 }}
             >
               Galerie à Manon

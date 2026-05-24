@@ -17,7 +17,7 @@ export default function CollectionsHero() {
       {/* Parallax background */}
       <motion.div className="absolute inset-0" style={{ y, scale: 1.12 }}>
         <img
-          src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=1800&q=85&fit=crop"
+          src="/collection-art.jpg"
           alt=""
           aria-hidden
           className="w-full h-full object-cover"

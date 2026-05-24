@@ -11,15 +11,22 @@ export default function CallToAction() {
   const contentRef = useRef(null);
   const inView = useInView(contentRef, { once: true, margin: "-100px" });
 
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
   const imgY = useTransform(scrollYProgress, [0, 1], ["-9%", "9%"]);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden" style={{ minHeight: "72vh" }}>
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden"
+      style={{ minHeight: "72vh" }}
+    >
       {/* Full-bleed bg */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.img
-          src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=1800&q=85&fit=crop"
+          src="/collection-art.jpg"
           alt=""
           aria-hidden
           className="w-full h-full object-cover"
@@ -50,11 +57,20 @@ export default function CallToAction() {
           transition={{ duration: 0.7 }}
           className="flex items-center gap-4 mb-9"
         >
-          <div className="h-px w-10" style={{ background: "var(--gold)", opacity: 0.7 }} />
-          <span className="text-[9.5px] tracking-[0.45em] uppercase" style={{ color: "var(--gold)" }}>
+          <div
+            className="h-px w-10"
+            style={{ background: "var(--gold)", opacity: 0.7 }}
+          />
+          <span
+            className="text-[9.5px] tracking-[0.45em] uppercase"
+            style={{ color: "var(--gold)" }}
+          >
             {c.eyebrow}
           </span>
-          <div className="h-px w-10" style={{ background: "var(--gold)", opacity: 0.7 }} />
+          <div
+            className="h-px w-10"
+            style={{ background: "var(--gold)", opacity: 0.7 }}
+          />
         </motion.div>
 
         {/* Headline */}
@@ -98,10 +114,13 @@ export default function CallToAction() {
           transition={{ duration: 0.8, delay: 0.34 }}
           className="flex flex-col sm:flex-row items-center gap-3.5"
         >
-          <a href="#" className="btn-gold">
+          <a href="/collections" className="btn-gold">
             {c.cta_primary}
           </a>
-          <a href={`tel:${c.cta_phone.replace(/-/g, "")}`} className="btn-outline">
+          <a
+            href={`tel:${c.cta_phone.replace(/-/g, "")}`}
+            className="btn-outline"
+          >
             {c.cta_phone}
           </a>
         </motion.div>

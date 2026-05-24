@@ -103,7 +103,7 @@ export default function AboutStory() {
               style={{ aspectRatio: "4/5" }}
             >
               <motion.img
-                src="https://images.unsplash.com/photo-1531913764164-f85c52e6e654?w=900&q=85&fit=crop"
+                src="/manon.jpg"
                 alt="La galerie"
                 className="w-full h-full object-cover"
                 style={{ y: imgY, scale: 1.1 }}
