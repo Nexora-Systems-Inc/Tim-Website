@@ -1,0 +1,21 @@
+import type { Metadata } from "next";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import CollectionsHero from "@/components/collections/CollectionsHero";
+import CollectionsGrid from "@/components/collections/CollectionsGrid";
+
+export const metadata: Metadata = {
+  title: "Collections — Galerie Artistes Peintres",
+  description: "Parcourez plus de 950 œuvres originales d'artistes peintres québécois. Huiles, acryliques et techniques mixtes. Toutes taxes incluses.",
+};
+
+export default function CollectionsPage() {
+  return (
+    <main>
+      <Navigation />
+      <CollectionsHero />
+      <CollectionsGrid />
+      <Footer />
+    </main>
+  );
+}
