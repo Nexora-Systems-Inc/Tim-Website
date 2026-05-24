@@ -12,7 +12,7 @@ const fr = {
     links: [
       { label: "À propos", href: "/a-propos" },
       { label: "Collections", href: "/collections" },
-      { label: "Contact", href: "/a-propos#contact" },
+      { label: "Contact", href: "/a-propos" },
     ],
   },
 
