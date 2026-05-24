@@ -73,7 +73,6 @@ const fr = {
     quote:
       "L'art, ce n'est pas ce que vous voyez, mais ce que vous faites voir aux autres.",
     quote_author: "— Edgar Degas",
-    stats: [],
   },
 
   // ── Showcase (homepage section)
