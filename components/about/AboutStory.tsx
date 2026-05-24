@@ -27,7 +27,7 @@ export default function AboutStory() {
           <div ref={textRef} className="lg:col-span-7 order-2 lg:order-1">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
               className="eyebrow mb-6"
             >
