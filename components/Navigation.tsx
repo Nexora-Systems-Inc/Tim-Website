@@ -40,7 +40,7 @@ export default function Navigation() {
               className="font-serif text-[1.15rem] tracking-[0.07em] transition-colors duration-500"
               style={{ color: scrolled ? "var(--charcoal)" : ivoryAlpha(0.96), fontWeight: 400 }}
             >
-              Galerie
+              Galerie à Manon
             </span>
             <span
               className="text-[8.5px] tracking-[0.4em] uppercase transition-colors duration-500"
