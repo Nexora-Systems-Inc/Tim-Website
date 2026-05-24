@@ -10,11 +10,10 @@ const fr = {
     gallery_subtitle: "Artistes Peintres",
     mobile_location: "Sherbrooke, Québec",
     links: [
-      { label: "Collections", href: "/collections" },
-      { label: "Artistes",    href: "/artistes" },
-      { label: "Expositions", href: "/expositions" },
       { label: "À propos",    href: "/a-propos" },
+      { label: "Collections", href: "/collections" },
       { label: "Contact",     href: "/a-propos#contact" },
+      { label: "Expositions", href: "/expositions" },
     ],
   },
 
