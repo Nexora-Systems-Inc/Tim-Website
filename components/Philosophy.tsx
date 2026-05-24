@@ -13,7 +13,10 @@ export default function Philosophy() {
   const inView = useInView(textRef, { once: true, margin: "-90px" });
   const statsInView = useInView(statsRef, { once: true, margin: "-70px" });
 
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
   const imgY = useTransform(scrollYProgress, [0, 1], ["-7%", "7%"]);
 
   return (
@@ -26,7 +29,6 @@ export default function Philosophy() {
       <div className="container">
         {/* Two-column editorial layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-24 items-start">
-
           {/* LEFT — image column: 5/12 */}
           <div className="lg:col-span-5 order-2 lg:order-1 lg:sticky lg:top-28">
             {/* Image frame */}
@@ -61,7 +63,11 @@ export default function Philosophy() {
             >
               <p
                 className="font-serif text-[1.05rem] leading-snug mb-3"
-                style={{ color: "var(--gold)", fontStyle: "italic", fontWeight: 300 }}
+                style={{
+                  color: "var(--gold)",
+                  fontStyle: "italic",
+                  fontWeight: 300,
+                }}
               >
                 &ldquo;{p.quote}&rdquo;
               </p>
@@ -75,7 +81,10 @@ export default function Philosophy() {
           </div>
 
           {/* RIGHT — text column: 6/12 (offset by 1) */}
-          <div ref={textRef} className="lg:col-span-6 lg:col-start-7 order-1 lg:order-2 pt-0 lg:pt-4">
+          <div
+            ref={textRef}
+            className="lg:col-span-6 lg:col-start-7 order-1 lg:order-2 pt-0 lg:pt-4"
+          >
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -108,7 +117,13 @@ export default function Philosophy() {
               animate={inView ? { scaleX: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.25 }}
               className="mb-9"
-              style={{ height: "1px", background: "var(--gold)", opacity: 0.3, transformOrigin: "left", width: "48px" }}
+              style={{
+                height: "1px",
+                background: "var(--gold)",
+                opacity: 0.3,
+                transformOrigin: "left",
+                width: "48px",
+              }}
             />
 
             {[p.body_1, p.body_2, p.body_3].map((text, i) => (
@@ -138,8 +153,18 @@ export default function Philosophy() {
               style={{ color: "var(--gold)" }}
             >
               {p.cta}
-              <svg width="18" height="7" viewBox="0 0 18 7" fill="none" aria-hidden>
-                <path d="M0 3.5H16M13 1L16 3.5L13 6" stroke="currentColor" strokeWidth="0.9" />
+              <svg
+                width="18"
+                height="7"
+                viewBox="0 0 18 7"
+                fill="none"
+                aria-hidden
+              >
+                <path
+                  d="M0 3.5H16M13 1L16 3.5L13 6"
+                  stroke="currentColor"
+                  strokeWidth="0.9"
+                />
               </svg>
             </motion.a>
           </div>
@@ -150,33 +175,7 @@ export default function Philosophy() {
           ref={statsRef}
           className="mt-24 md:mt-32 pt-12 border-t"
           style={{ borderColor: "rgba(184,150,90,0.1)" }}
-        >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-0">
-            {p.stats.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 18 }}
-                animate={statsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.7, delay: i * 0.09 }}
-                className="py-8 px-4 md:px-8 text-center"
-                style={{
-                  borderLeft: i % 2 !== 0 || i > 0 ? "1px solid rgba(184,150,90,0.1)" : undefined,
-                  borderTop: i >= 2 ? "1px solid rgba(184,150,90,0.1)" : undefined,
-                }}
-              >
-                <div
-                  className="font-serif text-[2.8rem] md:text-[3.5rem] leading-none mb-3"
-                  style={{ color: "var(--gold)", fontWeight: 300, fontStyle: "italic" }}
-                >
-                  {stat.value}
-                </div>
-                <div className="text-[9.5px] tracking-[0.32em] uppercase" style={{ color: "rgba(247,244,239,0.35)" }}>
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+        ></div>
       </div>
     </section>
   );
