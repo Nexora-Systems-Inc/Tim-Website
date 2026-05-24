@@ -146,7 +146,7 @@ export default function Hero() {
             transition={{ duration: 0.9, delay: 1.1 }}
             className="flex flex-col sm:flex-row sm:items-center gap-4"
           >
-            <a href="#collections" className="btn-gold">
+            <a href="/collections" className="btn-gold">
               {h.cta_primary}
               <svg width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden>
                 <path d="M0 4.5H12M8.5 1L12 4.5L8.5 8" stroke="currentColor" strokeWidth="1" />
