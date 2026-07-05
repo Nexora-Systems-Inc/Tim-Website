@@ -1,2 +1,6 @@
-node_modules
-.next
+# Dependencies and build caches (anywhere in the repo)
+**/node_modules/
+**/.next/
+
+# Archived V1 static export is kept on disk but not tracked (regenerable)
+archive/V1/out/
