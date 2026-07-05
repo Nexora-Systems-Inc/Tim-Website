@@ -43,15 +43,15 @@ export default function Navigation() {
       >
         <div className="container flex items-center justify-between h-[72px]">
           {/* Logo */}
-          <Link href="/" className="flex flex-col leading-none select-none">
+          <Link href="/" className="flex flex-col leading-none select-none shrink-0">
             <span
-              className="font-serif text-[1.55rem] tracking-[0.07em] transition-colors duration-500"
+              className="font-serif text-[2.4rem] md:text-[2.5rem] tracking-[0.07em] whitespace-nowrap transition-colors duration-500"
               style={{ color: forceLight ? "var(--charcoal)" : ivoryAlpha(0.96), fontWeight: 400 }}
             >
-              Galerie à Manon
+              {n.gallery_title}
             </span>
             <span
-              className="text-[8.5px] tracking-[0.4em] uppercase transition-colors duration-500"
+              className="text-[13px] md:text-[13.5px] tracking-[0.4em] uppercase whitespace-nowrap transition-colors duration-500"
               style={{ color: forceLight ? "var(--gold)" : goldAlpha(0.85) }}
             >
               {n.gallery_subtitle}

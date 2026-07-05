@@ -8,7 +8,8 @@ const en: Translations = {
     about: "About",
     contact: "Contact",
     cta: "View Collection",
-    gallery_subtitle: "Artistes Peintres",
+    gallery_title: "M Lalonde",
+    gallery_subtitle: "Artiste Peintre",
     mobile_location: "Sherbrooke, Québec",
     links: [
       { label: "About", href: "/a-propos" },
@@ -142,7 +143,7 @@ const en: Translations = {
     newsletter_placeholder: "Your email address",
     newsletter_cta: "Subscribe",
     copyright:
-      "© 2025 Galerie Artistes Peintres, Sherbrooke. All rights reserved.",
+      "© 2025 M Lalonde Artiste Peintre, Sherbrooke. All rights reserved.",
     legal: ["Privacy", "Terms", "Accessibility"],
     columns: {
       Collection: [
@@ -167,7 +168,7 @@ const en: Translations = {
     },
   },
   collectionsPage: {
-    meta_title: "Collections — Galerie Artistes Peintres",
+    meta_title: "Collections — M Lalonde Artiste Peintre",
     hero_eyebrow: "Complete Catalogue",
     hero_heading: "The Collection",
     hero_sub:
@@ -349,7 +350,7 @@ const en: Translations = {
     ],
   },
   aboutPage: {
-    meta_title: "About — Galerie Artistes Peintres",
+    meta_title: "About — M Lalonde Artiste Peintre",
     hero_eyebrow: "Our Story",
     hero_heading: "Half a century\nof passion",
     hero_sub:

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { I18nProvider } from "@/lib/i18n";
+import { SITE_TITLE } from "@/lib/site";
 import fr from "@/locales/fr";
 
 export const metadata: Metadata = {
-  title: "Galerie Artistes Peintres — Sherbrooke",
+  title: `${SITE_TITLE} — Sherbrooke`,
   description: "Une sélection de plus de 950 œuvres d'artistes peintres québécois. Des créations uniques pour compléter votre univers, taxes incluses.",
 };
 

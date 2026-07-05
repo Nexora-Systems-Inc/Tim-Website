@@ -3,8 +3,8 @@
 > **Template:** Nexora Website Documentation — Baseline Document  
 > **Project:** Galerie à Manon — M Lalonde Artiste Peintre  
 > **Client:** Tim Agostinucci  
-> **Version:** 1.1  
-> **Date:** 2026-06-19  
+> **Version:** 1.2  
+> **Date:** 2026-07-05  
 > **Author:** Nexora Engineering
 
 ---
@@ -13,7 +13,7 @@
 
 Tim Agostinucci initiated a website modification project for **Galerie à Manon** on June 2, 2026. The initial request (`E-001`) covered navigation prominence, homepage introduction replacement, Contact page simplification, About biography replacement, and removal of obsolete sections. Navigation typography work from that request is **partially complete**; remaining content and structural changes are pending client-supplied copy and assets.
 
-On June 4, 2026 (`E-002`), the client requested a website title change to **M Lalonde Artiste Peintre**. That change remains open pending implementation and possible client confirmation.
+On June 4, 2026 (`E-002`), the client requested a website title change to **M Lalonde Artiste Peintre**. Implemented 2026-07-05 (WEB-006).
 
 On June 6, 2026 (`E-003`), the client instructed that the website **must not be presented** until there is a financial commitment. Internal development may continue; client-facing presentation is deferred.
 
@@ -48,7 +48,7 @@ On June 19, 2026 (`E-005`), commercial planning began covering website pricing, 
 | Milestone | Target Date | Status | Notes |
 |-----------|-------------|--------|-------|
 | Initial client request | 2026-06-02 | Complete | E-001 — scope defined via `pages.doc` |
-| Website title request | 2026-06-04 | Open | E-002 — pending implementation |
+| Website title request | 2026-06-04 | Complete | E-002 — WEB-006 implemented 2026-07-05 |
 | Client presentation hold | 2026-06-06 | Active | E-003 — no presentation until financial commitment |
 | Photography session | 2026-06-12 | Planned | E-004 — updated artwork expected afterward |
 | Commercial planning | 2026-06-19 | In progress | E-005 — package under development |
@@ -108,7 +108,7 @@ Initial website modification request outlining navigation, content, and structur
 
 **Subject:** Title for Manon's website
 
-**Status:** Open
+**Status:** Completed
 
 **Summary:**  
 Client requested changing the website title.
@@ -128,11 +128,12 @@ Client requested changing the website title.
 **Action Taken:**
 
 - Requirement WEB-006 created.
-- Pending implementation.
+- WEB-006 completed 2026-07-05.
 
 **Engineering Notes:**
 
-- Pending implementation.
+- Website title updated from **Galerie à Manon** to **M Lalonde Artiste Peintre** across browser title, page metadata, navigation logo, footer branding, copyright, and locale files (`fr.ts`, `en.ts`).
+- Centralized title constant added at `website/lib/site.ts` for server-side metadata.
 
 ---
 
@@ -240,7 +241,7 @@ Commercial planning discussion covering website services and ongoing support.
 | WEB-003 | Simplify Contact page | E-001 | — | Pending | — |
 | WEB-004 | Replace About biography | E-001 | — | Pending | — |
 | WEB-005 | Remove obsolete sections | E-001 | — | Pending | — |
-| WEB-006 | Update website title | E-002 | — | Pending | — |
+| WEB-006 | Update website title | E-002 | — | Completed | 2026-07-05 |
 | WEB-007 | Replace artwork after photography | E-004 | — | Waiting on Client | — |
 
 ---
@@ -301,7 +302,7 @@ Items blocking progress, organized by owner.
 | O-006 | Final email | — | Pending | WEB-003 |
 | O-007 | Photography session | 2026-06-12 | Planned | E-004, WEB-007 |
 | O-008 | Financial commitment | 2026-06-06 | Pending | E-003, CD-002 |
-| O-009 | Confirmation of website title (if required) | 2026-06-04 | Pending | WEB-006, E-002, CD-001 |
+| O-009 | Confirmation of website title (if required) | 2026-06-04 | Resolved | WEB-006, E-002, CD-001 |
 
 ## Waiting on Nexora
 

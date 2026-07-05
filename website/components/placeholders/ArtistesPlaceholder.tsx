@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { SITE_TITLE } from "@/lib/site";
 import Link from "next/link";
 
 const ARTIST_IMAGES = [
@@ -255,7 +256,7 @@ export default function ArtistesPlaceholder() {
           className="text-[9px] tracking-[0.38em] uppercase"
           style={{ color: "rgba(184,150,90,0.35)" }}
         >
-          Galerie Artistes Peintres · Sherbrooke
+          {SITE_TITLE} · Sherbrooke
         </span>
         <div style={{ height: "1px", flex: 1, background: "rgba(184,150,90,0.12)" }} />
       </motion.div>

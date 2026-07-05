@@ -7,9 +7,10 @@ import AboutValues from "@/components/about/AboutValues";
 import AboutTeam from "@/components/about/AboutTeam";
 import AboutPress from "@/components/about/AboutPress";
 import AboutContact from "@/components/about/AboutContact";
+import { SITE_TITLE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "À propos — Galerie Artistes Peintres",
+  title: `À propos — ${SITE_TITLE}`,
   description: "Fondée en 1994 à Sherbrooke, la Galerie Artistes Peintres est le sanctuaire de l'art québécois. Découvrez notre histoire, notre équipe et prenez contact.",
 };
 

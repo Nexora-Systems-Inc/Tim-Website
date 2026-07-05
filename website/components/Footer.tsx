@@ -6,6 +6,7 @@ import { useI18n } from "@/lib/i18n";
 export default function Footer() {
   const { t } = useI18n();
   const f = t.footer;
+  const n = t.nav;
 
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -38,10 +39,10 @@ export default function Footer() {
             <div className="mb-6">
               <p className="font-serif text-[1.3rem] tracking-[0.06em] mb-0.5"
                 style={{ color: "var(--ivory)", fontWeight: 300 }}>
-                Galerie
+                {n.gallery_title}
               </p>
               <p className="text-[8.5px] tracking-[0.42em] uppercase" style={{ color: "var(--gold)" }}>
-                Artistes Peintres
+                {n.gallery_subtitle}
               </p>
             </div>
 

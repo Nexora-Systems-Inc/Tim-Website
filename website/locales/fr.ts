@@ -7,7 +7,8 @@ const fr = {
     about: "À propos",
     contact: "Contact",
     cta: "Voir la collection",
-    gallery_subtitle: "Artistes Peintres",
+    gallery_title: "M Lalonde",
+    gallery_subtitle: "Artiste Peintre",
     mobile_location: "Sherbrooke, Québec",
     links: [
       { label: "À propos", href: "/a-propos" },
@@ -154,7 +155,7 @@ const fr = {
     newsletter_placeholder: "Votre adresse courriel",
     newsletter_cta: "S'abonner",
     copyright:
-      "© 2025 Galerie Artistes Peintres, Sherbrooke. Tous droits réservés.",
+      "© 2025 M Lalonde Artiste Peintre, Sherbrooke. Tous droits réservés.",
     legal: ["Confidentialité", "Conditions", "Accessibilité"],
     columns: {
       Collection: [
@@ -183,7 +184,7 @@ const fr = {
   // ── COLLECTIONS PAGE
   // ══════════════════════════════════════════
   collectionsPage: {
-    meta_title: "Collections — Galerie Artistes Peintres",
+    meta_title: "Collections — M Lalonde Artiste Peintre",
     hero_eyebrow: "Catalogue complet",
     hero_heading: "La collection",
     hero_sub:
@@ -369,7 +370,7 @@ const fr = {
   // ── ABOUT / CONTACT PAGE
   // ══════════════════════════════════════════
   aboutPage: {
-    meta_title: "À propos — Galerie Artistes Peintres",
+    meta_title: "À propos — M Lalonde Artiste Peintre",
 
     // Hero
     hero_eyebrow: "Notre histoire",

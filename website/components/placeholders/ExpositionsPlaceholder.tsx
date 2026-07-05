@@ -2,6 +2,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import { SITE_TITLE } from "@/lib/site";
 
 // Fake upcoming show cards for visual richness
 const UPCOMING = [
@@ -332,7 +333,7 @@ export default function ExpositionsPlaceholder() {
         <div style={{ height: "1px", background: "rgba(184,150,90,0.1)", marginBottom: "2rem" }} />
         <div className="flex flex-col sm:flex-row items-center justify-between gap-5">
           <span className="text-[9px] tracking-[0.36em] uppercase" style={{ color: "rgba(184,150,90,0.3)" }}>
-            Galerie Artistes Peintres · Sherbrooke
+            {SITE_TITLE} · Sherbrooke
           </span>
           <Link
             href="/a-propos#contact"
