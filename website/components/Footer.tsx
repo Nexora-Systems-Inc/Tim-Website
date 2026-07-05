@@ -83,7 +83,7 @@ export default function Footer() {
                 {f.columns[col].map((item) => (
                   <li key={item}>
                     <a
-                      href="#"
+                      href={col === "Contact" ? "/contact" : "#"}
                       className="text-[12px] transition-colors duration-300"
                       style={{ color: "rgba(247,244,239,0.34)" }}
                       onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(247,244,239,0.72)"; }}

@@ -3,10 +3,6 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import AboutHero from "@/components/about/AboutHero";
 import AboutStory from "@/components/about/AboutStory";
-import AboutValues from "@/components/about/AboutValues";
-import AboutTeam from "@/components/about/AboutTeam";
-import AboutPress from "@/components/about/AboutPress";
-import AboutContact from "@/components/about/AboutContact";
 import { SITE_TITLE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -20,10 +16,6 @@ export default function AboutPage() {
       <Navigation />
       <AboutHero />
       <AboutStory />
-      <AboutValues />
-      <AboutTeam />
-      <AboutPress />
-      <AboutContact />
       <Footer />
     </main>
   );

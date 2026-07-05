@@ -93,12 +93,18 @@ Initial website modification request outlining navigation, content, and structur
 
 - Requirements WEB-001 through WEB-005 created.
 - WEB-001 completed in previous sprint.
-- WEB-002 through WEB-005 waiting on client.
+- WEB-002 through WEB-004 waiting on client.
+- WEB-005 in progress — team section ("Les gardiens de la collection"), press section ("Ils parlent de nous"), and values section ("Nos engagements") removed 2026-07-05.
+- Contact section separated from À propos biography page to dedicated `/contact` page 2026-07-05.
 
 **Engineering Notes:**
 
 - Navigation typography has already been completed.
-- Remaining requests are still pending.
+- Remaining content requests are still pending.
+- Removed About page team section (`AboutTeam`): heading, profile cards, and associated locale content.
+- Removed About page press section (`AboutPress`): heading, testimonials, and associated locale content.
+- Removed About page values section (`AboutValues`): heading, commitment cards, and associated locale content.
+- Separated contact from biography: removed `AboutContact` from `/a-propos`; contact section now lives on dedicated `/contact` page (2026-07-05).
 
 ---
 
@@ -238,9 +244,9 @@ Commercial planning discussion covering website services and ongoing support.
 |----|-------------|--------|----------|--------|--------------|
 | WEB-001 | Increase navigation typography | E-001 | — | Completed | Prior sprint |
 | WEB-002 | Homepage introduction replacement | E-001 | — | Pending | — |
-| WEB-003 | Simplify Contact page | E-001 | — | Pending | — |
+| WEB-003 | Simplify Contact page | E-001 | — | In progress | 2026-07-05 (contact separated to `/contact`) |
 | WEB-004 | Replace About biography | E-001 | — | Pending | — |
-| WEB-005 | Remove obsolete sections | E-001 | — | Pending | — |
+| WEB-005 | Remove obsolete sections | E-001 | — | In progress | 2026-07-05 (team, press, values sections removed) |
 | WEB-006 | Update website title | E-002 | — | Completed | 2026-07-05 |
 | WEB-007 | Replace artwork after photography | E-004 | — | Waiting on Client | — |
 
