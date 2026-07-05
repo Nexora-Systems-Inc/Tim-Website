@@ -1,0 +1,57 @@
+{
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "serverPort": 4173,
+  "appDir": "website",
+  "buildOutputDir": "out",
+  "auth": {
+    "enabled": false,
+    "storageStatePath": ".auth/storageState.json",
+    "reuseFromPlaywright": true,
+    "playwrightStorageStatePaths": [
+      "playwright/.auth/user.json",
+      "tests/.auth/user.json",
+      ".auth/storageState.json"
+    ]
+  },
+  "routes": [
+    {
+      "id": "home",
+      "name": "Home",
+      "category": "General",
+      "path": "/"
+    },
+    {
+      "id": "collections",
+      "name": "Collections",
+      "category": "Gallery",
+      "path": "/collections"
+    },
+    {
+      "id": "artistes",
+      "name": "Artists",
+      "category": "Gallery",
+      "path": "/artistes"
+    },
+    {
+      "id": "expositions",
+      "name": "Exhibitions",
+      "category": "Gallery",
+      "path": "/expositions"
+    },
+    {
+      "id": "a-propos",
+      "name": "About",
+      "category": "General",
+      "path": "/a-propos"
+    },
+    {
+      "id": "contact",
+      "name": "Contact",
+      "category": "General",
+      "path": "/contact"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "name": "@internal/visual-reports",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Internal Playwright-based visual change reports between Git revisions",
+  "type": "module",
+  "scripts": {
+    "report": "tsx src/cli.ts",
+    "report:help": "tsx src/cli.ts --help",
+    "report:html": "tsx src/regenerate-html.ts",
+    "capture": "tsx src/cli.ts --capture-only",
+    "auth:setup": "tsx src/setup-auth.ts"
+  },
+  "dependencies": {
+    "commander": "^13.1.0",
+    "serve-handler": "^6.1.6"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.51.1",
+    "@types/node": "^20",
+    "tsx": "^4.19.3",
+    "typescript": "^5"
+  }
+}

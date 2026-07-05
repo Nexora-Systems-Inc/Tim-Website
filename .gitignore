@@ -4,3 +4,12 @@
 
 # Archived V1 static export is kept on disk but not tracked (regenerable)
 archive/V1/out/
+
+# Visual reports tooling (branch: tools/playwright-visual-reports)
+visual-reports/*
+!visual-reports/README.md
+visual-reports/.tmp/
+tools/visual-reports/node_modules/
+tools/visual-reports/.auth/
+tools/visual-reports/.tmp/
+tools/visual-reports/dist/
