@@ -62,7 +62,7 @@ export default function Footer() {
                 <p className="text-[9px] tracking-[0.3em] uppercase mb-1" style={{ color: "var(--gold-muted)" }}>
                   {f.contact_label}
                 </p>
-                <p style={{ color: "rgba(247,244,239,0.3)" }}>819-572-2099</p>
+                <p style={{ color: "rgba(247,244,239,0.3)" }}>450-555-5555</p>
                 <p style={{ color: "rgba(247,244,239,0.3)" }}>galerie@artistes-peintres.ca</p>
               </div>
             </div>

@@ -297,9 +297,9 @@ Items blocking progress, organized by owner.
 | O-001 | Final biography | 2026-06-02 | Pending | WEB-004, E-001 |
 | O-002 | Homepage introduction | 2026-06-02 | Pending | WEB-002, E-001 |
 | O-003 | Updated artwork | 2026-06-12 | Pending | WEB-007, E-004 |
-| O-004 | Final address | — | Pending | WEB-003 |
-| O-005 | Final phone number | — | Pending | WEB-003 |
-| O-006 | Final email | — | Pending | WEB-003 |
+| O-004 | Final address | — | Implemented (footer) | WEB-003 |
+| O-005 | Final phone number | — | Implemented (temporary placeholder on footer) | WEB-003 |
+| O-006 | Final email | — | Pending (client confirmation) | WEB-003 |
 | O-007 | Photography session | 2026-06-12 | Planned | E-004, WEB-007 |
 | O-008 | Financial commitment | 2026-06-06 | Pending | E-003, CD-002 |
 | O-009 | Confirmation of website title (if required) | 2026-06-04 | Resolved | WEB-006, E-002, CD-001 |

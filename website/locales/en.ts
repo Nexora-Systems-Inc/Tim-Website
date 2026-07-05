@@ -135,7 +135,7 @@ const en: Translations = {
     tagline:
       "A sanctuary for Québécois art since 1994. Presenting over 950 original works by the province's most distinguished painters.",
     location_label: "Address",
-    location_value: "Sherbrooke, Québec, Canada",
+    location_value: "St-Jean-Baptiste, Québec, Canada",
     contact_label: "Contact",
     newsletter_heading: "Stay Informed",
     newsletter_body:

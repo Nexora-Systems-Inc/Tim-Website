@@ -147,7 +147,7 @@ const fr = {
     tagline:
       "Un sanctuaire de l'art québécois depuis 1994. Plus de 950 œuvres originales présentées par les peintres les plus distingués de la province.",
     location_label: "Adresse",
-    location_value: "Sherbrooke, Québec, Canada",
+    location_value: "St-Jean-Baptiste, Québec, Canada",
     contact_label: "Contact",
     newsletter_heading: "Restez informé",
     newsletter_body:
