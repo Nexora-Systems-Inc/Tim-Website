@@ -2,13 +2,15 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
+import { FEATURED_CLIENT_ARTWORKS, type ClientArtwork } from "@/lib/clientArtworks";
 
-const IMAGES = [
-  "https://images.unsplash.com/photo-1531913764164-f85c52e6e654?w=900&q=80&fit=crop",
-  "https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=700&q=80&fit=crop",
-  "https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?w=700&q=80&fit=crop",
-  "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=700&q=80&fit=crop",
-];
+function toCardItem(work: ClientArtwork) {
+  return {
+    title: work.title,
+    subtitle: work.medium,
+    count: work.ref,
+  };
+}
 
 function Card({
   item,
@@ -107,6 +109,8 @@ export default function Collections() {
   const titleRef = useRef(null);
   const inView = useInView(titleRef, { once: true, margin: "-80px" });
 
+  const [featuredHero, ...featuredRest] = FEATURED_CLIENT_ARTWORKS;
+
   return (
     <section id="collections" className="section-pad-lg" style={{ background: "var(--ivory)" }}>
       {/* Thin top rule */}
@@ -147,7 +151,7 @@ export default function Collections() {
           </div>
 
           <motion.a
-            href="#"
+            href="/collections"
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.7, delay: 0.3 }}
@@ -168,14 +172,26 @@ export default function Collections() {
                       [ Small ]
         */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
-          {/* Large featured card — spans 2 rows on lg */}
-          <div className="lg:row-span-2">
-            <Card item={c.items[0]} image={IMAGES[0]} index={0} large exploreLabel={c.explore} />
-          </div>
+          {featuredHero && (
+            <div className="lg:row-span-2">
+              <Card
+                item={toCardItem(featuredHero)}
+                image={featuredHero.image}
+                index={0}
+                large
+                exploreLabel={c.explore}
+              />
+            </div>
+          )}
 
-          {/* Three smaller cards */}
-          {c.items.slice(1).map((item, i) => (
-            <Card key={item.title} item={item} image={IMAGES[i + 1]} index={i + 1} exploreLabel={c.explore} />
+          {featuredRest.map((work, i) => (
+            <Card
+              key={work.ref}
+              item={toCardItem(work)}
+              image={work.image}
+              index={i + 1}
+              exploreLabel={c.explore}
+            />
           ))}
         </div>
       </div>

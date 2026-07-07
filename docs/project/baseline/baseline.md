@@ -3,7 +3,7 @@
 > **Template:** Nexora Website Documentation — Baseline Document  
 > **Project:** Galerie à Manon — M Lalonde Artiste Peintre  
 > **Client:** Tim Agostinucci  
-> **Version:** 1.5  
+> **Version:** 1.6  
 > **Date:** 2026-07-06  
 > **Author:** Nexora Engineering
 
@@ -107,6 +107,38 @@ Initial website modification request outlining navigation, content, and structur
 - Separated contact from biography: removed `AboutContact` from `/a-propos`; contact section now lives on dedicated `/contact` page (2026-07-05).
 - Contact page simplified 2026-07-06: removed address, business hours, and location/map card (including "Au cœur de Sherbrooke" heading, street address, background image, and directions button); phone (514-710-4230) and email (info@mlalondeartistepeintre.ca) retained and aligned with footer.
 - Primary navigation updated 2026-07-06: Accueil, À propos, Collections, Contact (French); Home, About, Collections, Contact (English). Logo continues to link to `/`.
+
+---
+
+## Prototype — Homepage Hero Carousel (WEB-009)
+
+**Branch:** `feature/hero-carousel-client-images` (not merged to `main`)
+
+**Date started:** 2026-07-07
+
+**Objective:** Replace placeholder Unsplash hero backgrounds with client-provided photography.
+
+**Current implementation:**
+
+| Concern | Location | Type |
+|---------|----------|------|
+| Carousel component | `website/components/Hero.tsx` | React client component (Framer Motion) |
+| Background images | `website/lib/heroSlides.ts` | Configuration file (`HERO_SLIDE_IMAGES`) |
+| Slide copy (title, artist, year) | `website/locales/fr.ts`, `website/locales/en.ts` → `hero.works` | Locale-driven (i18n) |
+| Page entry | `website/app/page.tsx` | Renders `<Hero />` |
+
+**Refactor (2026-07-07):** Background image URLs extracted from `Hero.tsx` into `lib/heroSlides.ts`. Client images should be added to `public/images/hero/` and referenced as `/images/hero/<filename>`. Slide count must match `hero.works` length (currently 3).
+
+**Recommended image specifications:**
+
+| Property | Recommendation |
+|----------|----------------|
+| Dimensions | 1920 × 1080 px (minimum 1800 × 1000 px) |
+| Aspect ratio | 16:9 landscape |
+| Format | WebP (preferred) or high-quality JPEG |
+| Max file size | 500 KB per image |
+
+**Status:** Awaiting client hero images. Placeholder Unsplash URLs remain active on the feature branch.
 
 ---
 
@@ -252,6 +284,7 @@ Commercial planning discussion covering website services and ongoing support.
 | WEB-006 | Update website title | E-002 | — | Completed | 2026-07-05 |
 | WEB-007 | Replace artwork after photography | E-004 | — | Waiting on Client | — |
 | WEB-008 | Update primary navigation structure | E-001 | — | Completed | 2026-07-06 |
+| WEB-009 | Homepage hero carousel — client images prototype | E-004, WEB-007 | — | In progress | 2026-07-07 (branch `feature/hero-carousel-client-images`; image config extracted to `lib/heroSlides.ts`) |
 
 ---
 
@@ -294,6 +327,7 @@ Decisions made by Nexora Engineering.
 | ED-007 | — | Future website modifications implemented one logical feature at a time | Reduce regression risk; enable isolated review and approval | Engineering |
 | ED-008 | 2026-07-06 | Footer contact information finalized from client | Phone (514-710-4230) and email (info@mlalondeartistepeintre.ca) confirmed; placeholder values replaced in footer | WEB-003, O-005, O-006 |
 | ED-009 | 2026-07-06 | Primary navigation structure approved and implemented | French: Accueil, À propos, Collections, Contact; English: Home, About, Collections, Contact; logo continues to link to homepage | WEB-008, E-001 |
+| ED-010 | 2026-07-07 | Homepage hero carousel images extracted to dedicated config | Background images moved from inline constant in `Hero.tsx` to `lib/heroSlides.ts`; client images to be placed in `public/images/hero/`; slide copy remains in locale files | WEB-009, E-004 |
 
 ---
 

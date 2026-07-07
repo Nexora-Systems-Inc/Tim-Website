@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import CollectionsHero from "@/components/collections/CollectionsHero";
@@ -15,7 +16,9 @@ export default function CollectionsPage() {
     <main>
       <Navigation />
       <CollectionsHero />
-      <CollectionsGrid />
+      <Suspense fallback={null}>
+        <CollectionsGrid />
+      </Suspense>
       <Footer />
     </main>
   );

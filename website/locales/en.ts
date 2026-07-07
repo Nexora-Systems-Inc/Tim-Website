@@ -20,14 +20,23 @@ const en: Translations = {
     ],
   },
   hero: {
-    eyebrow: "Featured Work",
+    eyebrow: "Featured Exhibition",
     cta_primary: "Explore Collection",
     cta_secondary: "Our Story",
     scroll_label: "Scroll",
-    works: [
-      { title: "The Golden Dawn", artist: "Jules Michel", year: "1977" },
-      { title: "Persian Market", artist: "Stefan Hagiu", year: "2019" },
-      { title: "Pastoral Winter", artist: "Rajka Kupesic", year: "2024" },
+    exhibitions: [
+      {
+        title: "Les Galeries d'Anjou",
+        location: "Montreal, Quebec",
+        description:
+          "Placeholder description for the exhibition. This will later describe the event, location, dates, or featured collection.",
+      },
+      {
+        title: "Symposium des Arts de Sherbrooke",
+        location: "Sherbrooke, Quebec",
+        description:
+          "Placeholder description for the exhibition. This text will be replaced later.",
+      },
     ],
   },
   collections: {
@@ -35,28 +44,6 @@ const en: Translations = {
     heading: "Works of Distinction",
     cta_all: "All Collections",
     explore: "Explore",
-    items: [
-      {
-        title: "Contemporary Masters",
-        subtitle: "Current painting",
-        count: "47 works",
-      },
-      {
-        title: "Québec Landscape",
-        subtitle: "Territories & light",
-        count: "83 works",
-      },
-      {
-        title: "Lyrical Abstraction",
-        subtitle: "Form & colour",
-        count: "31 works",
-      },
-      {
-        title: "Still Life",
-        subtitle: "Objects & compositions",
-        count: "24 works",
-      },
-    ],
   },
   philosophy: {
     eyebrow: "Our Philosophy",
@@ -72,59 +59,11 @@ const en: Translations = {
     quote_author: "— Edgar Degas",
   },
   showcase: {
-    eyebrow: "Recent Acquisitions",
-    heading_line1: "Selected Works",
-    heading_line2: "Available Now",
-    body: "Each work has been individually authenticated and curated from the ateliers of Québec's most compelling artistic voices.",
-    cta_all: "Browse All 950+ Works",
-    view_work: "View Work",
-    artworks: [
-      {
-        ref: "G-0963",
-        title: "Tirlata Sturt Pers",
-        artist: "Jules Michel",
-        year: "1977",
-        medium: "Mixed Media — Oil on Canvas",
-        dimensions: '46" × 34"',
-        price: "10,000",
-      },
-      {
-        ref: "G-0228",
-        title: "Urbanisation",
-        artist: "Stefan Hagiu",
-        year: "2019",
-        medium: "Oil on Canvas",
-        dimensions: '96" × 48"',
-        price: "4,995",
-      },
-      {
-        ref: "G-0967",
-        title: "Pastoral Winter",
-        artist: "Rajka Kupesic",
-        year: "2024",
-        medium: "Oil on Canvas",
-        dimensions: '16½" × 12½"',
-        price: "2,995",
-      },
-      {
-        ref: "G-1030",
-        title: "Portrait de Femme",
-        artist: "Elena Carla",
-        year: "2023",
-        medium: "Oil on Canvas",
-        dimensions: '31" × 46"',
-        price: "2,995",
-      },
-      {
-        ref: "G-0192",
-        title: "Le Fleuve de la Vie",
-        artist: "Liguori Vachon",
-        year: "2020",
-        medium: "Acrylic on Canvas — Triptych",
-        dimensions: '72" × 48"',
-        price: "2,995",
-      },
-    ],
+    eyebrow: "Private Collections",
+    heading_line1: "Acquired Works",
+    heading_line2: "Now in private collections.",
+    body: "These paintings continue their story with their collectors — each one marks a completed dialogue between the artist and those who chose to give it a home.",
+    cta_all: "View All Sold Works",
   },
   cta: {
     eyebrow: "Private Viewings by Appointment",
@@ -186,12 +125,18 @@ const en: Translations = {
     view_detail: "View Work",
     inquiry: "Enquire",
     sold: "Sold",
+    sold_label: "Sold",
+    sold_acquired: "Work acquired",
+    featured_label: "Featured",
     categories: [
-      { id: "all", label: "All", count: 185 },
+      { id: "all", label: "All", count: 40 },
       { id: "contemporain", label: "Contemporary Masters", count: 47 },
       { id: "paysage", label: "Québec Landscape", count: 83 },
       { id: "abstraction", label: "Lyrical Abstraction", count: 31 },
       { id: "portrait", label: "Portraits & Figures", count: 24 },
+      { id: "client", label: "Client", count: 28 },
+      { id: "featured", label: "Featured", count: 7 },
+      { id: "sold", label: "Sold", count: 5 },
     ],
     artworks: [
       {
@@ -351,6 +296,13 @@ const en: Translations = {
         featured: false,
       },
     ],
+  },
+  contactPage: {
+    meta_title: "Contact — M Lalonde Artiste Peintre",
+    hero_eyebrow: "Get in Touch",
+    hero_heading: "Let's Begin\nthe Conversation",
+    hero_sub:
+      "Whether you wish to acquire a work, arrange a private viewing, ask about an exhibition, a commission, or any other enquiry — we would be delighted to hear from you.",
   },
   aboutPage: {
     meta_title: "About — M Lalonde Artiste Peintre",

@@ -2,15 +2,15 @@
 import { useI18n } from "@/lib/i18n";
 import DarkPageHero from "@/components/DarkPageHero";
 
-export default function AboutHero() {
+export default function ContactHero() {
   const { t } = useI18n();
-  const a = t.aboutPage;
+  const c = t.contactPage;
 
   return (
     <DarkPageHero
-      eyebrow={a.hero_eyebrow}
-      heading={a.hero_heading}
-      sub={a.hero_sub}
+      eyebrow={c.hero_eyebrow}
+      heading={c.hero_heading}
+      sub={c.hero_sub}
     />
   );
 }

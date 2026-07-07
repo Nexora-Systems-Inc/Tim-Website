@@ -21,14 +21,23 @@ const fr = {
 
   // ── Hero
   hero: {
-    eyebrow: "Œuvre à l'honneur",
+    eyebrow: "Exposition à l'honneur",
     cta_primary: "Explorer la collection",
     cta_secondary: "Notre histoire",
     scroll_label: "Défiler",
-    works: [
-      { title: "L'Aube Dorée", artist: "Jules Michel", year: "1977" },
-      { title: "Marché Persan", artist: "Stefan Hagiu", year: "2019" },
-      { title: "Hiver Pastoral", artist: "Rajka Kupesic", year: "2024" },
+    exhibitions: [
+      {
+        title: "Les Galeries d'Anjou",
+        location: "Montréal, Québec",
+        description:
+          "Description provisoire de l'exposition. Ce texte décrira ultérieurement l'événement, le lieu, les dates ou la collection mise en vedette.",
+      },
+      {
+        title: "Symposium des Arts de Sherbrooke",
+        location: "Sherbrooke, Québec",
+        description:
+          "Description provisoire de l'exposition. Ce texte sera remplacé ultérieurement.",
+      },
     ],
   },
 
@@ -38,28 +47,6 @@ const fr = {
     heading: "Œuvres de distinction",
     cta_all: "Toutes les collections",
     explore: "Explorer",
-    items: [
-      {
-        title: "Maîtres Contemporains",
-        subtitle: "Peinture actuelle",
-        count: "47 œuvres",
-      },
-      {
-        title: "Paysage Québécois",
-        subtitle: "Territoires et lumières",
-        count: "83 œuvres",
-      },
-      {
-        title: "Abstraction Lyrique",
-        subtitle: "Formes & couleurs",
-        count: "31 œuvres",
-      },
-      {
-        title: "Natures Mortes",
-        subtitle: "Objets & compositions",
-        count: "24 œuvres",
-      },
-    ],
   },
 
   // ── Philosophy / About (homepage section)
@@ -80,59 +67,11 @@ const fr = {
 
   // ── Showcase (homepage section)
   showcase: {
-    eyebrow: "Acquisitions récentes",
-    heading_line1: "Œuvres sélectionnées",
-    heading_line2: "Disponibles maintenant",
-    body: "Chaque œuvre a été authentifiée individuellement et sélectionnée depuis les ateliers des voix artistiques les plus saisissantes du Québec.",
-    cta_all: "Parcourir les 950+ œuvres",
-    view_work: "Voir l'œuvre",
-    artworks: [
-      {
-        ref: "G-0963",
-        title: "Tirlata Sturt Pers",
-        artist: "Jules Michel",
-        year: "1977",
-        medium: "Techniques mixtes — Huile sur toile",
-        dimensions: '46" × 34"',
-        price: "10 000",
-      },
-      {
-        ref: "G-0228",
-        title: "Urbanisation",
-        artist: "Stefan Hagiu",
-        year: "2019",
-        medium: "Huile sur toile",
-        dimensions: '96" × 48"',
-        price: "4 995",
-      },
-      {
-        ref: "G-0967",
-        title: "Hiver Pastoral",
-        artist: "Rajka Kupesic",
-        year: "2024",
-        medium: "Huile sur toile",
-        dimensions: '16½" × 12½"',
-        price: "2 995",
-      },
-      {
-        ref: "G-1030",
-        title: "Portrait de Femme",
-        artist: "Elena Carla",
-        year: "2023",
-        medium: "Huile sur toile",
-        dimensions: '31" × 46"',
-        price: "2 995",
-      },
-      {
-        ref: "G-0192",
-        title: "Le Fleuve de la Vie",
-        artist: "Liguori Vachon",
-        year: "2020",
-        medium: "Acrylique sur toile — Triptyque",
-        dimensions: '72" × 48"',
-        price: "2 995",
-      },
-    ],
+    eyebrow: "Collections privées",
+    heading_line1: "Œuvres acquises",
+    heading_line2: "Ont trouvé leur place dans des collections privées.",
+    body: "Ces toiles poursuivent maintenant leur histoire auprès de leurs collectionneurs — chacune témoigne d'un dialogue accompli entre l'artiste et ceux qui ont choisi de lui confier une demeure.",
+    cta_all: "Voir toutes les œuvres vendues",
   },
 
   // ── CTA (homepage section)
@@ -202,12 +141,18 @@ const fr = {
     view_detail: "Voir l'œuvre",
     inquiry: "Demande d'information",
     sold: "Vendue",
+    sold_label: "Vendu",
+    sold_acquired: "Œuvre acquise",
+    featured_label: "Vedette",
     categories: [
-      { id: "all", label: "Tout", count: 185 },
+      { id: "all", label: "Tout", count: 40 },
       { id: "contemporain", label: "Maîtres contemporains", count: 47 },
       { id: "paysage", label: "Paysage québécois", count: 83 },
       { id: "abstraction", label: "Abstraction lyrique", count: 31 },
       { id: "portrait", label: "Portraits & figures", count: 24 },
+      { id: "client", label: "Client", count: 28 },
+      { id: "featured", label: "Vedette", count: 7 },
+      { id: "sold", label: "Vendu", count: 5 },
     ],
     artworks: [
       {
@@ -367,6 +312,17 @@ const fr = {
         featured: false,
       },
     ],
+  },
+
+  // ══════════════════════════════════════════
+  // ── CONTACT PAGE
+  // ══════════════════════════════════════════
+  contactPage: {
+    meta_title: "Contact — M Lalonde Artiste Peintre",
+    hero_eyebrow: "Nous joindre",
+    hero_heading: "Entamons\nla conversation",
+    hero_sub:
+      "Pour acquérir une œuvre, planifier une visite privée, poser une question sur une exposition, une commande ou toute autre demande — nous serons ravis de vous répondre.",
   },
 
   // ══════════════════════════════════════════
