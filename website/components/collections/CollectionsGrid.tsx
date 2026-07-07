@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import { CLIENT_ARTWORKS } from "@/lib/clientArtworks";
+import SoldStamp from "@/components/SoldStamp";
 
 type Artwork = {
   ref: string; title: string; artist: string; year: string;
@@ -249,13 +250,8 @@ function ArtworkCard({ work, index, onOpen }: { work: Artwork; index: number; on
           {work.ref}
         </span>
 
-        {/* Sold badge */}
-        {work.sold && (
-          <span className="absolute top-3 right-3 text-[8px] tracking-[0.32em] uppercase px-2.5 py-1"
-            style={{ background: "rgba(20,20,18,0.72)", color: "rgba(247,244,239,0.72)", border: "1px solid rgba(184,150,90,0.35)", backdropFilter: "blur(6px)" }}>
-            {c.sold_label}
-          </span>
-        )}
+        {/* Sold stamp */}
+        {work.sold && <SoldStamp label={c.sold_label} size="sm" />}
 
         {/* Featured badge */}
         {work.featured && !work.sold && (

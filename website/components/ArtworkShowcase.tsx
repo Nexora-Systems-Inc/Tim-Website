@@ -3,28 +3,10 @@ import { useRef, useState, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import { SOLD_CLIENT_ARTWORKS } from "@/lib/clientArtworks";
+import SoldStamp from "@/components/SoldStamp";
 
 const ROTATION_MS = 7500;
 const GALLERY_SOLD_URL = "/collections?category=sold";
-
-function SoldWatermark({ label }: { label: string }) {
-  return (
-    <span
-      className="absolute top-6 left-5 pointer-events-none select-none font-serif uppercase"
-      aria-hidden
-      style={{
-        transform: "rotate(-30deg)",
-        transformOrigin: "top left",
-        fontSize: "0.68rem",
-        letterSpacing: "0.44em",
-        color: "rgba(184,150,90,0.68)",
-        fontWeight: 300,
-      }}
-    >
-      {label.toUpperCase()}
-    </span>
-  );
-}
 
 export default function ArtworkShowcase() {
   const { t } = useI18n();
@@ -143,7 +125,7 @@ export default function ArtworkShowcase() {
                 </motion.div>
               </AnimatePresence>
 
-              <SoldWatermark label={c.sold_label} />
+              <SoldStamp label={c.sold_label} size="sm" />
 
               <div
                 className="absolute inset-0 pointer-events-none"
