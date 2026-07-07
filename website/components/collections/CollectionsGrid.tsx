@@ -38,6 +38,58 @@ function syncCategoryInUrl(categoryId: string) {
   window.history.replaceState(null, "", url);
 }
 
+type Category = { id: string; label: string; count: number };
+
+const MOBILE_PRIORITY_FILTER_IDS = ["all", "client", "featured", "sold"];
+
+function orderCategoriesForMobile(categories: Category[]) {
+  const byId = new Map(categories.map((cat) => [cat.id, cat]));
+  const prioritized = MOBILE_PRIORITY_FILTER_IDS
+    .map((id) => byId.get(id))
+    .filter((cat): cat is Category => Boolean(cat));
+  const remaining = categories.filter((cat) => !MOBILE_PRIORITY_FILTER_IDS.includes(cat.id));
+  return [...prioritized, ...remaining];
+}
+
+function CategoryPill({
+  cat,
+  active,
+  onSelect,
+}: {
+  cat: Category;
+  active: boolean;
+  onSelect: (id: string) => void;
+}) {
+  return (
+    <button
+      onClick={() => onSelect(cat.id)}
+      className="flex items-center gap-2 px-5 py-2.5 text-[10px] tracking-[0.22em] uppercase transition-all duration-400"
+      style={{
+        background: active ? "var(--charcoal)" : "transparent",
+        color: active ? "var(--ivory)" : "var(--warm-gray)",
+        border: `1px solid ${active ? "var(--charcoal)" : "rgba(140,136,128,0.3)"}`,
+      }}
+      onMouseEnter={(e) => {
+        if (!active) {
+          (e.currentTarget as HTMLElement).style.borderColor = "var(--charcoal)";
+          (e.currentTarget as HTMLElement).style.color = "var(--charcoal)";
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (!active) {
+          (e.currentTarget as HTMLElement).style.borderColor = "rgba(140,136,128,0.3)";
+          (e.currentTarget as HTMLElement).style.color = "var(--warm-gray)";
+        }
+      }}
+    >
+      {cat.label}
+      <span style={{ color: active ? "var(--gold)" : "rgba(140,136,128,0.5)", fontSize: "9px" }}>
+        {cat.count}
+      </span>
+    </button>
+  );
+}
+
 /* ─── Lightbox ──────────────────────────────────────────── */
 function Lightbox({ work, onClose }: { work: Artwork; onClose: () => void }) {
   const { t } = useI18n();
@@ -320,6 +372,8 @@ export default function CollectionsGrid() {
   };
 
   const filtered = filterArtworks(allArtworks, activeCategory);
+  const categories = c.categories as unknown as Category[];
+  const mobileCategories = orderCategoriesForMobile(categories);
 
   return (
     <>
@@ -341,45 +395,38 @@ export default function CollectionsGrid() {
               </span>
             </motion.div>
 
-            {/* Category pills */}
+            {/* Category pills — mobile priority order below 641px */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="flex flex-wrap gap-2"
+              className="flex flex-wrap gap-2 sm:hidden"
             >
-              {(c.categories as unknown as Array<{ id: string; label: string; count: number }>).map((cat) => {
-                const active = cat.id === activeCategory;
-                return (
-                  <button
-                    key={cat.id}
-                    onClick={() => handleCategoryChange(cat.id)}
-                    className="flex items-center gap-2 px-5 py-2.5 text-[10px] tracking-[0.22em] uppercase transition-all duration-400"
-                    style={{
-                      background: active ? "var(--charcoal)" : "transparent",
-                      color: active ? "var(--ivory)" : "var(--warm-gray)",
-                      border: `1px solid ${active ? "var(--charcoal)" : "rgba(140,136,128,0.3)"}`,
-                    }}
-                    onMouseEnter={(e) => {
-                      if (!active) {
-                        (e.currentTarget as HTMLElement).style.borderColor = "var(--charcoal)";
-                        (e.currentTarget as HTMLElement).style.color = "var(--charcoal)";
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!active) {
-                        (e.currentTarget as HTMLElement).style.borderColor = "rgba(140,136,128,0.3)";
-                        (e.currentTarget as HTMLElement).style.color = "var(--warm-gray)";
-                      }
-                    }}
-                  >
-                    {cat.label}
-                    <span style={{ color: active ? "var(--gold)" : "rgba(140,136,128,0.5)", fontSize: "9px" }}>
-                      {cat.count}
-                    </span>
-                  </button>
-                );
-              })}
+              {mobileCategories.map((cat) => (
+                <CategoryPill
+                  key={cat.id}
+                  cat={cat}
+                  active={cat.id === activeCategory}
+                  onSelect={handleCategoryChange}
+                />
+              ))}
+            </motion.div>
+
+            {/* Category pills — default order on tablet and desktop */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="hidden sm:flex flex-wrap gap-2"
+            >
+              {categories.map((cat) => (
+                <CategoryPill
+                  key={cat.id}
+                  cat={cat}
+                  active={cat.id === activeCategory}
+                  onSelect={handleCategoryChange}
+                />
+              ))}
             </motion.div>
 
             {/* Divider */}
