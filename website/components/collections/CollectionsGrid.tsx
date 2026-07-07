@@ -2,11 +2,13 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
+import { CLIENT_ARTWORKS } from "@/lib/clientArtworks";
 
 type Artwork = {
   ref: string; title: string; artist: string; year: string;
   medium: string; dimensions: string; price: string;
   category: string; image: string; featured: boolean;
+  sold?: boolean;
 };
 
 /* ─── Lightbox ──────────────────────────────────────────── */
@@ -82,23 +84,46 @@ function Lightbox({ work, onClose }: { work: Artwork; onClose: () => void }) {
             {/* Divider */}
             <div className="my-6" style={{ height: "1px", background: "rgba(184,150,90,0.2)" }} />
 
-            {/* Price */}
+            {/* Price / sold */}
             <div className="flex items-baseline justify-between mb-8">
-              <span className="text-[10px] tracking-[0.3em] uppercase" style={{ color: "rgba(247,244,239,0.35)" }}>Prix</span>
-              <span className="font-serif text-2xl" style={{ color: "var(--gold)", fontWeight: 300, fontStyle: "italic" }}>
-                {work.price} $
+              <span className="text-[10px] tracking-[0.3em] uppercase" style={{ color: "rgba(247,244,239,0.35)" }}>
+                {work.sold ? c.sold_label : "Prix"}
               </span>
+              {work.sold ? (
+                <div className="text-right">
+                  {work.price ? (
+                    <span className="block font-serif text-lg mb-1 line-through"
+                      style={{ color: "rgba(247,244,239,0.28)", fontWeight: 300, fontStyle: "italic" }}>
+                      {work.price} $
+                    </span>
+                  ) : null}
+                  <span className="font-serif text-2xl tracking-[0.18em] uppercase"
+                    style={{ color: "var(--gold)", fontWeight: 300 }}>
+                    {c.sold_label}
+                  </span>
+                  <p className="text-[10px] tracking-[0.24em] uppercase mt-2"
+                    style={{ color: "rgba(247,244,239,0.42)" }}>
+                    {c.sold_acquired}
+                  </p>
+                </div>
+              ) : (
+                <span className="font-serif text-2xl" style={{ color: "var(--gold)", fontWeight: 300, fontStyle: "italic" }}>
+                  {work.price} $
+                </span>
+              )}
             </div>
 
             {/* Tax note */}
-            <p className="text-[10px] tracking-[0.22em]" style={{ color: "rgba(184,150,90,0.45)" }}>
-              Toutes taxes incluses
-            </p>
+            {!work.sold && (
+              <p className="text-[10px] tracking-[0.22em]" style={{ color: "rgba(184,150,90,0.45)" }}>
+                Toutes taxes incluses
+              </p>
+            )}
           </div>
 
           {/* CTA */}
           <div className="flex flex-col gap-3 mt-8">
-            <button className="btn-gold justify-center">{c.inquiry}</button>
+            {!work.sold && <button className="btn-gold justify-center">{c.inquiry}</button>}
             <button
               onClick={onClose}
               className="text-[10px] tracking-[0.28em] uppercase py-2 text-center transition-colors duration-300"
@@ -131,6 +156,8 @@ function Lightbox({ work, onClose }: { work: Artwork; onClose: () => void }) {
 
 /* ─── Single artwork card ──────────────────────────────── */
 function ArtworkCard({ work, index, onOpen }: { work: Artwork; index: number; onOpen: () => void }) {
+  const { t } = useI18n();
+  const c = t.collectionsPage;
   const [hovered, setHovered] = useState(false);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
@@ -186,8 +213,16 @@ function ArtworkCard({ work, index, onOpen }: { work: Artwork; index: number; on
           {work.ref}
         </span>
 
+        {/* Sold badge */}
+        {work.sold && (
+          <span className="absolute top-3 right-3 text-[8px] tracking-[0.32em] uppercase px-2.5 py-1"
+            style={{ background: "rgba(20,20,18,0.72)", color: "rgba(247,244,239,0.72)", border: "1px solid rgba(184,150,90,0.35)", backdropFilter: "blur(6px)" }}>
+            {c.sold_label}
+          </span>
+        )}
+
         {/* Featured badge */}
-        {work.featured && (
+        {work.featured && !work.sold && (
           <span className="absolute top-3 right-3 text-[8px] tracking-[0.3em] uppercase px-2.5 py-1"
             style={{ background: "var(--gold)", color: "var(--ivory)" }}>
             Vedette
@@ -203,8 +238,8 @@ function ArtworkCard({ work, index, onOpen }: { work: Artwork; index: number; on
             {work.title}
           </h3>
           <span className="font-serif text-[0.9rem] shrink-0 pt-0.5"
-            style={{ color: "var(--gold)", fontWeight: 300 }}>
-            {work.price} $
+            style={{ color: work.sold ? "rgba(28,28,26,0.38)" : "var(--gold)", fontWeight: 300, letterSpacing: work.sold ? "0.18em" : undefined, fontSize: work.sold ? "0.72rem" : undefined, textTransform: work.sold ? "uppercase" : undefined }}>
+            {work.sold ? c.sold_label : `${work.price} $`}
           </span>
         </div>
         <p className="text-[10px] tracking-[0.18em] uppercase mb-0.5" style={{ color: "var(--warm-gray)" }}>
@@ -236,9 +271,12 @@ export default function CollectionsGrid() {
   const headerRef = useRef(null);
   const inView = useInView(headerRef, { once: true });
 
+  const sampleArtworks = c.artworks as unknown as Artwork[];
+  const allArtworks = [...sampleArtworks, ...CLIENT_ARTWORKS];
+
   const filtered = activeCategory === "all"
-    ? (c.artworks as unknown as Artwork[])
-    : (c.artworks as unknown as Artwork[]).filter((w) => w.category === activeCategory);
+    ? allArtworks
+    : allArtworks.filter((w) => w.category === activeCategory);
 
   return (
     <>

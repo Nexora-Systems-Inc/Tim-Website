@@ -195,13 +195,15 @@ const en: Translations = {
     view_detail: "View Work",
     inquiry: "Enquire",
     sold: "Sold",
+    sold_label: "Sold",
+    sold_acquired: "Work acquired",
     categories: [
-      { id: "all", label: "All", count: 186 },
+      { id: "all", label: "All", count: 40 },
       { id: "contemporain", label: "Contemporary Masters", count: 47 },
       { id: "paysage", label: "Québec Landscape", count: 83 },
       { id: "abstraction", label: "Lyrical Abstraction", count: 31 },
       { id: "portrait", label: "Portraits & Figures", count: 24 },
-      { id: "client", label: "Client", count: 1 },
+      { id: "client", label: "Client", count: 28 },
     ],
     artworks: [
       {
@@ -358,18 +360,6 @@ const en: Translations = {
         category: "portrait",
         image:
           "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=800&q=85&fit=crop",
-        featured: false,
-      },
-      {
-        ref: "C-0020",
-        title: "MARÉES",
-        artist: "M Lalonde",
-        year: "n.d.",
-        medium: "Acrylic on paper",
-        dimensions: '8 1/2" × 6 1/2" (20.3 cm × 15.2 cm)',
-        price: "50",
-        category: "client",
-        image: "/images/artworks/C-0020.webp",
         featured: false,
       },
     ],
