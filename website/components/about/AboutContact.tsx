@@ -73,44 +73,8 @@ export default function AboutContact() {
   return (
     <section id="contact" className="section-pad-lg" style={{ background: "var(--ivory)" }}>
       <div className="container">
-        {/* Section header */}
-        <div ref={ref} className="mb-16 md:mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7 }}
-            className="eyebrow mb-5"
-          >
-            {a.contact_eyebrow}
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 22 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.95, delay: 0.1 }}
-            className="font-serif mb-5"
-            style={{
-              fontSize: "clamp(2rem, 3.5vw, 3.2rem)",
-              fontWeight: 300,
-              fontStyle: "italic",
-              color: "var(--charcoal)",
-              lineHeight: 1.1,
-              maxWidth: "560px",
-            }}
-          >
-            {a.contact_heading}
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.25 }}
-            style={{ color: "var(--warm-gray)", fontSize: "14.5px", maxWidth: "500px", lineHeight: 1.85 }}
-          >
-            {a.contact_sub}
-          </motion.p>
-        </div>
-
         {/* Two-column: form + info */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
+        <div ref={ref} className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
           {/* Form — 7 cols */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}

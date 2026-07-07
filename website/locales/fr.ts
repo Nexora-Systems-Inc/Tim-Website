@@ -315,6 +315,17 @@ const fr = {
   },
 
   // ══════════════════════════════════════════
+  // ── CONTACT PAGE
+  // ══════════════════════════════════════════
+  contactPage: {
+    meta_title: "Contact — M Lalonde Artiste Peintre",
+    hero_eyebrow: "Nous joindre",
+    hero_heading: "Entamons\nla conversation",
+    hero_sub:
+      "Pour acquérir une œuvre, planifier une visite privée, poser une question sur la collection ou toute autre demande — nous serons ravis de vous répondre.",
+  },
+
+  // ══════════════════════════════════════════
   // ── ABOUT / CONTACT PAGE
   // ══════════════════════════════════════════
   aboutPage: {

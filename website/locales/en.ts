@@ -297,6 +297,13 @@ const en: Translations = {
       },
     ],
   },
+  contactPage: {
+    meta_title: "Contact — M Lalonde Artiste Peintre",
+    hero_eyebrow: "Get in Touch",
+    hero_heading: "Let's Begin\nthe Conversation",
+    hero_sub:
+      "Whether you wish to acquire a work, arrange a private viewing, ask about the collection, or make a general enquiry — we would be delighted to hear from you.",
+  },
   aboutPage: {
     meta_title: "About — M Lalonde Artiste Peintre",
     hero_eyebrow: "Our Story",
