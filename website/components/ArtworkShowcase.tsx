@@ -9,36 +9,20 @@ const GALLERY_SOLD_URL = "/collections?category=sold";
 
 function SoldWatermark({ label }: { label: string }) {
   return (
-    <>
-      {/* Diagonal corner watermark */}
-      <span
-        className="absolute top-8 right-[-1.25rem] pointer-events-none select-none font-serif uppercase"
-        aria-hidden
-        style={{
-          transform: "rotate(52deg)",
-          transformOrigin: "center",
-          fontSize: "0.62rem",
-          letterSpacing: "0.48em",
-          color: "rgba(247,244,239,0.18)",
-          fontWeight: 300,
-        }}
-      >
-        {label}
-      </span>
-
-      {/* Gold corner badge */}
-      <span
-        className="absolute top-3.5 right-3.5 text-[8px] tracking-[0.34em] uppercase px-2.5 py-1 pointer-events-none"
-        style={{
-          background: "rgba(20,20,18,0.62)",
-          color: "var(--gold)",
-          border: "1px solid rgba(184,150,90,0.42)",
-          backdropFilter: "blur(6px)",
-        }}
-      >
-        {label}
-      </span>
-    </>
+    <span
+      className="absolute top-6 left-5 pointer-events-none select-none font-serif uppercase"
+      aria-hidden
+      style={{
+        transform: "rotate(-30deg)",
+        transformOrigin: "top left",
+        fontSize: "0.68rem",
+        letterSpacing: "0.44em",
+        color: "rgba(184,150,90,0.68)",
+        fontWeight: 300,
+      }}
+    >
+      {label.toUpperCase()}
+    </span>
   );
 }
 
