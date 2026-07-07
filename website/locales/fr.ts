@@ -47,28 +47,6 @@ const fr = {
     heading: "Œuvres de distinction",
     cta_all: "Toutes les collections",
     explore: "Explorer",
-    items: [
-      {
-        title: "Maîtres Contemporains",
-        subtitle: "Peinture actuelle",
-        count: "47 œuvres",
-      },
-      {
-        title: "Paysage Québécois",
-        subtitle: "Territoires et lumières",
-        count: "83 œuvres",
-      },
-      {
-        title: "Abstraction Lyrique",
-        subtitle: "Formes & couleurs",
-        count: "31 œuvres",
-      },
-      {
-        title: "Natures Mortes",
-        subtitle: "Objets & compositions",
-        count: "24 œuvres",
-      },
-    ],
   },
 
   // ── Philosophy / About (homepage section)
@@ -95,6 +73,53 @@ const fr = {
     body: "Chaque œuvre a été authentifiée individuellement et sélectionnée depuis les ateliers des voix artistiques les plus saisissantes du Québec.",
     cta_all: "Parcourir les 950+ œuvres",
     view_work: "Voir l'œuvre",
+    artworks: [
+      {
+        ref: "G-0963",
+        title: "Tirlata Sturt Pers",
+        artist: "Jules Michel",
+        year: "1977",
+        medium: "Techniques mixtes — Huile sur toile",
+        dimensions: '46" × 34"',
+        price: "10 000",
+      },
+      {
+        ref: "G-0228",
+        title: "Urbanisation",
+        artist: "Stefan Hagiu",
+        year: "2019",
+        medium: "Huile sur toile",
+        dimensions: '96" × 48"',
+        price: "4 995",
+      },
+      {
+        ref: "G-0967",
+        title: "Hiver Pastoral",
+        artist: "Rajka Kupesic",
+        year: "2024",
+        medium: "Huile sur toile",
+        dimensions: '16½" × 12½"',
+        price: "2 995",
+      },
+      {
+        ref: "G-1030",
+        title: "Portrait de Femme",
+        artist: "Elena Carla",
+        year: "2023",
+        medium: "Huile sur toile",
+        dimensions: '31" × 46"',
+        price: "2 995",
+      },
+      {
+        ref: "G-0192",
+        title: "Le Fleuve de la Vie",
+        artist: "Liguori Vachon",
+        year: "2020",
+        medium: "Acrylique sur toile — Triptyque",
+        dimensions: '72" × 48"',
+        price: "2 995",
+      },
+    ],
   },
 
   // ── CTA (homepage section)
