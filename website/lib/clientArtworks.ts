@@ -15,3 +15,5 @@ export type ClientArtwork = {
 };
 
 export const CLIENT_ARTWORKS = catalog as ClientArtwork[];
+
+export const FEATURED_CLIENT_ARTWORKS = CLIENT_ARTWORKS.filter((artwork) => artwork.featured);

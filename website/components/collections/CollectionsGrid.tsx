@@ -59,10 +59,20 @@ function Lightbox({ work, onClose }: { work: Artwork; onClose: () => void }) {
             </p>
 
             {/* Title */}
-            <h2 className="font-serif mb-6"
-              style={{ fontSize: "clamp(1.6rem, 2.8vw, 2.4rem)", fontWeight: 300, fontStyle: "italic", color: "var(--ivory)", lineHeight: 1.1 }}>
-              {work.title}
-            </h2>
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <h2 className="font-serif"
+                style={{ fontSize: "clamp(1.6rem, 2.8vw, 2.4rem)", fontWeight: 300, fontStyle: "italic", color: "var(--ivory)", lineHeight: 1.1 }}>
+                {work.title}
+              </h2>
+              {work.featured && (
+                <span
+                  className="text-[8px] tracking-[0.34em] uppercase px-3 py-1 shrink-0"
+                  style={{ border: "1px solid rgba(184,150,90,0.55)", color: "var(--gold)" }}
+                >
+                  {c.featured_label}
+                </span>
+              )}
+            </div>
 
             {/* Divider */}
             <div className="mb-6" style={{ height: "1px", background: "rgba(184,150,90,0.2)" }} />
@@ -225,7 +235,7 @@ function ArtworkCard({ work, index, onOpen }: { work: Artwork; index: number; on
         {work.featured && !work.sold && (
           <span className="absolute top-3 right-3 text-[8px] tracking-[0.3em] uppercase px-2.5 py-1"
             style={{ background: "var(--gold)", color: "var(--ivory)" }}>
-            Vedette
+            {c.featured_label}
           </span>
         )}
       </div>
