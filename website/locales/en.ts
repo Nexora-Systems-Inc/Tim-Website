@@ -2,6 +2,7 @@ import type { Translations } from "./fr";
 
 const en: Translations = {
   nav: {
+    home: "Home",
     collections: "Collections",
     artists: "Artists",
     exhibitions: "Exhibitions",
@@ -12,8 +13,10 @@ const en: Translations = {
     gallery_subtitle: "Artiste Peintre",
     mobile_location: "Sherbrooke, Québec",
     links: [
+      { label: "Home", href: "/" },
       { label: "About", href: "/a-propos" },
       { label: "Collections", href: "/collections" },
+      { label: "Contact", href: "/contact" },
     ],
   },
   hero: {

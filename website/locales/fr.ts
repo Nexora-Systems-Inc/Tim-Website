@@ -1,6 +1,7 @@
 const fr = {
   // ── Navigation
   nav: {
+    home: "Accueil",
     collections: "Collections",
     artists: "Artistes",
     exhibitions: "Expositions",
@@ -11,8 +12,10 @@ const fr = {
     gallery_subtitle: "Artiste Peintre",
     mobile_location: "Sherbrooke, Québec",
     links: [
+      { label: "Accueil", href: "/" },
       { label: "À propos", href: "/a-propos" },
       { label: "Collections", href: "/collections" },
+      { label: "Contact", href: "/contact" },
     ],
   },
 

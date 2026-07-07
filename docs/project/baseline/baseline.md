@@ -3,7 +3,7 @@
 > **Template:** Nexora Website Documentation — Baseline Document  
 > **Project:** Galerie à Manon — M Lalonde Artiste Peintre  
 > **Client:** Tim Agostinucci  
-> **Version:** 1.3  
+> **Version:** 1.4  
 > **Date:** 2026-07-06  
 > **Author:** Nexora Engineering
 
@@ -105,6 +105,7 @@ Initial website modification request outlining navigation, content, and structur
 - Removed About page press section (`AboutPress`): heading, testimonials, and associated locale content.
 - Removed About page values section (`AboutValues`): heading, commitment cards, and associated locale content.
 - Separated contact from biography: removed `AboutContact` from `/a-propos`; contact section now lives on dedicated `/contact` page (2026-07-05).
+- Primary navigation updated 2026-07-06: Accueil, À propos, Collections, Contact (French); Home, About, Collections, Contact (English). Logo continues to link to `/`.
 
 ---
 
@@ -249,6 +250,7 @@ Commercial planning discussion covering website services and ongoing support.
 | WEB-005 | Remove obsolete sections | E-001 | — | In progress | 2026-07-05 (team, press, values sections removed) |
 | WEB-006 | Update website title | E-002 | — | Completed | 2026-07-05 |
 | WEB-007 | Replace artwork after photography | E-004 | — | Waiting on Client | — |
+| WEB-008 | Update primary navigation structure | E-001 | — | Completed | 2026-07-06 |
 
 ---
 
@@ -290,6 +292,7 @@ Decisions made by Nexora Engineering.
 | ED-006 | — | Previous client feature branch discarded after navigation regression | Clean restart preferred over continued patching on failed branch | Engineering |
 | ED-007 | — | Future website modifications implemented one logical feature at a time | Reduce regression risk; enable isolated review and approval | Engineering |
 | ED-008 | 2026-07-06 | Footer contact information finalized from client | Phone (514-710-4230) and email (info@mlalondeartistepeintre.ca) confirmed; placeholder values replaced in footer | WEB-003, O-005, O-006 |
+| ED-009 | 2026-07-06 | Primary navigation structure approved and implemented | French: Accueil, À propos, Collections, Contact; English: Home, About, Collections, Contact; logo continues to link to homepage | WEB-008, E-001 |
 
 ---
 
