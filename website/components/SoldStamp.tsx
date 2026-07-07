@@ -27,7 +27,7 @@ export default function SoldStamp({
       style={{
         top: dims.top,
         left: dims.left,
-        transform: "rotate(-42deg)",
+        transform: "rotate(-12deg)",
         transformOrigin: "center",
         ...style,
       }}
