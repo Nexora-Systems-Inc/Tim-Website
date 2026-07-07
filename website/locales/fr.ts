@@ -68,9 +68,9 @@ const fr = {
   // ── Showcase (homepage section)
   showcase: {
     eyebrow: "Collections privées",
-    heading_line1: "Œuvres sélectionnées",
-    heading_line2: "Trouvent leur demeure",
-    body: "Chaque pièce présentée ici a rejoint une collection privée — un témoignage du dialogue entre l'artiste et ceux qui reconnaissent la valeur d'une œuvre unique.",
+    heading_line1: "Œuvres acquises",
+    heading_line2: "Ont trouvé leur place dans des collections privées.",
+    body: "Ces toiles poursuivent maintenant leur histoire auprès de leurs collectionneurs — chacune témoigne d'un dialogue accompli entre l'artiste et ceux qui ont choisi de lui confier une demeure.",
     cta_all: "Voir toutes les œuvres vendues",
   },
 

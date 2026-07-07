@@ -60,9 +60,9 @@ const en: Translations = {
   },
   showcase: {
     eyebrow: "Private Collections",
-    heading_line1: "Selected Works",
-    heading_line2: "Now at Home",
-    body: "Each work featured here has joined a private collection — a testament to the dialogue between artist and those who recognize the value of a singular creation.",
+    heading_line1: "Acquired Works",
+    heading_line2: "Now in private collections.",
+    body: "These paintings continue their story with their collectors — each one marks a completed dialogue between the artist and those who chose to give it a home.",
     cta_all: "View All Sold Works",
   },
   cta: {

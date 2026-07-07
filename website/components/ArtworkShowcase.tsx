@@ -7,6 +7,41 @@ import { SOLD_CLIENT_ARTWORKS } from "@/lib/clientArtworks";
 const ROTATION_MS = 7500;
 const GALLERY_SOLD_URL = "/collections?category=sold";
 
+function SoldWatermark({ label }: { label: string }) {
+  return (
+    <>
+      {/* Diagonal corner watermark */}
+      <span
+        className="absolute top-8 right-[-1.25rem] pointer-events-none select-none font-serif uppercase"
+        aria-hidden
+        style={{
+          transform: "rotate(52deg)",
+          transformOrigin: "center",
+          fontSize: "0.62rem",
+          letterSpacing: "0.48em",
+          color: "rgba(247,244,239,0.18)",
+          fontWeight: 300,
+        }}
+      >
+        {label}
+      </span>
+
+      {/* Gold corner badge */}
+      <span
+        className="absolute top-3.5 right-3.5 text-[8px] tracking-[0.34em] uppercase px-2.5 py-1 pointer-events-none"
+        style={{
+          background: "rgba(20,20,18,0.62)",
+          color: "var(--gold)",
+          border: "1px solid rgba(184,150,90,0.42)",
+          backdropFilter: "blur(6px)",
+        }}
+      >
+        {label}
+      </span>
+    </>
+  );
+}
+
 export default function ArtworkShowcase() {
   const { t } = useI18n();
   const s = t.showcase;
@@ -93,16 +128,16 @@ export default function ArtworkShowcase() {
           </motion.div>
         </div>
 
-        {/* Museum spotlight — single rotating sold work */}
-        <div className="max-w-4xl mx-auto">
+        {/* Rotating sold work — card-scale footprint */}
+        <div className="max-w-[260px] sm:max-w-[300px] md:max-w-[340px] mx-auto">
           <a
             href={GALLERY_SOLD_URL}
             className="group block cursor-pointer"
-            aria-label={`${work.title} — ${c.sold_acquired}`}
+            aria-label={`${work.title} — ${c.sold_label}`}
           >
             <div
-              className="relative overflow-hidden mb-10 md:mb-12"
-              style={{ aspectRatio: "4/5", maxHeight: "min(72vh, 720px)" }}
+              className="relative overflow-hidden mb-8 md:mb-10"
+              style={{ aspectRatio: "3/4" }}
             >
               <AnimatePresence mode="wait">
                 <motion.div
@@ -118,42 +153,44 @@ export default function ArtworkShowcase() {
                     alt={work.title}
                     className="w-full h-full object-cover"
                     animate={{ scale: 1 }}
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{ scale: 1.04 }}
                     transition={{ duration: 1.6, ease: [0.25, 0.1, 0.25, 1] }}
                   />
                 </motion.div>
               </AnimatePresence>
 
+              <SoldWatermark label={c.sold_label} />
+
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   background:
-                    "linear-gradient(to top, rgba(20,20,18,0.55) 0%, rgba(20,20,18,0.08) 45%, transparent 100%)",
+                    "linear-gradient(to top, rgba(20,20,18,0.58) 0%, rgba(20,20,18,0.06) 50%, transparent 100%)",
                 }}
               />
 
               <span
-                className="absolute top-5 left-5 text-[9px] tracking-[0.28em] uppercase"
-                style={{ color: "rgba(247,244,239,0.42)" }}
+                className="absolute top-3.5 left-3.5 text-[9px] tracking-[0.22em]"
+                style={{ color: "rgba(247,244,239,0.4)" }}
               >
                 {work.ref}
               </span>
 
-              <div className="absolute bottom-0 left-0 right-0 p-7 md:p-10">
+              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={work.ref}
-                    initial={{ opacity: 0, y: 12 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
+                    exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
                   >
                     <h3
-                      className="font-serif mb-3 leading-[1.05]"
+                      className="font-serif mb-2 leading-tight"
                       style={{
                         color: "var(--ivory)",
-                        fontSize: "clamp(1.5rem, 2.6vw, 2.2rem)",
-                        fontWeight: 300,
+                        fontSize: "clamp(1.05rem, 2vw, 1.35rem)",
+                        fontWeight: 400,
                         fontStyle: "italic",
                       }}
                     >
@@ -162,19 +199,12 @@ export default function ArtworkShowcase() {
 
                     {(work.medium || work.dimensions) && (
                       <p
-                        className="text-[11px] tracking-[0.16em] uppercase mb-4"
-                        style={{ color: "rgba(247,244,239,0.55)", lineHeight: 1.7 }}
+                        className="text-[10px] tracking-[0.14em] uppercase"
+                        style={{ color: "rgba(247,244,239,0.52)", lineHeight: 1.65 }}
                       >
                         {[work.medium, work.dimensions].filter(Boolean).join(" · ")}
                       </p>
                     )}
-
-                    <span
-                      className="inline-block text-[9px] tracking-[0.38em] uppercase px-4 py-2"
-                      style={{ border: "1px solid rgba(184,150,90,0.55)", color: "var(--gold)" }}
-                    >
-                      {c.sold_acquired}
-                    </span>
                   </motion.div>
                 </AnimatePresence>
               </div>
