@@ -3,8 +3,8 @@
 > **Template:** Nexora Website Documentation — Baseline Document  
 > **Project:** Galerie à Manon — M Lalonde Artiste Peintre  
 > **Client:** Tim Agostinucci  
-> **Version:** 1.2  
-> **Date:** 2026-07-05  
+> **Version:** 1.3  
+> **Date:** 2026-07-06  
 > **Author:** Nexora Engineering
 
 ---
@@ -289,6 +289,7 @@ Decisions made by Nexora Engineering.
 | ED-005 | — | Historical versions archived | Preserve prior versions without maintaining parallel active codebases | Engineering |
 | ED-006 | — | Previous client feature branch discarded after navigation regression | Clean restart preferred over continued patching on failed branch | Engineering |
 | ED-007 | — | Future website modifications implemented one logical feature at a time | Reduce regression risk; enable isolated review and approval | Engineering |
+| ED-008 | 2026-07-06 | Footer contact information finalized from client | Phone (514-710-4230) and email (info@mlalondeartistepeintre.ca) confirmed; placeholder values replaced in footer | WEB-003, O-005, O-006 |
 
 ---
 
@@ -304,8 +305,8 @@ Items blocking progress, organized by owner.
 | O-002 | Homepage introduction | 2026-06-02 | Pending | WEB-002, E-001 |
 | O-003 | Updated artwork | 2026-06-12 | Pending | WEB-007, E-004 |
 | O-004 | Final address | — | Implemented (footer) | WEB-003 |
-| O-005 | Final phone number | — | Implemented (temporary placeholder on footer) | WEB-003 |
-| O-006 | Final email | — | Pending (client confirmation) | WEB-003 |
+| O-005 | Final phone number | — | Implemented (514-710-4230, footer) | WEB-003 |
+| O-006 | Final email | — | Implemented (info@mlalondeartistepeintre.ca, footer) | WEB-003 |
 | O-007 | Photography session | 2026-06-12 | Planned | E-004, WEB-007 |
 | O-008 | Financial commitment | 2026-06-06 | Pending | E-003, CD-002 |
 | O-009 | Confirmation of website title (if required) | 2026-06-04 | Resolved | WEB-006, E-002, CD-001 |
