@@ -322,7 +322,7 @@ const fr = {
     hero_eyebrow: "Nous joindre",
     hero_heading: "Entamons\nla conversation",
     hero_sub:
-      "Pour acquérir une œuvre, planifier une visite privée, poser une question sur la collection ou toute autre demande — nous serons ravis de vous répondre.",
+      "Pour acquérir une œuvre, planifier une visite privée, poser une question sur une exposition, une commande ou toute autre demande — nous serons ravis de vous répondre.",
   },
 
   // ══════════════════════════════════════════
