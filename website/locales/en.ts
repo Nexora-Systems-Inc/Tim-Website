@@ -20,14 +20,23 @@ const en: Translations = {
     ],
   },
   hero: {
-    eyebrow: "Featured Work",
+    eyebrow: "Featured Exhibition",
     cta_primary: "Explore Collection",
     cta_secondary: "Our Story",
     scroll_label: "Scroll",
-    works: [
-      { title: "The Golden Dawn", artist: "Jules Michel", year: "1977" },
-      { title: "Persian Market", artist: "Stefan Hagiu", year: "2019" },
-      { title: "Pastoral Winter", artist: "Rajka Kupesic", year: "2024" },
+    exhibitions: [
+      {
+        title: "Les Galeries d'Anjou",
+        location: "Montreal, Quebec",
+        description:
+          "Placeholder description for the exhibition. This will later describe the event, location, dates, or featured collection.",
+      },
+      {
+        title: "Symposium des Arts de Sherbrooke",
+        location: "Sherbrooke, Quebec",
+        description:
+          "Placeholder description for the exhibition. This text will be replaced later.",
+      },
     ],
   },
   collections: {

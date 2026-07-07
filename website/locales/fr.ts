@@ -21,14 +21,23 @@ const fr = {
 
   // ── Hero
   hero: {
-    eyebrow: "Œuvre à l'honneur",
+    eyebrow: "Exposition à l'honneur",
     cta_primary: "Explorer la collection",
     cta_secondary: "Notre histoire",
     scroll_label: "Défiler",
-    works: [
-      { title: "L'Aube Dorée", artist: "Jules Michel", year: "1977" },
-      { title: "Marché Persan", artist: "Stefan Hagiu", year: "2019" },
-      { title: "Hiver Pastoral", artist: "Rajka Kupesic", year: "2024" },
+    exhibitions: [
+      {
+        title: "Les Galeries d'Anjou",
+        location: "Montréal, Québec",
+        description:
+          "Description provisoire de l'exposition. Ce texte décrira ultérieurement l'événement, le lieu, les dates ou la collection mise en vedette.",
+      },
+      {
+        title: "Symposium des Arts de Sherbrooke",
+        location: "Sherbrooke, Québec",
+        description:
+          "Description provisoire de l'exposition. Ce texte sera remplacé ultérieurement.",
+      },
     ],
   },
 

@@ -24,6 +24,11 @@ function SlideNumber({ n }: { n: number }) {
 export default function Hero() {
   const { t } = useI18n();
   const h = t.hero;
+  const exhibitions = h.exhibitions as unknown as Array<{
+    title: string;
+    location: string;
+    description: string;
+  }>;
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
@@ -38,11 +43,11 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
-    const id = setInterval(() => setActiveIndex((p) => (p + 1) % h.works.length), 6500);
+    const id = setInterval(() => setActiveIndex((p) => (p + 1) % exhibitions.length), 6500);
     return () => clearInterval(id);
-  }, [h.works.length]);
+  }, [exhibitions.length]);
 
-  const current = h.works[activeIndex];
+  const current = exhibitions[activeIndex];
 
   return (
     <section ref={containerRef} className="relative w-full h-screen overflow-hidden">
@@ -77,7 +82,7 @@ export default function Hero() {
         style={{ opacity }}
         className="relative z-20 h-full flex flex-col justify-end"
       >
-        <div className="container pb-20 md:pb-28">
+        <div className="container pb-20 md:pb-28 pr-[calc(var(--container-padding)+3rem)] sm:pr-[var(--container-padding)]">
           {/* Eyebrow */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -100,7 +105,7 @@ export default function Hero() {
               className="font-serif"
               style={{
                 color: "var(--ivory)",
-                fontSize: "clamp(3rem, 7.5vw, 7rem)",
+                fontSize: "clamp(2.4rem, 7.5vw, 7rem)",
                 lineHeight: 0.96,
                 fontWeight: 300,
                 fontStyle: "italic",
@@ -111,28 +116,38 @@ export default function Hero() {
             </motion.h1>
           </div>
 
-          {/* Artist + year */}
+          {/* Location */}
           <motion.div
-            key={current.artist}
+            key={current.location}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.18 }}
-            className="flex items-center gap-3 mb-12"
+            className="mb-5 md:mb-6"
           >
             <span
-              className="text-[12px] tracking-[0.22em] uppercase"
+              className="text-[11px] md:text-[12px] tracking-[0.22em] uppercase"
               style={{ color: "rgba(247,244,239,0.62)" }}
             >
-              {current.artist}
-            </span>
-            <span style={{ color: "var(--gold)", fontSize: 10 }}>–</span>
-            <span
-              className="font-serif text-[15px]"
-              style={{ color: "rgba(247,244,239,0.38)", fontStyle: "italic" }}
-            >
-              {current.year}
+              {current.location}
             </span>
           </motion.div>
+
+          {/* Description */}
+          <motion.p
+            key={current.description}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.28 }}
+            className="mb-8 md:mb-12"
+            style={{
+              color: "rgba(247,244,239,0.55)",
+              fontSize: "clamp(13px, 1.6vw, 14.5px)",
+              lineHeight: 1.85,
+              maxWidth: "min(520px, 88vw)",
+            }}
+          >
+            {current.description}
+          </motion.p>
 
           {/* CTA row */}
           <motion.div
@@ -164,11 +179,11 @@ export default function Hero() {
             <SlideNumber n={activeIndex} />
             <span className="text-[10px]" style={{ color: "rgba(247,244,239,0.22)" }}>/</span>
             <span className="font-serif text-sm" style={{ color: "rgba(247,244,239,0.22)", fontStyle: "italic" }}>
-              {String(h.works.length).padStart(2, "0")}
+              {String(exhibitions.length).padStart(2, "0")}
             </span>
           </div>
           <div className="flex items-center gap-2">
-            {h.works.map((_, i) => (
+            {exhibitions.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setActiveIndex(i)}
