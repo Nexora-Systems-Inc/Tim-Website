@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import { CLIENT_ARTWORKS } from "@/lib/clientArtworks";
@@ -10,6 +11,31 @@ type Artwork = {
   category: string; image: string; featured: boolean;
   sold?: boolean;
 };
+
+const FILTER_IDS = new Set([
+  "all",
+  "contemporain",
+  "paysage",
+  "abstraction",
+  "portrait",
+  "client",
+  "featured",
+  "sold",
+]);
+
+function filterArtworks(artworks: Artwork[], categoryId: string) {
+  if (categoryId === "all") return artworks;
+  if (categoryId === "sold") return artworks.filter((work) => work.sold);
+  if (categoryId === "featured") return artworks.filter((work) => work.featured);
+  return artworks.filter((work) => work.category === categoryId);
+}
+
+function syncCategoryInUrl(categoryId: string) {
+  const url = new URL(window.location.href);
+  if (categoryId === "all") url.searchParams.delete("category");
+  else url.searchParams.set("category", categoryId);
+  window.history.replaceState(null, "", url);
+}
 
 /* ─── Lightbox ──────────────────────────────────────────── */
 function Lightbox({ work, onClose }: { work: Artwork; onClose: () => void }) {
@@ -275,6 +301,7 @@ function ArtworkCard({ work, index, onOpen }: { work: Artwork; index: number; on
 export default function CollectionsGrid() {
   const { t } = useI18n();
   const c = t.collectionsPage;
+  const searchParams = useSearchParams();
 
   const [activeCategory, setActiveCategory] = useState("all");
   const [lightboxWork, setLightboxWork] = useState<Artwork | null>(null);
@@ -284,9 +311,19 @@ export default function CollectionsGrid() {
   const sampleArtworks = c.artworks as unknown as Artwork[];
   const allArtworks = [...sampleArtworks, ...CLIENT_ARTWORKS];
 
-  const filtered = activeCategory === "all"
-    ? allArtworks
-    : allArtworks.filter((w) => w.category === activeCategory);
+  useEffect(() => {
+    const category = searchParams.get("category");
+    if (category && FILTER_IDS.has(category)) {
+      setActiveCategory(category);
+    }
+  }, [searchParams]);
+
+  const handleCategoryChange = (categoryId: string) => {
+    setActiveCategory(categoryId);
+    syncCategoryInUrl(categoryId);
+  };
+
+  const filtered = filterArtworks(allArtworks, activeCategory);
 
   return (
     <>
@@ -320,7 +357,7 @@ export default function CollectionsGrid() {
                 return (
                   <button
                     key={cat.id}
-                    onClick={() => setActiveCategory(cat.id)}
+                    onClick={() => handleCategoryChange(cat.id)}
                     className="flex items-center gap-2 px-5 py-2.5 text-[10px] tracking-[0.22em] uppercase transition-all duration-400"
                     style={{
                       background: active ? "var(--charcoal)" : "transparent",

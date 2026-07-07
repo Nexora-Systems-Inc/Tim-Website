@@ -67,59 +67,11 @@ const fr = {
 
   // ── Showcase (homepage section)
   showcase: {
-    eyebrow: "Acquisitions récentes",
+    eyebrow: "Collections privées",
     heading_line1: "Œuvres sélectionnées",
-    heading_line2: "Disponibles maintenant",
-    body: "Chaque œuvre a été authentifiée individuellement et sélectionnée depuis les ateliers des voix artistiques les plus saisissantes du Québec.",
-    cta_all: "Parcourir les 950+ œuvres",
-    view_work: "Voir l'œuvre",
-    artworks: [
-      {
-        ref: "G-0963",
-        title: "Tirlata Sturt Pers",
-        artist: "Jules Michel",
-        year: "1977",
-        medium: "Techniques mixtes — Huile sur toile",
-        dimensions: '46" × 34"',
-        price: "10 000",
-      },
-      {
-        ref: "G-0228",
-        title: "Urbanisation",
-        artist: "Stefan Hagiu",
-        year: "2019",
-        medium: "Huile sur toile",
-        dimensions: '96" × 48"',
-        price: "4 995",
-      },
-      {
-        ref: "G-0967",
-        title: "Hiver Pastoral",
-        artist: "Rajka Kupesic",
-        year: "2024",
-        medium: "Huile sur toile",
-        dimensions: '16½" × 12½"',
-        price: "2 995",
-      },
-      {
-        ref: "G-1030",
-        title: "Portrait de Femme",
-        artist: "Elena Carla",
-        year: "2023",
-        medium: "Huile sur toile",
-        dimensions: '31" × 46"',
-        price: "2 995",
-      },
-      {
-        ref: "G-0192",
-        title: "Le Fleuve de la Vie",
-        artist: "Liguori Vachon",
-        year: "2020",
-        medium: "Acrylique sur toile — Triptyque",
-        dimensions: '72" × 48"',
-        price: "2 995",
-      },
-    ],
+    heading_line2: "Trouvent leur demeure",
+    body: "Chaque pièce présentée ici a rejoint une collection privée — un témoignage du dialogue entre l'artiste et ceux qui reconnaissent la valeur d'une œuvre unique.",
+    cta_all: "Voir toutes les œuvres vendues",
   },
 
   // ── CTA (homepage section)
@@ -199,6 +151,8 @@ const fr = {
       { id: "abstraction", label: "Abstraction lyrique", count: 31 },
       { id: "portrait", label: "Portraits & figures", count: 24 },
       { id: "client", label: "Client", count: 28 },
+      { id: "featured", label: "Vedette", count: 7 },
+      { id: "sold", label: "Vendu", count: 5 },
     ],
     artworks: [
       {
