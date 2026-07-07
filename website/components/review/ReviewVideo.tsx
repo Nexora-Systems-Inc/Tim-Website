@@ -60,8 +60,10 @@ export default function ReviewVideo() {
         <video
           className={`w-full h-auto bg-black ${ready ? "block" : "sr-only"}`}
           controls
-          preload="metadata"
+          autoPlay
+          muted
           playsInline
+          preload="auto"
           onLoadedData={() => setReady(true)}
           onError={() => setFailed(true)}
         >
