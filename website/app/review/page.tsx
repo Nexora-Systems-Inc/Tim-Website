@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ReviewVideo from "@/components/review/ReviewVideo";
+import ReviewPresentation from "@/components/review/ReviewPresentation";
 import { PRODUCTION_SITE_URL, SITE_TITLE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -11,73 +11,12 @@ export const metadata: Metadata = {
 export default function ReviewPage() {
   return (
     <main style={{ background: "var(--ivory)" }}>
-      {/* Branding, intro & video — compact presentation header */}
       <section
         className="pt-10 pb-12 md:pt-12 md:pb-14"
         style={{ paddingInline: "var(--container-padding)" }}
       >
         <div className="container max-w-[960px] mx-auto">
-          <div className="text-center mb-6 md:mb-7">
-            <h1
-              className="font-serif mb-3"
-              style={{
-                fontSize: "clamp(3.2rem, 8vw, 5.75rem)",
-                fontWeight: 300,
-                fontStyle: "italic",
-                color: "var(--charcoal)",
-                lineHeight: 0.95,
-                letterSpacing: "-0.02em",
-              }}
-            >
-              M Lalonde
-            </h1>
-
-            <p
-              className="text-[10px] tracking-[0.42em] uppercase"
-              style={{ color: "var(--gold)" }}
-            >
-              Artiste Peintre
-            </p>
-          </div>
-
-          <h2
-            className="font-serif text-center mb-4"
-            style={{
-              fontSize: "clamp(1.35rem, 2.6vw, 1.85rem)",
-              fontWeight: 300,
-              fontStyle: "italic",
-              color: "var(--warm-gray-lt)",
-              lineHeight: 1.15,
-            }}
-          >
-            Website Review
-          </h2>
-
-          <div className="max-w-[540px] mx-auto text-center mb-7 md:mb-8">
-            <p
-              className="mb-2.5"
-              style={{
-                color: "var(--warm-gray)",
-                fontSize: "14.5px",
-                lineHeight: 1.75,
-              }}
-            >
-              Thank you for taking the time to review the latest version of your website.
-            </p>
-
-            <p
-              style={{
-                color: "rgba(28,28,26,0.52)",
-                fontSize: "14px",
-                lineHeight: 1.75,
-              }}
-            >
-              The short presentation below walks through the major improvements made since the
-              original version.
-            </p>
-          </div>
-
-          <ReviewVideo />
+          <ReviewPresentation />
         </div>
       </section>
 
