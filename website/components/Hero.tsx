@@ -2,12 +2,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
-
-const HERO_IMAGES = [
-  "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=1800&q=85&fit=crop",
-  "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=1800&q=85&fit=crop",
-  "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=1800&q=85&fit=crop",
-];
+import { HERO_SLIDE_IMAGES } from "@/lib/heroSlides";
 
 // Animated counter for slide index display
 function SlideNumber({ n }: { n: number }) {
@@ -52,15 +47,15 @@ export default function Hero() {
   return (
     <section ref={containerRef} className="relative w-full h-screen overflow-hidden">
       {/* Background slides */}
-      {HERO_IMAGES.map((src, i) => (
+      {HERO_SLIDE_IMAGES.map((slide, i) => (
         <motion.div
-          key={src}
+          key={slide.src}
           className="absolute inset-0"
           animate={{ opacity: i === activeIndex ? 1 : 0 }}
           transition={{ duration: 2, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <motion.div className="absolute inset-0" style={{ y, scale: 1.06 }}>
-            <img src={src} alt="" className="w-full h-full object-cover" aria-hidden />
+            <img src={slide.src} alt={slide.alt} className="w-full h-full object-cover" aria-hidden />
           </motion.div>
         </motion.div>
       ))}
