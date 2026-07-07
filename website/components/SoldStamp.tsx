@@ -6,8 +6,8 @@ type SoldStampProps = {
 };
 
 const SIZE = {
-  sm: { font: "0.58rem", pad: "0.38rem 0.72rem", top: "12%", left: "8%" },
-  md: { font: "0.72rem", pad: "0.45rem 0.95rem", top: "14%", left: "10%" },
+  sm: { font: "1.74rem", pad: "0.1rem 0.28rem", top: "12%", left: "8%", border: "3px", radius: "7px" },
+  md: { font: "2.16rem", pad: "0.12rem 0.34rem", top: "14%", left: "10%", border: "3.5px", radius: "8px" },
 } as const;
 
 export default function SoldStamp({
@@ -18,7 +18,7 @@ export default function SoldStamp({
 }: SoldStampProps) {
   const text = label.toUpperCase();
   const dims = SIZE[size];
-  const fontSize = text.length > 4 ? `calc(${dims.font} - 0.06rem)` : dims.font;
+  const fontSize = text.length > 4 ? `calc(${dims.font} - 0.18rem)` : dims.font;
 
   return (
     <span
@@ -41,8 +41,8 @@ export default function SoldStamp({
           fontWeight: 700,
           letterSpacing: "0.1em",
           padding: dims.pad,
-          borderRadius: "5px",
-          border: "2.5px solid #ffffff",
+          borderRadius: dims.radius,
+          border: `${dims.border} solid #ffffff`,
           lineHeight: 1.1,
           opacity: 0.9,
           boxShadow: "inset 0 0 10px rgba(0,0,0,0.1)",
