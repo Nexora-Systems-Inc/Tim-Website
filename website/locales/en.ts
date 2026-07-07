@@ -371,13 +371,8 @@ const en: Translations = {
     contact_sub:
       "Whether you wish to acquire a work, arrange a private viewing, or simply learn more about our collection, our team is at your disposal.",
     contact_info: [
-      { label: "Gallery", value: "819 572-2099" },
-      { label: "Email", value: "bonjour@artistes-peintres.ca" },
-      {
-        label: "Address",
-        value: "245 King Street West, Sherbrooke, QC J1H 1P9",
-      },
-      { label: "Hours", value: "Tue–Sat: 10am – 5:30pm  ·  Sun–Mon: closed" },
+      { label: "Gallery", value: "514-710-4230" },
+      { label: "Email", value: "info@mlalondeartistepeintre.ca" },
     ],
     form_name: "Full name",
     form_email: "Email address",
@@ -393,10 +388,6 @@ const en: Translations = {
     form_message: "Your message",
     form_submit: "Send Message",
     form_note: "We will respond within 24 business hours.",
-    map_eyebrow: "Find Us",
-    map_heading: "In the Heart of Sherbrooke",
-    map_address: "245 King Street West\nSherbrooke, QC J1H 1P9",
-    map_directions: "Get Directions",
   },
 };
 

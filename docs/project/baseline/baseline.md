@@ -3,7 +3,7 @@
 > **Template:** Nexora Website Documentation — Baseline Document  
 > **Project:** Galerie à Manon — M Lalonde Artiste Peintre  
 > **Client:** Tim Agostinucci  
-> **Version:** 1.4  
+> **Version:** 1.5  
 > **Date:** 2026-07-06  
 > **Author:** Nexora Engineering
 
@@ -105,6 +105,7 @@ Initial website modification request outlining navigation, content, and structur
 - Removed About page press section (`AboutPress`): heading, testimonials, and associated locale content.
 - Removed About page values section (`AboutValues`): heading, commitment cards, and associated locale content.
 - Separated contact from biography: removed `AboutContact` from `/a-propos`; contact section now lives on dedicated `/contact` page (2026-07-05).
+- Contact page simplified 2026-07-06: removed address, business hours, and location/map card (including "Au cœur de Sherbrooke" heading, street address, background image, and directions button); phone (514-710-4230) and email (info@mlalondeartistepeintre.ca) retained and aligned with footer.
 - Primary navigation updated 2026-07-06: Accueil, À propos, Collections, Contact (French); Home, About, Collections, Contact (English). Logo continues to link to `/`.
 
 ---
@@ -245,7 +246,7 @@ Commercial planning discussion covering website services and ongoing support.
 |----|-------------|--------|----------|--------|--------------|
 | WEB-001 | Increase navigation typography | E-001 | — | Completed | Prior sprint |
 | WEB-002 | Homepage introduction replacement | E-001 | — | Pending | — |
-| WEB-003 | Simplify Contact page | E-001 | — | In progress | 2026-07-05 (contact separated to `/contact`) |
+| WEB-003 | Simplify Contact page | E-001 | — | In progress | 2026-07-05 (contact separated to `/contact`); 2026-07-06 (address, hours, and location/map card removed; phone and email aligned with footer) |
 | WEB-004 | Replace About biography | E-001 | — | Pending | — |
 | WEB-005 | Remove obsolete sections | E-001 | — | In progress | 2026-07-05 (team, press, values sections removed) |
 | WEB-006 | Update website title | E-002 | — | Completed | 2026-07-05 |

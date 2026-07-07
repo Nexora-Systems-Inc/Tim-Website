@@ -397,13 +397,8 @@ const fr = {
     contact_sub:
       "Que vous souhaitiez acquérir une œuvre, planifier une visite privée ou simplement en savoir plus sur notre collection, notre équipe est à votre disposition.",
     contact_info: [
-      { label: "Galerie", value: "819 572-2099" },
-      { label: "Courriel", value: "bonjour@artistes-peintres.ca" },
-      {
-        label: "Adresse",
-        value: "245 rue King Ouest, Sherbrooke (Québec) J1H 1P9",
-      },
-      { label: "Horaires", value: "Mar–Sam : 10h – 17h30  ·  Dim–Lun : fermé" },
+      { label: "Galerie", value: "514-710-4230" },
+      { label: "Courriel", value: "info@mlalondeartistepeintre.ca" },
     ],
     form_name: "Nom complet",
     form_email: "Adresse courriel",
@@ -419,12 +414,6 @@ const fr = {
     form_message: "Votre message",
     form_submit: "Envoyer le message",
     form_note: "Nous vous répondrons dans les 24 heures ouvrables.",
-
-    // Map
-    map_eyebrow: "Nous trouver",
-    map_heading: "Au cœur de Sherbrooke",
-    map_address: "245 rue King Ouest\nSherbrooke (Québec) J1H 1P9",
-    map_directions: "Obtenir l'itinéraire",
   },
 } as const;
 

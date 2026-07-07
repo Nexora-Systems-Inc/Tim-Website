@@ -237,58 +237,6 @@ export default function AboutContact() {
                 </div>
               ))}
             </div>
-
-            {/* Map block */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-10 relative overflow-hidden"
-              style={{ aspectRatio: "4/3" }}
-            >
-              {/* Styled map placeholder with address overlay */}
-              <div className="w-full h-full relative">
-                <img
-                  src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=600&q=80&fit=crop"
-                  alt="Sherbrooke"
-                  className="w-full h-full object-cover opacity-60"
-                />
-                <div className="absolute inset-0" style={{ background: "rgba(20,20,18,0.45)" }} />
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
-                  <div className="w-8 h-8 mb-4 flex items-center justify-center"
-                    style={{ border: "1px solid var(--gold)", background: "rgba(20,20,18,0.7)" }}>
-                    <svg width="10" height="13" viewBox="0 0 10 13" fill="none">
-                      <path d="M5 0C2.24 0 0 2.24 0 5C0 8.75 5 13 5 13C5 13 10 8.75 10 5C10 2.24 7.76 0 5 0ZM5 6.75C4.03 6.75 3.25 5.97 3.25 5C3.25 4.03 4.03 3.25 5 3.25C5.97 3.25 6.75 4.03 6.75 5C6.75 5.97 5.97 6.75 5 6.75Z" fill="#B8965A"/>
-                    </svg>
-                  </div>
-                  <p className="font-serif text-sm mb-1"
-                    style={{ color: "var(--ivory)", fontStyle: "italic", fontWeight: 300 }}>
-                    {a.map_heading}
-                  </p>
-                  <p className="text-[10px] tracking-[0.18em]" style={{ color: "rgba(247,244,239,0.55)", whiteSpace: "pre-line" }}>
-                    {a.map_address}
-                  </p>
-                  <a
-                    href="https://maps.google.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 text-[9.5px] tracking-[0.28em] uppercase px-4 py-2 transition-all duration-300"
-                    style={{ border: "1px solid rgba(184,150,90,0.5)", color: "var(--gold)" }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "var(--gold)";
-                      (e.currentTarget as HTMLElement).style.color = "var(--ivory)";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = "transparent";
-                      (e.currentTarget as HTMLElement).style.color = "var(--gold)";
-                    }}
-                  >
-                    {a.map_directions}
-                  </a>
-                </div>
-                <div className="absolute inset-0" style={{ boxShadow: "inset 0 0 0 1px rgba(184,150,90,0.18)" }} />
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </div>
