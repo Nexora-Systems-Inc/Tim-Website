@@ -15,10 +15,6 @@ type Artwork = {
 
 const FILTER_IDS = new Set([
   "all",
-  "contemporain",
-  "paysage",
-  "abstraction",
-  "portrait",
   "client",
   "featured",
   "sold",
