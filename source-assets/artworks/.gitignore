@@ -1,4 +1,6 @@
 ﻿# Regenerable / local working files
 processed/
 previews/
+seed-refs/
+debug/
 *.bak

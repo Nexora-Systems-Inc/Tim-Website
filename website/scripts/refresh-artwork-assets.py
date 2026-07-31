@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
-"""Refresh artwork assets using feature matching against existing gallery crops.
+"""Refresh gallery artwork assets with framed presentation.
 
-Finds each painting in the high-res room photo by matching ORB features to the
-previous (already-cropped) WebP, then perspective-warps and exports optimized WebP.
-Falls back to aspect-aware rectangle detection when matching is weak.
+Locates each painting in the high-res room photo via ORB matching against the
+current gallery crop, expands the region to preserve the full frame plus a small
+consistent outer margin, perspective-corrects, and exports optimized WebP.
 """
 
 from __future__ import annotations
 
 import json
-import shutil
 from pathlib import Path
 
 import cv2
@@ -27,15 +26,20 @@ MAX_EDGE = 1600
 WEBP_QUALITY = 86
 SOLD_REFS = {"C-0551", "C-1342", "C-1351", "C-1890", "C-1936"}
 
+# Expand matched painting face outward to include full frame + thin wall margin.
+# Angled room photos need ~24% so trapezoid corners aren't clipped.
+FRAME_EXPAND = 0.24
+# Additional uniform pad after warp (fraction of min dimension) as outer margin.
+OUTER_MARGIN = 0.035
+SEED_REFS_DIR = REPO / "source-assets" / "artworks" / "seed-refs"
+
 
 def imread_bgr(path: Path) -> np.ndarray | None:
-    """Read image as BGR, robust to non-ASCII Windows paths."""
     try:
         data = np.fromfile(str(path), dtype=np.uint8)
         if data.size == 0:
             return None
-        img = cv2.imdecode(data, cv2.IMREAD_COLOR)
-        return img
+        return cv2.imdecode(data, cv2.IMREAD_COLOR)
     except Exception:
         try:
             im = Image.open(path).convert("RGB")
@@ -64,6 +68,17 @@ def order_points(pts: np.ndarray) -> np.ndarray:
     return rect
 
 
+def expand_quad(pts: np.ndarray, factor: float, bounds: tuple[int, int]) -> np.ndarray:
+    """Expand quad outward from its centroid, clamped to image bounds."""
+    pts = pts.astype("float32")
+    center = pts.mean(axis=0)
+    expanded = center + (pts - center) * (1.0 + factor)
+    h, w = bounds
+    expanded[:, 0] = np.clip(expanded[:, 0], 0, w - 1)
+    expanded[:, 1] = np.clip(expanded[:, 1], 0, h - 1)
+    return expanded
+
+
 def warp_quad(bgr: np.ndarray, pts: np.ndarray, out_w: int | None = None, out_h: int | None = None) -> np.ndarray:
     rect = order_points(pts.astype("float32"))
     (tl, tr, br, bl) = rect
@@ -81,19 +96,43 @@ def warp_quad(bgr: np.ndarray, pts: np.ndarray, out_w: int | None = None, out_h:
 
 
 def load_reference_bgr(ref: str) -> np.ndarray | None:
-    bak = OUT_DIR / f"{ref}.webp.bak"
-    path = bak if bak.exists() else OUT_DIR / f"{ref}.webp"
-    if not path.exists():
-        return None
-    # Pillow can decode webp; convert to BGR
-    im = Image.open(path).convert("RGB")
-    rgb = np.array(im)
-    return cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR)
+    """Prefer frozen seed refs (pre-expansion crops) so re-runs don't snowball."""
+    candidates = [
+        SEED_REFS_DIR / f"{ref}.webp",
+        OUT_DIR / f"{ref}.webp",
+    ]
+    for path in candidates:
+        if not path.exists():
+            continue
+        im = Image.open(path).convert("RGB")
+        return cv2.cvtColor(np.array(im), cv2.COLOR_RGB2BGR)
+    return None
+
+
+def ensure_seed_refs_from_git() -> None:
+    """Materialize seed refs from last committed webps if missing."""
+    import subprocess
+
+    SEED_REFS_DIR.mkdir(parents=True, exist_ok=True)
+    for i in range(1, 24):
+        ref = f"C-{i:04d}"
+        dest = SEED_REFS_DIR / f"{ref}.webp"
+        if dest.exists():
+            continue
+        try:
+            raw = subprocess.check_output(
+                ["git", "show", f"HEAD:website/public/images/artworks/{ref}.webp"],
+                cwd=str(REPO),
+            )
+            dest.write_bytes(raw)
+        except subprocess.CalledProcessError:
+            src = OUT_DIR / f"{ref}.webp"
+            if src.exists():
+                dest.write_bytes(src.read_bytes())
 
 
 def match_artwork_quad(scene: np.ndarray, ref_img: np.ndarray) -> tuple[np.ndarray, float] | None:
-    """Return (quad_pts, confidence) using ORB + homography."""
-    orb = cv2.ORB_create(4000)
+    orb = cv2.ORB_create(5000)
     kp1, des1 = orb.detectAndCompute(ref_img, None)
     kp2, des2 = orb.detectAndCompute(scene, None)
     if des1 is None or des2 is None or len(kp1) < 20 or len(kp2) < 20:
@@ -108,7 +147,6 @@ def match_artwork_quad(scene: np.ndarray, ref_img: np.ndarray) -> tuple[np.ndarr
         m, n = pair
         if m.distance < 0.75 * n.distance:
             good.append(m)
-
     if len(good) < 18:
         return None
 
@@ -125,79 +163,102 @@ def match_artwork_quad(scene: np.ndarray, ref_img: np.ndarray) -> tuple[np.ndarr
     corners = np.float32([[0, 0], [w - 1, 0], [w - 1, h - 1], [0, h - 1]]).reshape(-1, 1, 2)
     warped = cv2.perspectiveTransform(corners, H).reshape(4, 2)
 
-    # Sanity: quad inside image with reasonable area
     sh, sw = scene.shape[:2]
-    if np.any(warped[:, 0] < -sw * 0.05) or np.any(warped[:, 0] > sw * 1.05):
+    if np.any(warped[:, 0] < -sw * 0.08) or np.any(warped[:, 0] > sw * 1.08):
         return None
-    if np.any(warped[:, 1] < -sh * 0.05) or np.any(warped[:, 1] > sh * 1.05):
+    if np.any(warped[:, 1] < -sh * 0.08) or np.any(warped[:, 1] > sh * 1.08):
         return None
     area = cv2.contourArea(warped.astype(np.float32))
-    if area < (sh * sw) * 0.03 or area > (sh * sw) * 0.95:
+    if area < (sh * sw) * 0.025 or area > (sh * sw) * 0.96:
         return None
 
-    conf = inliers / max(len(good), 1)
-    return warped.astype("float32"), conf
+    return warped.astype("float32"), inliers / max(len(good), 1)
 
 
-def detect_quad_aspect_aware(scene: np.ndarray, target_aspect: float) -> np.ndarray | None:
-    h, w = scene.shape[:2]
-    img_area = float(h * w)
-    gray = cv2.cvtColor(scene, cv2.COLOR_BGR2GRAY)
+def refine_outer_frame(scene: np.ndarray, seed_quad: np.ndarray, target_aspect: float) -> np.ndarray | None:
+    """Try to snap to a larger dark outer frame near the matched painting."""
+    sh, sw = scene.shape[:2]
+    x, y, bw, bh = cv2.boundingRect(seed_quad.astype(np.float32))
+    pad = int(max(bw, bh) * 0.35)
+    x0, y0 = max(0, x - pad), max(0, y - pad)
+    x1, y1 = min(sw, x + bw + pad), min(sh, y + bh + pad)
+    roi = scene[y0:y1, x0:x1]
+    if roi.size == 0:
+        return None
+
+    gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
     gray = cv2.bilateralFilter(gray, 9, 75, 75)
-    candidates: list[tuple[float, np.ndarray]] = []
+    edges = cv2.Canny(cv2.GaussianBlur(gray, (5, 5), 0), 40, 120)
+    edges = cv2.dilate(edges, np.ones((5, 5), np.uint8), 2)
+    contours, _ = cv2.findContours(edges, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 
-    def consider(approx: np.ndarray, base: float) -> None:
+    seed_area = float(cv2.contourArea(seed_quad.astype(np.float32)))
+    best = None
+    best_score = -1.0
+    for c in contours:
+        peri = cv2.arcLength(c, True)
+        approx = cv2.approxPolyDP(c, 0.02 * peri, True)
         if len(approx) != 4 or not cv2.isContourConvex(approx):
-            return
-        area = cv2.contourArea(approx)
-        if area < img_area * 0.05 or area > img_area * 0.9:
-            return
+            continue
         pts = approx.reshape(4, 2).astype("float32")
+        pts[:, 0] += x0
+        pts[:, 1] += y0
+        area = cv2.contourArea(pts)
+        # Prefer slightly larger than seed (frame outside painted face)
+        if area < seed_area * 1.02 or area > seed_area * 1.55:
+            continue
         rect = order_points(pts)
         (tl, tr, br, bl) = rect
         ww = max(np.linalg.norm(br - bl), np.linalg.norm(tr - tl))
         hh = max(np.linalg.norm(tr - br), np.linalg.norm(tl - bl))
-        if ww < 60 or hh < 60:
-            return
         aspect = ww / max(hh, 1.0)
         aspect_err = abs(np.log(aspect / max(target_aspect, 1e-3)))
-        if aspect_err > 0.55:
-            return
-        x, y, bw, bh = cv2.boundingRect(approx)
-        fill = area / max(bw * bh, 1.0)
-        score = base * area * fill * np.exp(-aspect_err * 2.5)
-        candidates.append((float(score), pts))
-
-    for low, high in ((25, 90), (40, 130), (60, 180)):
-        edges = cv2.Canny(cv2.GaussianBlur(gray, (5, 5), 0), low, high)
-        edges = cv2.dilate(edges, np.ones((5, 5), np.uint8), 2)
-        contours, _ = cv2.findContours(edges, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-        for c in contours:
-            peri = cv2.arcLength(c, True)
-            approx = cv2.approxPolyDP(c, 0.02 * peri, True)
-            consider(approx, 1.0)
-
-    thr = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 35, 5)
-    thr = cv2.morphologyEx(thr, cv2.MORPH_CLOSE, np.ones((9, 9), np.uint8), 2)
-    contours, _ = cv2.findContours(thr, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    for c in contours:
-        peri = cv2.arcLength(c, True)
-        approx = cv2.approxPolyDP(c, 0.025 * peri, True)
-        consider(approx, 0.9)
-
-    if not candidates:
-        return None
-    candidates.sort(key=lambda x: -x[0])
-    return candidates[0][1]
+        if aspect_err > 0.45:
+            continue
+        # Must contain seed center
+        center = seed_quad.mean(axis=0)
+        if cv2.pointPolygonTest(pts.reshape(-1, 1, 2), (float(center[0]), float(center[1])), False) < 0:
+            continue
+        score = area * np.exp(-aspect_err * 2.0)
+        if score > best_score:
+            best_score = float(score)
+            best = pts
+    return best
 
 
-def trim_border(bgr: np.ndarray, ratio: float = 0.008) -> np.ndarray:
+def add_outer_margin(bgr: np.ndarray, margin_frac: float = OUTER_MARGIN) -> np.ndarray:
+    """Always add a thin, even wall-colored margin for consistent framed presentation."""
     h, w = bgr.shape[:2]
-    mx = max(0, int(w * ratio))
-    my = max(0, int(h * ratio))
-    if w - 2 * mx < 40 or h - 2 * my < 40:
-        return bgr
-    return bgr[my : h - my, mx : w - mx]
+    pad = max(6, int(min(h, w) * margin_frac))
+    band = max(4, pad)
+
+    # Sample wall color from the brightest border patches (prefer actual wall over paint)
+    patches = [
+        bgr[:band, :band],
+        bgr[:band, -band:],
+        bgr[-band:, :band],
+        bgr[-band:, -band:],
+        bgr[:band, w // 2 - band : w // 2 + band],
+        bgr[-band:, w // 2 - band : w // 2 + band],
+        bgr[h // 2 - band : h // 2 + band, :band],
+        bgr[h // 2 - band : h // 2 + band, -band:],
+    ]
+    means = [p.reshape(-1, 3).mean(axis=0) for p in patches if p.size]
+    # Prefer mid-light neutrals typical of walls (avoid pure white wash / dark paint)
+    def wall_score(m: np.ndarray) -> float:
+        brightness = float(m.mean())
+        chroma = float(np.std(m))
+        if brightness < 90 or brightness > 245:
+            return -1.0
+        return brightness - chroma * 0.5
+
+    scored = sorted(((wall_score(m), m) for m in means), key=lambda t: -t[0])
+    wall = scored[0][1] if scored and scored[0][0] > 0 else np.array([210.0, 210.0, 210.0])
+
+    canvas = np.full((h + 2 * pad, w + 2 * pad, 3), wall, dtype=np.float32)
+    canvas = np.clip(canvas, 0, 255).astype(np.uint8)
+    canvas[pad : pad + h, pad : pad + w] = bgr
+    return canvas
 
 
 def reduce_glare_mild(bgr: np.ndarray) -> np.ndarray:
@@ -216,7 +277,7 @@ def reduce_glare_mild(bgr: np.ndarray) -> np.ndarray:
     if mask.sum() == 0:
         return bgr
     softened = cv2.inpaint(bgr, mask, 3, cv2.INPAINT_TELEA)
-    return cv2.addWeighted(softened, 0.3, bgr, 0.7, 0)
+    return cv2.addWeighted(softened, 0.28, bgr, 0.72, 0)
 
 
 def export_webp(bgr: np.ndarray, dest: Path) -> dict:
@@ -243,58 +304,58 @@ def process_one(src: Path, ref: str) -> dict:
 
     rh, rw = ref_img.shape[:2]
     target_aspect = rw / max(rh, 1)
+    sh, sw = scene.shape[:2]
 
-    method = "feature_match"
+    method = "feature_match_framed"
     conf = 0.0
     matched = match_artwork_quad(scene, ref_img)
+
     if matched is not None:
-        quad, conf = matched
-        # Output at higher res than reference while keeping aspect
-        scale = min(2.8, (max(scene.shape[:2]) * 0.7) / max(rw, rh))
-        out_w = max(rw, int(rw * scale))
-        out_h = max(rh, int(rh * scale))
+        seed_quad, conf = matched
+        # Prefer real outer frame if detectable; else geometric expand.
+        outer = refine_outer_frame(scene, seed_quad, target_aspect)
+        if outer is not None:
+            quad = expand_quad(outer, 0.06, (sh, sw))  # small wall margin outside frame
+            method = "feature_match_outer_frame"
+        else:
+            quad = expand_quad(seed_quad, FRAME_EXPAND, (sh, sw))
+            method = "feature_match_expanded"
+
+        scale = min(2.6, (max(sh, sw) * 0.75) / max(rw, rh))
+        out_w = max(rw, int(rw * scale * (1 + FRAME_EXPAND)))
+        out_h = max(rh, int(rh * scale * (1 + FRAME_EXPAND)))
         cropped = warp_quad(scene, quad, out_w, out_h)
     else:
-        method = "aspect_quad"
-        quad = detect_quad_aspect_aware(scene, target_aspect)
-        if quad is None:
-            method = "center_fallback"
-            h, w = scene.shape[:2]
-            # Prefer center region matching target aspect
-            if target_aspect >= 1:
-                cw = int(w * 0.72)
-                ch = int(cw / target_aspect)
-            else:
-                ch = int(h * 0.78)
-                cw = int(ch * target_aspect)
-            cw = min(cw, w - 4)
-            ch = min(ch, h - 4)
-            x0 = (w - cw) // 2
-            y0 = max(0, (h - ch) // 2 - int(h * 0.04))
-            cropped = scene[y0 : y0 + ch, x0 : x0 + cw]
+        method = "center_fallback"
+        if target_aspect >= 1:
+            cw = int(sw * 0.78)
+            ch = int(cw / target_aspect)
         else:
-            cropped = warp_quad(scene, quad)
+            ch = int(sh * 0.82)
+            cw = int(ch * target_aspect)
+        cw, ch = min(cw, sw - 4), min(ch, sh - 4)
+        x0 = (sw - cw) // 2
+        y0 = max(0, (sh - ch) // 2 - int(sh * 0.03))
+        cropped = scene[y0 : y0 + ch, x0 : x0 + cw]
 
-    cropped = trim_border(cropped, 0.006)
+    cropped = add_outer_margin(cropped, OUTER_MARGIN)
     cropped = reduce_glare_mild(cropped)
 
     WORK_DIR.mkdir(parents=True, exist_ok=True)
     PREVIEW_DIR.mkdir(parents=True, exist_ok=True)
     imwrite_bgr(WORK_DIR / f"{ref}.png", cropped)
-    preview = cv2.cvtColor(cropped, cv2.COLOR_BGR2RGB)
-    pimg = Image.fromarray(preview)
-    pimg.thumbnail((720, 720))
-    pimg.save(PREVIEW_DIR / f"{ref}.jpg", quality=82)
+    preview = Image.fromarray(cv2.cvtColor(cropped, cv2.COLOR_BGR2RGB))
+    preview.thumbnail((720, 720))
+    preview.save(PREVIEW_DIR / f"{ref}.jpg", quality=82)
 
-    out = OUT_DIR / f"{ref}.webp"
-    stats = export_webp(cropped, out)
+    stats = export_webp(cropped, OUT_DIR / f"{ref}.webp")
     return {
         "ref": ref,
         "source": src.name,
         "method": method,
         "match_confidence": round(conf, 3),
         "target_aspect": round(target_aspect, 3),
-        "output": str(out.relative_to(REPO)).replace("\\", "/"),
+        "output": f"website/public/images/artworks/{ref}.webp",
         **stats,
     }
 
@@ -306,9 +367,8 @@ def main() -> int:
     )
     if not originals:
         raise SystemExit(f"No originals in {SOURCE_DIR}")
-    for bak in OUT_DIR.glob("C-00*.webp.bak"):
-        dest = OUT_DIR / bak.name[: -len(".bak")]
-        shutil.copy2(bak, dest)
+
+    ensure_seed_refs_from_git()
 
     results = []
     for src in originals:
@@ -323,7 +383,7 @@ def main() -> int:
         results.append(info)
 
     MANIFEST.write_text(json.dumps(results, indent=2), encoding="utf-8")
-    print(f"\nProcessed {len(results)} artworks")
+    print(f"\nProcessed {len(results)} artworks with framed presentation")
     return 0
 
 
