@@ -15,7 +15,6 @@ type Artwork = {
 
 const FILTER_IDS = new Set([
   "all",
-  "client",
   "featured",
   "sold",
 ]);
@@ -36,7 +35,7 @@ function syncCategoryInUrl(categoryId: string) {
 
 type Category = { id: string; label: string; count: number };
 
-const MOBILE_PRIORITY_FILTER_IDS = ["all", "client", "featured", "sold"];
+const MOBILE_PRIORITY_FILTER_IDS = ["all", "featured", "sold"];
 
 function orderCategoriesForMobile(categories: Category[]) {
   const byId = new Map(categories.map((cat) => [cat.id, cat]));

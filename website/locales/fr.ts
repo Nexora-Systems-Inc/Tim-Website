@@ -146,7 +146,6 @@ const fr = {
     featured_label: "Vedette",
     categories: [
       { id: "all", label: "Tout", count: 28 },
-      { id: "client", label: "Client", count: 28 },
       { id: "featured", label: "Vedette", count: 5 },
       { id: "sold", label: "Vendu", count: 5 },
     ],

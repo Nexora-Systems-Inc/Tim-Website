@@ -130,7 +130,6 @@ const en: Translations = {
     featured_label: "Featured",
     categories: [
       { id: "all", label: "All", count: 28 },
-      { id: "client", label: "Client", count: 28 },
       { id: "featured", label: "Featured", count: 5 },
       { id: "sold", label: "Sold", count: 5 },
     ],
