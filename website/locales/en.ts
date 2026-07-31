@@ -57,7 +57,7 @@ const en: Translations = {
     cta: "Read my story",
     quote: "I am still exploring new ways to express myself on canvas.",
     quote_author: "— Manon Lalonde",
-    portrait_alt: "Manon Lalonde, painter",
+    portrait_alt: "Artist’s studio — temporary image",
   },
   showcase: {
     eyebrow: "Private Collections",

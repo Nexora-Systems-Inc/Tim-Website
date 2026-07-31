@@ -62,7 +62,7 @@ const fr = {
     cta: "Lire mon histoire",
     quote: "J’explore toujours de nouvelles façons de m’exprimer sur toile.",
     quote_author: "— Manon Lalonde",
-    portrait_alt: "Manon Lalonde, artiste peintre",
+    portrait_alt: "Atelier d’artiste — image temporaire",
   },
 
   // ── Showcase (homepage section)

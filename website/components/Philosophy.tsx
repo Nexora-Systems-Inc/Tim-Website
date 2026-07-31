@@ -35,9 +35,9 @@ export default function Philosophy() {
               style={{ aspectRatio: "4/5", maxHeight: "580px" }}
             >
               <motion.img
-                src="/manon.jpg"
+                src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=900&q=85&fit=crop"
                 alt={p.portrait_alt}
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover"
                 style={{ y: imgY, scale: 1.14 }}
               />
               {/* Subtle inner border */}
