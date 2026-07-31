@@ -352,8 +352,10 @@ export default function CollectionsGrid() {
   const headerRef = useRef(null);
   const inView = useInView(headerRef, { once: true });
 
-  const sampleArtworks = c.artworks as unknown as Artwork[];
-  const allArtworks = [...sampleArtworks, ...CLIENT_ARTWORKS];
+  const allArtworks = CLIENT_ARTWORKS.filter((work) => {
+    const artist = work.artist.trim();
+    return /^(m\.?\s*lalonde|manon\s+lalonde)$/i.test(artist);
+  }) as Artwork[];
 
   useEffect(() => {
     const category = searchParams.get("category");
@@ -368,7 +370,13 @@ export default function CollectionsGrid() {
   };
 
   const filtered = filterArtworks(allArtworks, activeCategory);
-  const categories = c.categories as unknown as Category[];
+  const localeCategories = c.categories as unknown as Category[];
+  const categories = localeCategories
+    .map((cat) => ({
+      ...cat,
+      count: filterArtworks(allArtworks, cat.id).length,
+    }))
+    .filter((cat) => cat.id === "all" || cat.count > 0);
   const mobileCategories = orderCategoriesForMobile(categories);
 
   return (
