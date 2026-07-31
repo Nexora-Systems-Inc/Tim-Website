@@ -18,30 +18,36 @@ function Card({
   index,
   large,
   exploreLabel,
+  href,
 }: {
   item: { title: string; subtitle: string; count: string };
   image: string;
   index: number;
   large?: boolean;
   exploreLabel: string;
+  href: string;
 }) {
   const [hovered, setHovered] = useState(false);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-70px" });
 
   return (
-    <motion.div
+    <motion.a
+      href={href}
       ref={ref}
       initial={{ opacity: 0, y: 36 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 1, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-      className="relative overflow-hidden cursor-pointer"
+      className="relative overflow-hidden cursor-pointer block"
+      aria-label={`${exploreLabel} — ${item.title}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
         // Large card: taller fixed height on desktop; small cards: auto
         height: large ? "min(580px, 62vw)" : undefined,
         minHeight: large ? "340px" : "220px",
+        textDecoration: "none",
+        color: "inherit",
       }}
     >
       {/* Image wrapper */}
@@ -99,8 +105,12 @@ function Card({
           </motion.div>
         </div>
       </div>
-    </motion.div>
+    </motion.a>
   );
+}
+
+function artworkGalleryHref(ref: string) {
+  return `/collections?ref=${encodeURIComponent(ref)}`;
 }
 
 export default function Collections() {
@@ -180,6 +190,7 @@ export default function Collections() {
                 index={0}
                 large
                 exploreLabel={c.explore}
+                href={artworkGalleryHref(featuredHero.ref)}
               />
             </div>
           )}
@@ -191,6 +202,7 @@ export default function Collections() {
               image={work.image}
               index={i + 1}
               exploreLabel={c.explore}
+              href={artworkGalleryHref(work.ref)}
             />
           ))}
         </div>

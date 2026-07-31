@@ -361,11 +361,25 @@ export default function CollectionsGrid() {
     if (category && FILTER_IDS.has(category)) {
       setActiveCategory(category);
     }
+
+    const artworkRef = searchParams.get("ref");
+    if (!artworkRef) return;
+    const match = CLIENT_ARTWORKS.find((work) => work.ref === artworkRef);
+    if (match) setLightboxWork(match as Artwork);
   }, [searchParams]);
 
   const handleCategoryChange = (categoryId: string) => {
     setActiveCategory(categoryId);
     syncCategoryInUrl(categoryId);
+  };
+
+  const handleLightboxClose = () => {
+    setLightboxWork(null);
+    const url = new URL(window.location.href);
+    if (url.searchParams.has("ref")) {
+      url.searchParams.delete("ref");
+      window.history.replaceState(null, "", url);
+    }
   };
 
   const filtered = filterArtworks(allArtworks, activeCategory);
@@ -491,7 +505,7 @@ export default function CollectionsGrid() {
       {/* Lightbox */}
       <AnimatePresence>
         {lightboxWork && (
-          <Lightbox work={lightboxWork} onClose={() => setLightboxWork(null)} />
+          <Lightbox work={lightboxWork} onClose={handleLightboxClose} />
         )}
       </AnimatePresence>
     </>
