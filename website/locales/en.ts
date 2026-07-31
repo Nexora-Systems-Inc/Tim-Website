@@ -46,17 +46,18 @@ const en: Translations = {
     explore: "Explore",
   },
   philosophy: {
-    eyebrow: "Our Philosophy",
-    heading: "Where art finds its rightful home",
+    eyebrow: "The Artist",
+    heading: "A creativity revealed, then cultivated",
     body_1:
-      "For over three decades, we have dedicated ourselves to presenting the finest works of Québécois artists — from seasoned masters to emerging voices shaping tomorrow's canon.",
+      "Painting entered my life in my forties — thanks to a friend who saw abilities in me that I did not yet know I had.",
     body_2:
-      "Our gallery in Sherbrooke is not merely a place of transaction, but a true sanctuary of culture. We believe exceptional art should be accessible to those who truly appreciate it — which is why we absorb all applicable taxes on every acquisition.",
+      "Over the years, encounters and workshops nurtured my practice: learning alongside Rosita Salvador, winters in Florida, and the discovery of creativity without limits.",
     body_3:
-      "Each work in our collection is carefully selected for its artistic merit, emotional resonance, and enduring cultural significance.",
-    cta: "Discover Our Story",
-    quote: "Art is not what you see, but what you make others see.",
-    quote_author: "— Edgar Degas",
+      "Today, I am still exploring new ways to express myself on canvas. Discover the path that brought me here.",
+    cta: "Read my story",
+    quote: "I am still exploring new ways to express myself on canvas.",
+    quote_author: "— Manon Lalonde",
+    portrait_alt: "Manon Lalonde, painter",
   },
   showcase: {
     eyebrow: "Private Collections",
@@ -144,24 +145,33 @@ const en: Translations = {
   },
   aboutPage: {
     meta_title: "About — M Lalonde Artiste Peintre",
-    hero_eyebrow: "Our Story",
-    hero_heading: "Half a century\nof passion",
+    hero_eyebrow: "The Artist",
+    hero_heading: "Manon Lalonde",
     hero_sub:
-      "Founded in 1994 in Sherbrooke, Galerie Artistes Peintres has become one of the leading references for Québécois art.",
-    story_eyebrow: "The Foundation",
-    story_heading: "Born of a Vision",
-    story_body_1:
-      "The gallery was born in 1994 in a former downtown Sherbrooke factory, transformed into a luminous exhibition space by its founder, Claude Beaumont. His conviction was simple: Québécois art deserved a showcase worthy of its talent.",
-    story_body_2:
-      "Over the years, we have developed deep relationships with over forty artists from across the province, from established masters like Jules Michel and Stefan Hagiu to emerging talents we have had the privilege of introducing to the public.",
-    story_body_3:
-      "Our commitment to collectors is also reflected in our unique pricing policy: we absorb all applicable taxes on every acquisition, making exceptional art more accessible to those who truly appreciate it.",
+      "A painting journey born of an encounter, nourished by learning, and carried by a curiosity that never fades.",
+    parcours_eyebrow: "My path",
+    parcours_heading: "Abilities revealed",
+    parcours_body_1:
+      "I began taking an interest in painting in my forties. My friend Rosita Salvador convinced me to take classes with her, because she saw abilities in me that I did not know I had.",
+    parcours_body_2:
+      "For more than three years, I followed her guidance and let creativity grow within me. After her passing, I continued learning over several winters in Florida, taking watercolour classes with Laurie Kirsch, as well as with two friends.",
+    parcours_body_3:
+      "Each week, we exchanged techniques to improve — a living dialogue that deeply shaped the way I paint.",
+    demarche_eyebrow: "My artistic approach",
+    demarche_heading: "Creativity without limits",
+    demarche_body_1:
+      "Through Micheline de Grâce, I discovered the boundless possibilities of creativity. That openness transformed my relationship to the canvas: each work becomes a space for exploration.",
+    demarche_body_2:
+      "Today, I am still exploring new ways to express myself on canvas — attentive to what gesture, colour, and material can still reveal.",
+    portrait_alt: "Manon Lalonde, painter",
+    portrait_caption_title: "Manon Lalonde",
+    portrait_caption_sub: "Painter",
     contact_eyebrow: "Write to Us",
     contact_heading: "Let's Begin the Conversation",
     contact_sub:
-      "Whether you wish to acquire a work, arrange a private viewing, or simply learn more about our collection, our team is at your disposal.",
+      "Whether you wish to acquire a work, arrange a private viewing, or simply learn more about my practice, I would be delighted to hear from you.",
     contact_info: [
-      { label: "Gallery", value: "514-710-4230" },
+      { label: "Phone", value: "514-710-4230" },
       { label: "Email", value: "info@mlalondeartistepeintre.ca" },
     ],
     form_name: "Full name",

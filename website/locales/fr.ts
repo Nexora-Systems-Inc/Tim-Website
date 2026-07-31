@@ -51,18 +51,18 @@ const fr = {
 
   // ── Philosophy / About (homepage section)
   philosophy: {
-    eyebrow: "Notre philosophie",
-    heading: "Là où l'art trouve sa juste demeure",
+    eyebrow: "L'artiste",
+    heading: "Une créativité révélée, puis cultivée",
     body_1:
-      "Depuis plus de trois décennies, nous nous consacrons à présenter les œuvres les plus remarquables des artistes québécois — des maîtres reconnus aux voix émergentes qui dessinent le canon de demain.",
+      "C’est dans la quarantaine que la peinture est entrée dans ma vie — grâce à une amie qui a vu en moi des aptitudes que je ne me connaissais pas encore.",
     body_2:
-      "Notre galerie à Sherbrooke n'est pas simplement un lieu de transaction, mais un véritable sanctuaire de la culture. Nous croyons que l'art exceptionnel devrait être accessible à ceux qui savent véritablement l'apprécier — raison pour laquelle nous absorbons l'ensemble des taxes applicables à chaque acquisition.",
+      "Au fil des années, les rencontres et les ateliers ont nourri mon geste : de l’apprentissage auprès de Rosita Salvador aux hivers en Floride, jusqu’à la découverte d’une créativité sans bornes.",
     body_3:
-      "Chaque œuvre de notre collection est sélectionnée avec soin pour sa valeur artistique, sa résonance émotionnelle et sa portée culturelle durable.",
-    cta: "Découvrir notre histoire",
-    quote:
-      "L'art, ce n'est pas ce que vous voyez, mais ce que vous faites voir aux autres.",
-    quote_author: "— Edgar Degas",
+      "Aujourd’hui, j’explore toujours de nouvelles façons de m’exprimer sur toile. Découvrez le chemin qui m’y a menée.",
+    cta: "Lire mon histoire",
+    quote: "J’explore toujours de nouvelles façons de m’exprimer sur toile.",
+    quote_author: "— Manon Lalonde",
+    portrait_alt: "Manon Lalonde, artiste peintre",
   },
 
   // ── Showcase (homepage section)
@@ -170,28 +170,40 @@ const fr = {
     meta_title: "À propos — M Lalonde Artiste Peintre",
 
     // Hero
-    hero_eyebrow: "Notre histoire",
-    hero_heading: "Un demi-siècle\nde passion",
+    hero_eyebrow: "L'artiste",
+    hero_heading: "Manon Lalonde",
     hero_sub:
-      "Fondée en 1994 à Sherbrooke, la Galerie Artistes Peintres est devenue l'une des références incontournables de l'art québécois.",
+      "Un parcours de peinture né d’une rencontre, nourri par l’apprentissage, et porté par une curiosité qui ne s’éteint pas.",
 
-    // Story section
-    story_eyebrow: "La fondation",
-    story_heading: "Nés d'une vision",
-    story_body_1:
-      "La galerie a vu le jour en 1994 dans une ancienne manufacture du centre-ville de Sherbrooke, transformée en espace d'exposition lumineux par son fondateur, Claude Beaumont. Sa conviction était simple : l'art québécois méritait une vitrine digne de son talent.",
-    story_body_2:
-      "Au fil des années, nous avons développé des relations profondes avec plus de quarante artistes de la province, des maîtres établis comme Jules Michel et Stefan Hagiu aux talents émergents que nous avons eu le privilège de révéler au grand public.",
-    story_body_3:
-      "Notre engagement envers les collectionneurs se traduit également par une politique tarifaire unique : nous absorbons l'ensemble des taxes applicables sur chaque acquisition, rendant l'art exceptionnel plus accessible à ceux qui l'apprécient vraiment.",
+    // Mon parcours
+    parcours_eyebrow: "Mon parcours",
+    parcours_heading: "Des aptitudes révélées",
+    parcours_body_1:
+      "C’est dans la quarantaine que j’ai commencé à m’intéresser à la peinture. Mon amie Rosita Salvador m’a convaincue de suivre des cours avec elle, parce qu’elle voyait en moi des aptitudes que je ne me connaissais pas.",
+    parcours_body_2:
+      "Pendant plus de trois ans, j’ai suivi ses conseils et laissé la créativité se développer en moi. Après son décès, j’ai poursuivi mon apprentissage pendant plusieurs hivers en Floride, en suivant des cours d’aquarelle avec Laurie Kirsch, ainsi qu’avec deux amis.",
+    parcours_body_3:
+      "Chaque semaine, nous échangions nos différentes techniques afin de nous améliorer — un dialogue vivant qui a profondément marqué ma façon de peindre.",
 
-    // Contact
+    // Ma démarche artistique
+    demarche_eyebrow: "Ma démarche artistique",
+    demarche_heading: "Une créativité sans bornes",
+    demarche_body_1:
+      "C’est au contact de Micheline de Grâce que j’ai découvert les possibilités sans bornes de la créativité. Cette ouverture a transformé mon rapport à la toile : chaque œuvre devient un espace d’exploration.",
+    demarche_body_2:
+      "Aujourd’hui, j’explore toujours de nouvelles façons de m’exprimer sur toile — attentive à ce que le geste, la couleur et la matière peuvent encore révéler.",
+
+    portrait_alt: "Manon Lalonde, artiste peintre",
+    portrait_caption_title: "Manon Lalonde",
+    portrait_caption_sub: "Artiste peintre",
+
+    // Contact (shared with contact page form)
     contact_eyebrow: "Nous écrire",
     contact_heading: "Entamons la conversation",
     contact_sub:
-      "Que vous souhaitiez acquérir une œuvre, planifier une visite privée ou simplement en savoir plus sur notre collection, notre équipe est à votre disposition.",
+      "Pour acquérir une œuvre, planifier une visite privée ou simplement en savoir plus sur mon travail, je serai heureuse de vous répondre.",
     contact_info: [
-      { label: "Galerie", value: "514-710-4230" },
+      { label: "Téléphone", value: "514-710-4230" },
       { label: "Courriel", value: "info@mlalondeartistepeintre.ca" },
     ],
     form_name: "Nom complet",

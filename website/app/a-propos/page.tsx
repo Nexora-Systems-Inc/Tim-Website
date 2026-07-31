@@ -7,7 +7,8 @@ import { SITE_TITLE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `À propos — ${SITE_TITLE}`,
-  description: "Fondée en 1994 à Sherbrooke, la Galerie Artistes Peintres est le sanctuaire de l'art québécois. Découvrez notre histoire, notre équipe et prenez contact.",
+  description:
+    "Découvrez le parcours de Manon Lalonde, artiste peintre — de ses premiers cours à une démarche artistique toujours en exploration.",
 };
 
 export default function AboutPage() {
