@@ -9,9 +9,7 @@ export default function Philosophy() {
 
   const sectionRef = useRef<HTMLDivElement>(null);
   const textRef = useRef(null);
-  const statsRef = useRef(null);
   const inView = useInView(textRef, { once: true, margin: "-90px" });
-  const statsInView = useInView(statsRef, { once: true, margin: "-70px" });
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -37,8 +35,8 @@ export default function Philosophy() {
               style={{ aspectRatio: "4/5", maxHeight: "580px" }}
             >
               <motion.img
-                src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=900&q=85&fit=crop"
-                alt="Intérieur de la galerie"
+                src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=900&q=85&fit=crop"
+                alt={p.portrait_alt}
                 className="w-full h-full object-cover"
                 style={{ y: imgY, scale: 1.14 }}
               />
@@ -145,7 +143,7 @@ export default function Philosophy() {
             ))}
 
             <motion.a
-              href="#"
+              href="/a-propos"
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ duration: 0.7, delay: 0.65 }}
@@ -169,13 +167,6 @@ export default function Philosophy() {
             </motion.a>
           </div>
         </div>
-
-        {/* Stats band */}
-        <div
-          ref={statsRef}
-          className="mt-24 md:mt-32 pt-12 border-t"
-          style={{ borderColor: "rgba(184,150,90,0.1)" }}
-        ></div>
       </div>
     </section>
   );

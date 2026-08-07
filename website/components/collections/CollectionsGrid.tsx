@@ -15,11 +15,6 @@ type Artwork = {
 
 const FILTER_IDS = new Set([
   "all",
-  "contemporain",
-  "paysage",
-  "abstraction",
-  "portrait",
-  "client",
   "featured",
   "sold",
 ]);
@@ -40,7 +35,7 @@ function syncCategoryInUrl(categoryId: string) {
 
 type Category = { id: string; label: string; count: number };
 
-const MOBILE_PRIORITY_FILTER_IDS = ["all", "client", "featured", "sold"];
+const MOBILE_PRIORITY_FILTER_IDS = ["all", "featured", "sold"];
 
 function orderCategoriesForMobile(categories: Category[]) {
   const byId = new Map(categories.map((cat) => [cat.id, cat]));
@@ -356,14 +351,21 @@ export default function CollectionsGrid() {
   const headerRef = useRef(null);
   const inView = useInView(headerRef, { once: true });
 
-  const sampleArtworks = c.artworks as unknown as Artwork[];
-  const allArtworks = [...sampleArtworks, ...CLIENT_ARTWORKS];
+  const allArtworks = CLIENT_ARTWORKS.filter((work) => {
+    const artist = work.artist.trim();
+    return /^(m\.?\s*lalonde|manon\s+lalonde)$/i.test(artist);
+  }) as Artwork[];
 
   useEffect(() => {
     const category = searchParams.get("category");
     if (category && FILTER_IDS.has(category)) {
       setActiveCategory(category);
     }
+
+    const artworkRef = searchParams.get("ref");
+    if (!artworkRef) return;
+    const match = CLIENT_ARTWORKS.find((work) => work.ref === artworkRef);
+    if (match) setLightboxWork(match as Artwork);
   }, [searchParams]);
 
   const handleCategoryChange = (categoryId: string) => {
@@ -371,8 +373,23 @@ export default function CollectionsGrid() {
     syncCategoryInUrl(categoryId);
   };
 
+  const handleLightboxClose = () => {
+    setLightboxWork(null);
+    const url = new URL(window.location.href);
+    if (url.searchParams.has("ref")) {
+      url.searchParams.delete("ref");
+      window.history.replaceState(null, "", url);
+    }
+  };
+
   const filtered = filterArtworks(allArtworks, activeCategory);
-  const categories = c.categories as unknown as Category[];
+  const localeCategories = c.categories as unknown as Category[];
+  const categories = localeCategories
+    .map((cat) => ({
+      ...cat,
+      count: filterArtworks(allArtworks, cat.id).length,
+    }))
+    .filter((cat) => cat.id === "all" || cat.count > 0);
   const mobileCategories = orderCategoriesForMobile(categories);
 
   return (
@@ -488,7 +505,7 @@ export default function CollectionsGrid() {
       {/* Lightbox */}
       <AnimatePresence>
         {lightboxWork && (
-          <Lightbox work={lightboxWork} onClose={() => setLightboxWork(null)} />
+          <Lightbox work={lightboxWork} onClose={handleLightboxClose} />
         )}
       </AnimatePresence>
     </>

@@ -51,18 +51,18 @@ const fr = {
 
   // ── Philosophy / About (homepage section)
   philosophy: {
-    eyebrow: "Notre philosophie",
-    heading: "Là où l'art trouve sa juste demeure",
+    eyebrow: "L'artiste",
+    heading: "Une créativité révélée, puis cultivée",
     body_1:
-      "Depuis plus de trois décennies, nous nous consacrons à présenter les œuvres les plus remarquables des artistes québécois — des maîtres reconnus aux voix émergentes qui dessinent le canon de demain.",
+      "C’est dans la quarantaine que la peinture est entrée dans ma vie — grâce à une amie qui a vu en moi des aptitudes que je ne me connaissais pas encore.",
     body_2:
-      "Notre galerie à Sherbrooke n'est pas simplement un lieu de transaction, mais un véritable sanctuaire de la culture. Nous croyons que l'art exceptionnel devrait être accessible à ceux qui savent véritablement l'apprécier — raison pour laquelle nous absorbons l'ensemble des taxes applicables à chaque acquisition.",
+      "Au fil des années, les rencontres et les ateliers ont nourri mon geste : de l’apprentissage auprès de Rosita Salvador aux hivers en Floride, jusqu’à la découverte d’une créativité sans bornes.",
     body_3:
-      "Chaque œuvre de notre collection est sélectionnée avec soin pour sa valeur artistique, sa résonance émotionnelle et sa portée culturelle durable.",
-    cta: "Découvrir notre histoire",
-    quote:
-      "L'art, ce n'est pas ce que vous voyez, mais ce que vous faites voir aux autres.",
-    quote_author: "— Edgar Degas",
+      "Aujourd’hui, j’explore toujours de nouvelles façons de m’exprimer sur toile. Découvrez le chemin qui m’y a menée.",
+    cta: "Lire mon histoire",
+    quote: "J’explore toujours de nouvelles façons de m’exprimer sur toile.",
+    quote_author: "— Manon Lalonde",
+    portrait_alt: "Atelier d’artiste — image temporaire",
   },
 
   // ── Showcase (homepage section)
@@ -145,173 +145,11 @@ const fr = {
     sold_acquired: "Œuvre acquise",
     featured_label: "Vedette",
     categories: [
-      { id: "all", label: "Tout", count: 40 },
-      { id: "contemporain", label: "Maîtres contemporains", count: 47 },
-      { id: "paysage", label: "Paysage québécois", count: 83 },
-      { id: "abstraction", label: "Abstraction lyrique", count: 31 },
-      { id: "portrait", label: "Portraits & figures", count: 24 },
-      { id: "client", label: "Client", count: 28 },
-      { id: "featured", label: "Vedette", count: 7 },
+      { id: "all", label: "Tout", count: 28 },
+      { id: "featured", label: "Vedette", count: 5 },
       { id: "sold", label: "Vendu", count: 5 },
     ],
-    artworks: [
-      {
-        ref: "G-0963",
-        title: "Tirlata Sturt Pers",
-        artist: "Jules Michel",
-        year: "1977",
-        medium: "Techniques mixtes",
-        dimensions: '46" × 34"',
-        price: "10 000",
-        category: "contemporain",
-        image:
-          "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&q=85&fit=crop",
-        featured: true,
-      },
-      {
-        ref: "G-0928",
-        title: "Marché Persan",
-        artist: "Jules Michel",
-        year: "2018",
-        medium: "Huile sur toile",
-        dimensions: '36" × 24"',
-        price: "8 000",
-        category: "contemporain",
-        image:
-          "https://images.unsplash.com/photo-1531913764164-f85c52e6e654?w=800&q=85&fit=crop",
-        featured: true,
-      },
-      {
-        ref: "G-0228",
-        title: "Urbanisation",
-        artist: "Stefan Hagiu",
-        year: "2019",
-        medium: "Huile sur toile",
-        dimensions: '96" × 48"',
-        price: "4 995",
-        category: "abstraction",
-        image:
-          "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=800&q=85&fit=crop",
-        featured: false,
-      },
-      {
-        ref: "G-0967",
-        title: "Hiver Pastoral",
-        artist: "Rajka Kupesic",
-        year: "2024",
-        medium: "Huile sur toile",
-        dimensions: '16½" × 12½"',
-        price: "2 995",
-        category: "paysage",
-        image:
-          "https://images.unsplash.com/photo-1545987796-200677ee1011?w=800&q=85&fit=crop",
-        featured: false,
-      },
-      {
-        ref: "G-1030",
-        title: "Portrait de Femme",
-        artist: "Elena Carla",
-        year: "2023",
-        medium: "Huile sur toile",
-        dimensions: '31" × 46"',
-        price: "2 995",
-        category: "portrait",
-        image:
-          "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=800&q=85&fit=crop",
-        featured: false,
-      },
-      {
-        ref: "G-0192",
-        title: "Le Fleuve de la Vie",
-        artist: "Liguori Vachon",
-        year: "2020",
-        medium: "Acrylique, triptyque",
-        dimensions: '72" × 48"',
-        price: "2 995",
-        category: "abstraction",
-        image:
-          "https://images.unsplash.com/photo-1509839862426-cfed742f4e23?w=800&q=85&fit=crop",
-        featured: false,
-      },
-      {
-        ref: "G-0220",
-        title: "L'Inévitable",
-        artist: "Stefan Hagiu",
-        year: "2017",
-        medium: "Huile sur toile",
-        dimensions: '72" × 48"',
-        price: "2 995",
-        category: "abstraction",
-        image:
-          "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=85&fit=crop",
-        featured: false,
-      },
-      {
-        ref: "G-0845",
-        title: "Solitude Boréale",
-        artist: "Rajka Kupesic",
-        year: "2022",
-        medium: "Huile sur toile",
-        dimensions: '24" × 36"',
-        price: "1 800",
-        category: "paysage",
-        image:
-          "https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=800&q=85&fit=crop",
-        featured: false,
-      },
-      {
-        ref: "G-0912",
-        title: "Composition No. 7",
-        artist: "Elena Carla",
-        year: "2021",
-        medium: "Acrylique sur toile",
-        dimensions: '40" × 40"',
-        price: "1 600",
-        category: "abstraction",
-        image:
-          "https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?w=800&q=85&fit=crop",
-        featured: false,
-      },
-      {
-        ref: "G-0756",
-        title: "La Lumière de Décembre",
-        artist: "Liguori Vachon",
-        year: "2019",
-        medium: "Huile sur toile",
-        dimensions: '48" × 36"',
-        price: "3 200",
-        category: "paysage",
-        image:
-          "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=800&q=85&fit=crop",
-        featured: false,
-      },
-      {
-        ref: "G-0634",
-        title: "Mémoire Collective",
-        artist: "Jules Michel",
-        year: "2015",
-        medium: "Techniques mixtes",
-        dimensions: '60" × 48"',
-        price: "5 500",
-        category: "contemporain",
-        image:
-          "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=800&q=85&fit=crop",
-        featured: false,
-      },
-      {
-        ref: "G-0801",
-        title: "Regard Intérieur",
-        artist: "Elena Carla",
-        year: "2022",
-        medium: "Huile sur toile",
-        dimensions: '20" × 24"',
-        price: "1 200",
-        category: "portrait",
-        image:
-          "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=800&q=85&fit=crop",
-        featured: false,
-      },
-    ],
+    artworks: [],
   },
 
   // ══════════════════════════════════════════
@@ -332,28 +170,40 @@ const fr = {
     meta_title: "À propos — M Lalonde Artiste Peintre",
 
     // Hero
-    hero_eyebrow: "Notre histoire",
-    hero_heading: "Un demi-siècle\nde passion",
+    hero_eyebrow: "L'artiste",
+    hero_heading: "Manon Lalonde",
     hero_sub:
-      "Fondée en 1994 à Sherbrooke, la Galerie Artistes Peintres est devenue l'une des références incontournables de l'art québécois.",
+      "Un parcours de peinture né d’une rencontre, nourri par l’apprentissage, et porté par une curiosité qui ne s’éteint pas.",
 
-    // Story section
-    story_eyebrow: "La fondation",
-    story_heading: "Nés d'une vision",
-    story_body_1:
-      "La galerie a vu le jour en 1994 dans une ancienne manufacture du centre-ville de Sherbrooke, transformée en espace d'exposition lumineux par son fondateur, Claude Beaumont. Sa conviction était simple : l'art québécois méritait une vitrine digne de son talent.",
-    story_body_2:
-      "Au fil des années, nous avons développé des relations profondes avec plus de quarante artistes de la province, des maîtres établis comme Jules Michel et Stefan Hagiu aux talents émergents que nous avons eu le privilège de révéler au grand public.",
-    story_body_3:
-      "Notre engagement envers les collectionneurs se traduit également par une politique tarifaire unique : nous absorbons l'ensemble des taxes applicables sur chaque acquisition, rendant l'art exceptionnel plus accessible à ceux qui l'apprécient vraiment.",
+    // Mon parcours
+    parcours_eyebrow: "Mon parcours",
+    parcours_heading: "Des aptitudes révélées",
+    parcours_body_1:
+      "C’est dans la quarantaine que j’ai commencé à m’intéresser à la peinture. Mon amie Rosita Salvador m’a convaincue de suivre des cours avec elle, parce qu’elle voyait en moi des aptitudes que je ne me connaissais pas.",
+    parcours_body_2:
+      "Pendant plus de trois ans, j’ai suivi ses conseils et laissé la créativité se développer en moi. Après son décès, j’ai poursuivi mon apprentissage pendant plusieurs hivers en Floride, en suivant des cours d’aquarelle avec Laurie Kirsch, ainsi qu’avec deux amis.",
+    parcours_body_3:
+      "Chaque semaine, nous échangions nos différentes techniques afin de nous améliorer — un dialogue vivant qui a profondément marqué ma façon de peindre.",
 
-    // Contact
+    // Ma démarche artistique
+    demarche_eyebrow: "Ma démarche artistique",
+    demarche_heading: "Une créativité sans bornes",
+    demarche_body_1:
+      "C’est au contact de Micheline de Grâce que j’ai découvert les possibilités sans bornes de la créativité. Cette ouverture a transformé mon rapport à la toile : chaque œuvre devient un espace d’exploration.",
+    demarche_body_2:
+      "Aujourd’hui, j’explore toujours de nouvelles façons de m’exprimer sur toile — attentive à ce que le geste, la couleur et la matière peuvent encore révéler.",
+
+    portrait_alt: "Manon Lalonde, artiste peintre",
+    portrait_caption_title: "Manon Lalonde",
+    portrait_caption_sub: "Artiste peintre",
+
+    // Contact (shared with contact page form)
     contact_eyebrow: "Nous écrire",
     contact_heading: "Entamons la conversation",
     contact_sub:
-      "Que vous souhaitiez acquérir une œuvre, planifier une visite privée ou simplement en savoir plus sur notre collection, notre équipe est à votre disposition.",
+      "Pour acquérir une œuvre, planifier une visite privée ou simplement en savoir plus sur mon travail, je serai heureuse de vous répondre.",
     contact_info: [
-      { label: "Galerie", value: "514-710-4230" },
+      { label: "Téléphone", value: "514-710-4230" },
       { label: "Courriel", value: "info@mlalondeartistepeintre.ca" },
     ],
     form_name: "Nom complet",
