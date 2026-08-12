@@ -26,16 +26,16 @@ const en: Translations = {
     scroll_label: "Scroll",
     exhibitions: [
       {
-        title: "Les Galeries d'Anjou",
-        location: "Montreal, Quebec",
+        title: "West Palm Beach",
+        location: "Florida, 2021",
         description:
-          "Placeholder description for the exhibition. This will later describe the event, location, dates, or featured collection.",
+          "Exhibition in West Palm Beach, Florida — 2021.",
       },
       {
-        title: "Symposium des Arts de Sherbrooke",
-        location: "Sherbrooke, Quebec",
+        title: "Boca Raton",
+        location: "Florida, 2020",
         description:
-          "Placeholder description for the exhibition. This text will be replaced later.",
+          "Exhibition in Boca Raton, Florida — 2020.",
       },
     ],
   },

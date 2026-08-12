@@ -27,16 +27,16 @@ const fr = {
     scroll_label: "Défiler",
     exhibitions: [
       {
-        title: "Les Galeries d'Anjou",
-        location: "Montréal, Québec",
+        title: "West Palm Beach",
+        location: "Floride, 2021",
         description:
-          "Description provisoire de l'exposition. Ce texte décrira ultérieurement l'événement, le lieu, les dates ou la collection mise en vedette.",
+          "Exposition à West Palm Beach, Floride — 2021.",
       },
       {
-        title: "Symposium des Arts de Sherbrooke",
-        location: "Sherbrooke, Québec",
+        title: "Boca Raton",
+        location: "Floride, 2020",
         description:
-          "Description provisoire de l'exposition. Ce texte sera remplacé ultérieurement.",
+          "Exposition à Boca Raton, Floride — 2020.",
       },
     ],
   },
