@@ -4,11 +4,11 @@
  */
 export const HERO_SLIDE_IMAGES = [
   {
-    src: "/images/hero/exhibition-galeries-anjou.png",
-    alt: "Les Galeries d'Anjou — art exhibition booth",
+    src: "/images/hero/exhibition-west-palm-beach.png",
+    alt: "West Palm Beach, Florida — art exhibition booth, 2021",
   },
   {
-    src: "/images/hero/exhibition-symposium-sherbrooke.png",
-    alt: "Symposium des Arts de Sherbrooke — art exhibition booth",
+    src: "/images/hero/exhibition-boca-raton.png",
+    alt: "Boca Raton, Florida — art exhibition booth, 2020",
   },
 ] as const;
