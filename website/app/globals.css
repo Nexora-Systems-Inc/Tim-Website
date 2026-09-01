@@ -113,6 +113,10 @@ body {
   padding-block: var(--section-gap-lg);
 }
 
+#contact {
+  scroll-margin-top: 88px;
+}
+
 /* ─────────────────────────────────────────
    DIVIDERS
 ───────────────────────────────────────── */
@@ -206,3 +210,117 @@ body {
   transition: gap 0.4s ease, opacity 0.3s ease;
 }
 .link-arrow:hover { gap: 1rem; }
+
+/* ─────────────────────────────────────────
+   ARTWORK LIGHTBOX
+   Overlay is the scroll surface on small screens.
+   Desktop keeps a contained two-column card; the
+   info column scrolls only if content overflows.
+───────────────────────────────────────── */
+html.artwork-lightbox-open,
+html.artwork-lightbox-open body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.artwork-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  background: rgba(20, 20, 18, 0.94);
+  backdrop-filter: blur(12px);
+  touch-action: pan-y;
+}
+
+.artwork-lightbox-frame {
+  box-sizing: border-box;
+  min-height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: max(1rem, env(safe-area-inset-top, 0px)) 1rem max(1.75rem, env(safe-area-inset-bottom, 0px));
+}
+
+.artwork-lightbox-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 64rem;
+  display: flex;
+  flex-direction: column;
+  background: var(--charcoal-mid);
+  margin-block: auto;
+}
+
+.artwork-lightbox-image {
+  position: relative;
+  min-height: 220px;
+}
+
+.artwork-lightbox-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(70dvh, 70vh);
+  object-fit: cover;
+}
+
+.artwork-lightbox-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 1.75rem calc(2rem + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 768px) {
+  .artwork-lightbox {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem;
+  }
+
+  .artwork-lightbox-frame {
+    min-height: 0;
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+    align-items: center;
+    padding: 0;
+  }
+
+  .artwork-lightbox-dialog {
+    flex-direction: row;
+    max-height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    margin-block: 0;
+  }
+
+  .artwork-lightbox-image {
+    width: 58%;
+    overflow: hidden;
+    min-height: 0;
+    align-self: stretch;
+  }
+
+  .artwork-lightbox-image img {
+    height: 100%;
+    min-height: 360px;
+    max-height: none;
+    object-fit: cover;
+  }
+
+  .artwork-lightbox-info {
+    width: 42%;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: 2.5rem;
+  }
+}

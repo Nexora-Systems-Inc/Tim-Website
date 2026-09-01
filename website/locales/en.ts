@@ -125,6 +125,11 @@ const en: Translations = {
     works_count_suffix: "works",
     view_detail: "View Work",
     inquiry: "Enquire",
+    inquiry_heading: "Interested in this artwork?",
+    inquiry_cta: "Contact the Artist",
+    inquiry_message:
+      "Hello,\n\nI am interested in the artwork “{title}” (ref. {ref}).\n\nCould you please share more information?\n\nThank you.",
+    close_label: "Close",
     sold: "Sold",
     sold_label: "Sold",
     sold_acquired: "Work acquired",
@@ -188,6 +193,7 @@ const en: Translations = {
     form_message: "Your message",
     form_submit: "Send Message",
     form_note: "We will respond within 24 business hours.",
+    form_artwork_context: "Regarding: {title} ({ref})",
   },
 };
 
