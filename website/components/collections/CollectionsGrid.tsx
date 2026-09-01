@@ -1,9 +1,11 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, type MouseEvent } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import { CLIENT_ARTWORKS } from "@/lib/clientArtworks";
+import { artworkContactHref } from "@/lib/artworkInquiry";
 import SoldStamp from "@/components/SoldStamp";
 
 type Artwork = {
@@ -85,47 +87,92 @@ function CategoryPill({
   );
 }
 
+/* ─── Body scroll lock while the lightbox is open ───────── */
+function useLightboxScrollLock() {
+  useEffect(() => {
+    const { body, documentElement } = document;
+    const scrollY = window.scrollY;
+    const previous = {
+      overflow: body.style.overflow,
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+      htmlOverflow: documentElement.style.overflow,
+    };
+
+    documentElement.classList.add("artwork-lightbox-open");
+    body.style.overflow = "hidden";
+    documentElement.style.overflow = "hidden";
+    // iOS Safari ignores overflow:hidden on body unless it is taken out of flow.
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.left = "0";
+    body.style.right = "0";
+    body.style.width = "100%";
+
+    return () => {
+      documentElement.classList.remove("artwork-lightbox-open");
+      body.style.overflow = previous.overflow;
+      documentElement.style.overflow = previous.htmlOverflow;
+      body.style.position = previous.position;
+      body.style.top = previous.top;
+      body.style.left = previous.left;
+      body.style.right = previous.right;
+      body.style.width = previous.width;
+      window.scrollTo(0, scrollY);
+    };
+  }, []);
+}
+
 /* ─── Lightbox ──────────────────────────────────────────── */
 function Lightbox({ work, onClose }: { work: Artwork; onClose: () => void }) {
   const { t } = useI18n();
   const c = t.collectionsPage;
+  useLightboxScrollLock();
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     document.addEventListener("keydown", handler);
-    document.body.style.overflow = "hidden";
-    return () => { document.removeEventListener("keydown", handler); document.body.style.overflow = ""; };
+    return () => document.removeEventListener("keydown", handler);
   }, [onClose]);
+
+  const closeOnBackdrop = (e: MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) onClose();
+  };
 
   return (
     <motion.div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="artwork-lightbox-title"
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10"
-      style={{ background: "rgba(20,20,18,0.94)", backdropFilter: "blur(12px)" }}
-      onClick={onClose}
+      className="artwork-lightbox"
+      onClick={closeOnBackdrop}
     >
-      <motion.div
-        initial={{ scale: 0.94, opacity: 0, y: 20 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{ scale: 0.96, opacity: 0 }}
-        transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
-        className="relative w-full max-w-5xl flex flex-col md:flex-row gap-0"
-        style={{ background: "var(--charcoal-mid)", maxHeight: "90vh" }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Image panel */}
-        <div className="relative md:w-[58%] overflow-hidden" style={{ minHeight: "300px" }}>
-          <img src={work.image} alt={work.title} className="w-full h-full object-cover" style={{ maxHeight: "75vh" }} />
-          {/* Ref badge */}
-          <span className="absolute top-4 left-4 text-[9px] tracking-[0.28em] px-2.5 py-1"
-            style={{ background: "rgba(20,20,18,0.65)", color: "rgba(247,244,239,0.5)", backdropFilter: "blur(8px)" }}>
-            {work.ref}
-          </span>
-        </div>
+      <div className="artwork-lightbox-frame" onClick={closeOnBackdrop}>
+        <motion.div
+          initial={{ scale: 0.94, opacity: 0, y: 20 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          exit={{ scale: 0.96, opacity: 0 }}
+          transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
+          className="artwork-lightbox-dialog"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Image panel */}
+          <div className="artwork-lightbox-image">
+            <img src={work.image} alt={work.title} />
+            {/* Ref badge */}
+            <span className="absolute top-4 left-4 text-[9px] tracking-[0.28em] px-2.5 py-1"
+              style={{ background: "rgba(20,20,18,0.65)", color: "rgba(247,244,239,0.5)", backdropFilter: "blur(8px)" }}>
+              {work.ref}
+            </span>
+          </div>
 
-        {/* Info panel */}
-        <div className="md:w-[42%] flex flex-col justify-between p-8 md:p-10">
+          {/* Info panel */}
+          <div className="artwork-lightbox-info">
           <div>
             {/* Artist */}
             <p className="text-[10px] tracking-[0.38em] uppercase mb-3" style={{ color: "var(--gold)" }}>
@@ -134,7 +181,7 @@ function Lightbox({ work, onClose }: { work: Artwork; onClose: () => void }) {
 
             {/* Title */}
             <div className="flex flex-wrap items-center gap-3 mb-6">
-              <h2 className="font-serif"
+                <h2 id="artwork-lightbox-title" className="font-serif"
                 style={{ fontSize: "clamp(1.6rem, 2.8vw, 2.4rem)", fontWeight: 300, fontStyle: "italic", color: "var(--ivory)", lineHeight: 1.1 }}>
                 {work.title}
               </h2>
@@ -205,9 +252,26 @@ function Lightbox({ work, onClose }: { work: Artwork; onClose: () => void }) {
             )}
           </div>
 
-          {/* CTA */}
-          <div className="flex flex-col gap-3 mt-8">
-            {!work.sold && <button className="btn-gold justify-center">{c.inquiry}</button>}
+          {/* Contact CTA — every painting, every breakpoint */}
+          <div className="flex flex-col gap-4 mt-8">
+            <p
+              className="font-serif"
+              style={{
+                color: "rgba(247,244,239,0.72)",
+                fontSize: "1.15rem",
+                fontWeight: 300,
+                fontStyle: "italic",
+                lineHeight: 1.35,
+              }}
+            >
+              {c.inquiry_heading}
+            </p>
+            <Link
+              href={artworkContactHref(work.ref)}
+              className="btn-gold justify-center"
+            >
+              {c.inquiry_cta}
+            </Link>
             <button
               onClick={onClose}
               className="text-[10px] tracking-[0.28em] uppercase py-2 text-center transition-colors duration-300"
@@ -215,7 +279,7 @@ function Lightbox({ work, onClose }: { work: Artwork; onClose: () => void }) {
               onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(247,244,239,0.65)"; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(247,244,239,0.3)"; }}
             >
-              Fermer
+              {c.close_label}
             </button>
           </div>
         </div>
@@ -223,17 +287,18 @@ function Lightbox({ work, onClose }: { work: Artwork; onClose: () => void }) {
         {/* Close × */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 w-9 h-9 flex items-center justify-center transition-all duration-300"
-          style={{ color: "rgba(247,244,239,0.4)", border: "1px solid rgba(247,244,239,0.12)" }}
+          className="absolute top-4 right-4 z-10 w-9 h-9 flex items-center justify-center transition-all duration-300"
+          style={{ color: "rgba(247,244,239,0.4)", border: "1px solid rgba(247,244,239,0.12)", background: "rgba(20,20,18,0.35)" }}
           onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "var(--gold)"; (e.currentTarget as HTMLElement).style.borderColor = "var(--gold)"; }}
           onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "rgba(247,244,239,0.4)"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(247,244,239,0.12)"; }}
-          aria-label="Fermer"
+          aria-label={c.close_label}
         >
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
             <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" strokeWidth="1.2" />
           </svg>
         </button>
-      </motion.div>
+        </motion.div>
+      </div>
     </motion.div>
   );
 }

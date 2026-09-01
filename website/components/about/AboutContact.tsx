@@ -1,15 +1,23 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
+import { CLIENT_ARTWORKS, type ClientArtwork } from "@/lib/clientArtworks";
+import { ARTWORK_INQUIRY_PARAM, fillInquiryTemplate } from "@/lib/artworkInquiry";
 
 function FloatingInput({
-  label, type = "text", required = false, textarea = false
+  label, type = "text", required = false, textarea = false, name, value, onChange, rows = 4,
 }: {
   label: string; type?: string; required?: boolean; textarea?: boolean;
+  name?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+  rows?: number;
 }) {
   const [focused, setFocused] = useState(false);
-  const [filled, setFilled] = useState(false);
+  const [uncontrolledFilled, setUncontrolledFilled] = useState(false);
+  const filled = value !== undefined ? value.length > 0 : uncontrolledFilled;
 
   const base = {
     width: "100%",
@@ -41,21 +49,31 @@ function FloatingInput({
       <label style={labelStyle}>{label}</label>
       {textarea ? (
         <textarea
-          rows={4}
+          name={name}
+          rows={rows}
           required={required}
           style={base}
+          {...(value !== undefined ? { value } : {})}
           onFocus={() => setFocused(true)}
-          onBlur={(e) => { setFocused(false); setFilled(e.target.value.length > 0); }}
-          onChange={(e) => setFilled(e.target.value.length > 0)}
+          onBlur={(e) => { setFocused(false); setUncontrolledFilled(e.target.value.length > 0); }}
+          onChange={(e) => {
+            onChange?.(e.target.value);
+            setUncontrolledFilled(e.target.value.length > 0);
+          }}
         />
       ) : (
         <input
+          name={name}
           type={type}
           required={required}
           style={base}
+          {...(value !== undefined ? { value } : {})}
           onFocus={() => setFocused(true)}
-          onBlur={(e) => { setFocused(false); setFilled(e.target.value.length > 0); }}
-          onChange={(e) => setFilled(e.target.value.length > 0)}
+          onBlur={(e) => { setFocused(false); setUncontrolledFilled(e.target.value.length > 0); }}
+          onChange={(e) => {
+            onChange?.(e.target.value);
+            setUncontrolledFilled(e.target.value.length > 0);
+          }}
         />
       )}
     </div>
@@ -65,10 +83,40 @@ function FloatingInput({
 export default function AboutContact() {
   const { t } = useI18n();
   const a = t.aboutPage;
+  const searchParams = useSearchParams();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [submitted, setSubmitted] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [artwork, setArtwork] = useState<ClientArtwork | null>(null);
+
+  const artworkParam = searchParams.get(ARTWORK_INQUIRY_PARAM);
+
+  useEffect(() => {
+    if (!artworkParam) {
+      setArtwork(null);
+      return;
+    }
+    const match = CLIENT_ARTWORKS.find((work) => work.ref === artworkParam) ?? null;
+    setArtwork(match);
+    if (!match) return;
+
+    const subjects = a.form_subjects as string[];
+    if (subjects[0]) setSelectedSubject(subjects[0]);
+    setMessage(fillInquiryTemplate(t.collectionsPage.inquiry_message, match));
+  }, [artworkParam, a.form_subjects, t.collectionsPage.inquiry_message]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.location.hash !== "#contact") return;
+    const node = document.getElementById("contact");
+    if (!node) return;
+    const frame = window.requestAnimationFrame(() => {
+      node.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [artworkParam]);
 
   return (
     <section id="contact" className="section-pad-lg" style={{ background: "var(--ivory)" }}>
@@ -92,12 +140,29 @@ export default function AboutContact() {
                   onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
                   className="space-y-8"
                 >
+                  {artwork && (
+                    <p
+                      className="font-serif"
+                      style={{
+                        color: "var(--charcoal)",
+                        fontSize: "1.15rem",
+                        fontWeight: 300,
+                        fontStyle: "italic",
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      {fillInquiryTemplate(a.form_artwork_context, artwork)}
+                    </p>
+                  )}
+                  {artwork && (
+                    <input type="hidden" name="artwork" value={artwork.ref} />
+                  )}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                    <FloatingInput label={a.form_name} required />
-                    <FloatingInput label={a.form_email} type="email" required />
+                    <FloatingInput label={a.form_name} name="name" required />
+                    <FloatingInput label={a.form_email} name="email" type="email" required />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                    <FloatingInput label={a.form_phone} type="tel" />
+                    <FloatingInput label={a.form_phone} name="phone" type="tel" />
                     {/* Subject select */}
                     <div className="relative">
                       <label
@@ -107,6 +172,7 @@ export default function AboutContact() {
                         {a.form_subject}
                       </label>
                       <select
+                        name="subject"
                         className="w-full bg-transparent outline-none pt-6 pb-2 text-sm appearance-none cursor-pointer"
                         style={{
                           borderBottom: "1px solid rgba(28,28,26,0.2)",
@@ -128,7 +194,15 @@ export default function AboutContact() {
                       </svg>
                     </div>
                   </div>
-                  <FloatingInput label={a.form_message} textarea required />
+                  <FloatingInput
+                    label={a.form_message}
+                    name="message"
+                    textarea
+                    required
+                    value={message}
+                    onChange={setMessage}
+                    rows={artwork ? 6 : 4}
+                  />
 
                   <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-2">
                     <button type="submit" className="btn-gold">
@@ -186,7 +260,7 @@ export default function AboutContact() {
           >
             <div className="space-y-0"
               style={{ borderTop: "1px solid rgba(184,150,90,0.18)" }}>
-              {(a.contact_info as unknown as Array<{ label: string; value: string }>).map((info, i) => (
+              {(a.contact_info as unknown as Array<{ label: string; value: string }>).map((info) => (
                 <div
                   key={info.label}
                   className="py-6"

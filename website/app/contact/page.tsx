@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ContactHero from "@/components/contact/ContactHero";
@@ -16,7 +17,9 @@ export default function ContactPage() {
     <main>
       <Navigation />
       <ContactHero />
-      <AboutContact />
+      <Suspense fallback={null}>
+        <AboutContact />
+      </Suspense>
       <Footer />
     </main>
   );

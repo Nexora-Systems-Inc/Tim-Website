@@ -140,6 +140,11 @@ const fr = {
     works_count_suffix: "œuvres",
     view_detail: "Voir l'œuvre",
     inquiry: "Demande d'information",
+    inquiry_heading: "Cette œuvre vous intéresse ?",
+    inquiry_cta: "Contacter l'artiste",
+    inquiry_message:
+      "Bonjour,\n\nJe suis intéressé(e) par l'œuvre « {title} » (réf. {ref}).\n\nPourriez-vous me donner plus d'informations ?\n\nMerci.",
+    close_label: "Fermer",
     sold: "Vendue",
     sold_label: "Vendu",
     sold_acquired: "Œuvre acquise",
@@ -220,6 +225,7 @@ const fr = {
     form_message: "Votre message",
     form_submit: "Envoyer le message",
     form_note: "Nous vous répondrons dans les 24 heures ouvrables.",
+    form_artwork_context: "Au sujet de : {title} ({ref})",
   },
 } as const;
 
