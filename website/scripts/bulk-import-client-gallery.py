@@ -28,7 +28,7 @@ SKIP_STEMS = {
 TITLE_CORRECTIONS = {
     "C-0001": {"medium": "Acrylique fini époxy"},
     "C-0002": {"title": "Regard vers l'avenir", "dimensions": '40" × 30"'},
-    "C-0003": {"title": "FOLLE NUIT", "medium": "Acrylique et medium mixte"},
+    "C-0003": {"title": "Sphère Mystique", "medium": "Acrylique / médium mixte", "price": "425", "dimensions": '31" × 21"'},
     "C-0004": {"title": "LA RUE S'ANIME", "medium": "Acrylique et medium mixte"},
     "C-0005": {"title": "LES FEES NOCTURNES"},
     "C-0007": {"title": "TOURBILLON"},
@@ -40,7 +40,7 @@ TITLE_CORRECTIONS = {
     "C-0008": {"title": "Énigme", "medium": "Acrylique et medium mixte"},
     "C-0012": {"title": "Éclats vibrants"},
     "C-0016": {"title": "Je veille sur vous"},
-    "C-0017": {"title": "Ma princesse indienne"},
+    "C-0017": {"title": "Amalgame", "medium": "Acrylique", "price": "225", "dimensions": '30" × 15"'},
     "C-0020": {"title": "MARÉES"},
     "C-0023": {"title": "Claire de lune sur mer"},
 }

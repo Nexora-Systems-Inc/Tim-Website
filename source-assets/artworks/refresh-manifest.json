@@ -15,10 +15,10 @@
   },
   {
     "ref": "C-0003",
-    "width": 1574,
-    "height": 1316,
-    "bytes": 161948,
-    "presentation": "framed_with_margin"
+    "width": 1254,
+    "height": 809,
+    "bytes": 143956,
+    "presentation": "client_source"
   },
   {
     "ref": "C-0004",
@@ -113,10 +113,10 @@
   },
   {
     "ref": "C-0017",
-    "width": 888,
-    "height": 1546,
-    "bytes": 220472,
-    "presentation": "framed_with_margin"
+    "width": 414,
+    "height": 741,
+    "bytes": 81650,
+    "presentation": "client_source"
   },
   {
     "ref": "C-0018",
