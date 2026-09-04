@@ -1,11 +1,12 @@
 "use client";
-import { useState, useRef, useEffect, type MouseEvent } from "react";
+import { useState, useRef, useEffect, type MouseEvent, type TouchEvent } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import { CLIENT_ARTWORKS } from "@/lib/clientArtworks";
 import { artworkContactHref } from "@/lib/artworkInquiry";
+import { adjacentArtwork, isMostlyHorizontalSwipe } from "@/lib/galleryNavigation";
 import SoldStamp from "@/components/SoldStamp";
 
 type Artwork = {
@@ -126,17 +127,59 @@ function useLightboxScrollLock() {
   }, []);
 }
 
+function NavChevron({ direction }: { direction: "prev" | "next" }) {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
+      {direction === "prev" ? (
+        <path d="M11.5 3.5L6 9l5.5 5.5" stroke="currentColor" strokeWidth="1.2" />
+      ) : (
+        <path d="M6.5 3.5L12 9l-5.5 5.5" stroke="currentColor" strokeWidth="1.2" />
+      )}
+    </svg>
+  );
+}
+
 /* ─── Lightbox ──────────────────────────────────────────── */
-function Lightbox({ work, onClose }: { work: Artwork; onClose: () => void }) {
+function Lightbox({
+  work,
+  works,
+  onClose,
+  onSelect,
+}: {
+  work: Artwork;
+  works: Artwork[];
+  onClose: () => void;
+  onSelect: (work: Artwork) => void;
+}) {
   const { t } = useI18n();
   const c = t.collectionsPage;
+  const swipeStart = useRef<{ x: number; y: number } | null>(null);
+  const canBrowse = works.length > 1;
   useLightboxScrollLock();
 
+  const go = (direction: -1 | 1) => {
+    const next = adjacentArtwork(works, work.ref, direction);
+    if (next && next.ref !== work.ref) onSelect(next);
+  };
+
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        go(-1);
+      }
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        go(1);
+      }
+    };
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
-  }, [onClose]);
+  }, [onClose, onSelect, work, works]);
 
   const closeOnBackdrop = (e: MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) onClose();
@@ -161,8 +204,35 @@ function Lightbox({ work, onClose }: { work: Artwork; onClose: () => void }) {
           className="artwork-lightbox-dialog"
           onClick={(e) => e.stopPropagation()}
         >
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={work.ref}
+              className="artwork-lightbox-body"
+              initial={{ opacity: 0.4 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0.4 }}
+              transition={{ duration: 0.28, ease: [0.25, 0.1, 0.25, 1] }}
+            >
           {/* Image panel */}
-          <div className="artwork-lightbox-image">
+          <div
+            className="artwork-lightbox-image"
+            onTouchStart={(e: TouchEvent<HTMLDivElement>) => {
+              const touch = e.changedTouches[0];
+              swipeStart.current = { x: touch.clientX, y: touch.clientY };
+            }}
+            onTouchEnd={(e: TouchEvent<HTMLDivElement>) => {
+              if (!swipeStart.current || !canBrowse) {
+                swipeStart.current = null;
+                return;
+              }
+              const touch = e.changedTouches[0];
+              const dx = touch.clientX - swipeStart.current.x;
+              const dy = touch.clientY - swipeStart.current.y;
+              swipeStart.current = null;
+              if (!isMostlyHorizontalSwipe(dx, dy)) return;
+              go(dx < 0 ? 1 : -1);
+            }}
+          >
             <img src={work.image} alt={work.title} />
             {/* Ref badge */}
             <span className="absolute top-4 left-4 text-[9px] tracking-[0.28em] px-2.5 py-1"
@@ -170,6 +240,29 @@ function Lightbox({ work, onClose }: { work: Artwork; onClose: () => void }) {
               {work.ref}
             </span>
           </div>
+
+          {canBrowse && (
+            <div className="artwork-lightbox-nav-bar">
+              <button
+                type="button"
+                className="artwork-lightbox-nav"
+                onClick={() => go(-1)}
+                aria-label={c.prev_artwork}
+              >
+                <NavChevron direction="prev" />
+                {c.prev_artwork}
+              </button>
+              <button
+                type="button"
+                className="artwork-lightbox-nav"
+                onClick={() => go(1)}
+                aria-label={c.next_artwork}
+              >
+                {c.next_artwork}
+                <NavChevron direction="next" />
+              </button>
+            </div>
+          )}
 
           {/* Info panel */}
           <div className="artwork-lightbox-info">
@@ -181,7 +274,7 @@ function Lightbox({ work, onClose }: { work: Artwork; onClose: () => void }) {
 
             {/* Title */}
             <div className="flex flex-wrap items-center gap-3 mb-6">
-                <h2 id="artwork-lightbox-title" className="font-serif"
+                <h2 id="artwork-lightbox-title" className="font-serif" aria-live="polite"
                 style={{ fontSize: "clamp(1.6rem, 2.8vw, 2.4rem)", fontWeight: 300, fontStyle: "italic", color: "var(--ivory)", lineHeight: 1.1 }}>
                 {work.title}
               </h2>
@@ -282,10 +375,13 @@ function Lightbox({ work, onClose }: { work: Artwork; onClose: () => void }) {
               {c.close_label}
             </button>
           </div>
-        </div>
+          </div>
+            </motion.div>
+          </AnimatePresence>
 
         {/* Close × */}
         <button
+          type="button"
           onClick={onClose}
           className="absolute top-4 right-4 z-10 w-9 h-9 flex items-center justify-center transition-all duration-300"
           style={{ color: "rgba(247,244,239,0.4)", border: "1px solid rgba(247,244,239,0.12)", background: "rgba(20,20,18,0.35)" }}
@@ -298,6 +394,26 @@ function Lightbox({ work, onClose }: { work: Artwork; onClose: () => void }) {
           </svg>
         </button>
         </motion.div>
+        {canBrowse && (
+          <>
+            <button
+              type="button"
+              className="artwork-lightbox-nav artwork-lightbox-nav-edge prev"
+              onClick={() => go(-1)}
+              aria-label={c.prev_artwork}
+            >
+              <NavChevron direction="prev" />
+            </button>
+            <button
+              type="button"
+              className="artwork-lightbox-nav artwork-lightbox-nav-edge next"
+              onClick={() => go(1)}
+              aria-label={c.next_artwork}
+            >
+              <NavChevron direction="next" />
+            </button>
+          </>
+        )}
       </div>
     </motion.div>
   );
@@ -438,6 +554,13 @@ export default function CollectionsGrid() {
     syncCategoryInUrl(categoryId);
   };
 
+  const handleArtworkSelect = (work: Artwork) => {
+    setLightboxWork(work);
+    const url = new URL(window.location.href);
+    url.searchParams.set("ref", work.ref);
+    window.history.replaceState(null, "", url);
+  };
+
   const handleLightboxClose = () => {
     setLightboxWork(null);
     const url = new URL(window.location.href);
@@ -542,7 +665,7 @@ export default function CollectionsGrid() {
                     key={work.ref}
                     work={work as unknown as Artwork}
                     index={i}
-                    onOpen={() => setLightboxWork(work as unknown as Artwork)}
+                    onOpen={() => handleArtworkSelect(work as unknown as Artwork)}
                   />
                 ))}
               </div>
@@ -570,7 +693,12 @@ export default function CollectionsGrid() {
       {/* Lightbox */}
       <AnimatePresence>
         {lightboxWork && (
-          <Lightbox work={lightboxWork} onClose={handleLightboxClose} />
+          <Lightbox
+            work={lightboxWork}
+            works={filtered as Artwork[]}
+            onClose={handleLightboxClose}
+            onSelect={handleArtworkSelect}
+          />
         )}
       </AnimatePresence>
     </>

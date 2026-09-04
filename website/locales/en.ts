@@ -130,6 +130,8 @@ const en: Translations = {
     inquiry_message:
       "Hello,\n\nI am interested in the artwork “{title}” (ref. {ref}).\n\nCould you please share more information?\n\nThank you.",
     close_label: "Close",
+    prev_artwork: "Previous painting",
+    next_artwork: "Next painting",
     sold: "Sold",
     sold_label: "Sold",
     sold_acquired: "Work acquired",

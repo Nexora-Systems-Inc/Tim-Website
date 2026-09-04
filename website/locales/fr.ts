@@ -145,6 +145,8 @@ const fr = {
     inquiry_message:
       "Bonjour,\n\nJe suis intéressé(e) par l'œuvre « {title} » (réf. {ref}).\n\nPourriez-vous me donner plus d'informations ?\n\nMerci.",
     close_label: "Fermer",
+    prev_artwork: "Œuvre précédente",
+    next_artwork: "Œuvre suivante",
     sold: "Vendue",
     sold_label: "Vendu",
     sold_acquired: "Œuvre acquise",
