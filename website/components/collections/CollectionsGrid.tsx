@@ -671,22 +671,6 @@ export default function CollectionsGrid() {
               </div>
             </motion.div>
           </AnimatePresence>
-
-          {/* Load more hint */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="mt-20 flex flex-col items-center gap-5 text-center"
-          >
-            <div className="gold-rule w-24 mx-auto" />
-            <p className="text-[11px] tracking-[0.22em]" style={{ color: "var(--warm-gray)" }}>
-              Affichant {filtered.length} œuvres sur {c.categories[0].count}+
-            </p>
-            <button className="btn-outline-dark mt-2">
-              Charger plus d'œuvres
-            </button>
-          </motion.div>
         </div>
       </section>
 
