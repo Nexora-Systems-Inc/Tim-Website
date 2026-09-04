@@ -86,8 +86,6 @@ const fr = {
 
   // ── Footer
   footer: {
-    tagline:
-      "Un sanctuaire de l'art québécois depuis 1994. Plus de 950 œuvres originales présentées par les peintres les plus distingués de la province.",
     location_label: "Adresse",
     location_value: "St-Jean-Baptiste, Québec, Canada",
     contact_label: "Contact",
@@ -99,27 +97,6 @@ const fr = {
     copyright:
       "© 2025 M Lalonde Artiste Peintre, Sherbrooke. Tous droits réservés.",
     legal: ["Confidentialité", "Conditions", "Accessibilité"],
-    columns: {
-      Collection: [
-        "Toutes les œuvres",
-        "Œuvres disponibles",
-        "Nouvelles créations",
-        "Collections privées",
-        "Œuvres vendues",
-      ],
-      Àpropos: [
-        "L’artiste",
-        "Philosophie",
-        "Démarche artistique",
-        "Inspiration",
-      ],
-      Contact: [
-        "Demande d’information",
-        "Acquisition d’œuvre",
-        "Commandes privées",
-        "Contact direct",
-      ],
-    },
   },
 
   // ══════════════════════════════════════════

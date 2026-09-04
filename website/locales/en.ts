@@ -75,8 +75,6 @@ const en: Translations = {
     badge: "All taxes included — no hidden fees",
   },
   footer: {
-    tagline:
-      "A sanctuary for Québécois art since 1994. Presenting over 950 original works by the province's most distinguished painters.",
     location_label: "Address",
     location_value: "St-Jean-Baptiste, Québec, Canada",
     contact_label: "Contact",
@@ -88,27 +86,6 @@ const en: Translations = {
     copyright:
       "© 2025 M Lalonde Artiste Peintre, Sherbrooke. All rights reserved.",
     legal: ["Privacy", "Terms", "Accessibility"],
-    columns: {
-      Collection: [
-        "All Works",
-        "Available Works",
-        "New Creations",
-        "Private Collections",
-        "Sold Works",
-      ],
-      Àpropos: [
-        "The Artist",
-        "Philosophy",
-        "Artistic Approach",
-        "Inspiration",
-      ],
-      Contact: [
-        "General Enquiry",
-        "Acquire a Work",
-        "Private Commissions",
-        "Direct Contact",
-      ],
-    },
   },
   collectionsPage: {
     meta_title: "Collections — M Lalonde Artiste Peintre",
