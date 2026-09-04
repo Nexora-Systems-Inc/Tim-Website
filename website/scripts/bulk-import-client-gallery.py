@@ -336,7 +336,14 @@ def main() -> int:
             meta["sold"] = True
             meta["price"] = ""
 
-        artwork = crop_artwork(image)
+        # IMG_ sold photos are complete artwork photographs, not catalog
+        # cards with a white metadata panel. crop_artwork() scans for a
+        # bright row from 45–88% height and falls back to 62% — that
+        # chopped the bottom ~39% off C-1342 and C-1351.
+        if fallback.get("is_img"):
+            artwork = ImageOps.exif_transpose(image)
+        else:
+            artwork = crop_artwork(image)
         out_image = OUT_DIR / f"{ref}.webp"
         export_web_image(artwork, out_image)
 

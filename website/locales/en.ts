@@ -71,12 +71,9 @@ const en: Translations = {
     heading: "A Personal Collection to Discover",
     body: "Each creation reflects a sensitive, warm, and deeply human artistic vision. Contact us directly for any inquiry or acquisition.",
     cta_primary: "View Collection",
-    cta_phone: "819-572-2099",
     badge: "All taxes included — no hidden fees",
   },
   footer: {
-    tagline:
-      "A sanctuary for Québécois art since 1994. Presenting over 950 original works by the province's most distinguished painters.",
     location_label: "Address",
     location_value: "St-Jean-Baptiste, Québec, Canada",
     contact_label: "Contact",
@@ -88,27 +85,6 @@ const en: Translations = {
     copyright:
       "© 2025 M Lalonde Artiste Peintre, Sherbrooke. All rights reserved.",
     legal: ["Privacy", "Terms", "Accessibility"],
-    columns: {
-      Collection: [
-        "All Works",
-        "Available Works",
-        "New Creations",
-        "Private Collections",
-        "Sold Works",
-      ],
-      Àpropos: [
-        "The Artist",
-        "Philosophy",
-        "Artistic Approach",
-        "Inspiration",
-      ],
-      Contact: [
-        "General Enquiry",
-        "Acquire a Work",
-        "Private Commissions",
-        "Direct Contact",
-      ],
-    },
   },
   collectionsPage: {
     meta_title: "Collections — M Lalonde Artiste Peintre",
@@ -130,6 +106,8 @@ const en: Translations = {
     inquiry_message:
       "Hello,\n\nI am interested in the artwork “{title}” (ref. {ref}).\n\nCould you please share more information?\n\nThank you.",
     close_label: "Close",
+    prev_artwork: "Previous painting",
+    next_artwork: "Next painting",
     sold: "Sold",
     sold_label: "Sold",
     sold_acquired: "Work acquired",

@@ -237,6 +237,7 @@ html.artwork-lightbox-open body {
 }
 
 .artwork-lightbox-frame {
+  position: relative;
   box-sizing: border-box;
   min-height: 100%;
   display: flex;
@@ -255,17 +256,40 @@ html.artwork-lightbox-open body {
   margin-block: auto;
 }
 
-.artwork-lightbox-image {
-  position: relative;
-  min-height: 220px;
+.artwork-lightbox-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  flex: 1 1 auto;
 }
 
-.artwork-lightbox-image img {
-  display: block;
+.artwork-lightbox-image {
+  position: relative;
+  background: #141412;
   width: 100%;
-  height: auto;
-  max-height: min(70dvh, 70vh);
-  object-fit: cover;
+  height: 58vh;
+  min-height: 14rem;
+}
+
+/* Absolutely fill the left viewport, then contain-scale the photograph
+   to the largest size that fits both axes. Flex centering + height:auto
+   left a small intrinsic-sized image parked at the top of the panel. */
+.artwork-lightbox-image img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  padding: 0.75rem;
+  margin: 0;
+  object-fit: contain;
+  object-position: center center;
 }
 
 .artwork-lightbox-info {
@@ -294,33 +318,124 @@ html.artwork-lightbox-open body {
   }
 
   .artwork-lightbox-dialog {
-    flex-direction: row;
-    max-height: 100%;
+    flex-direction: column;
+    height: min(42rem, calc(100vh - 5rem));
+    max-height: calc(100vh - 5rem);
     min-height: 0;
     overflow: hidden;
     margin-block: 0;
   }
 
-  .artwork-lightbox-image {
-    width: 58%;
+  .artwork-lightbox-body {
+    display: grid;
+    grid-template-columns: 58% minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    align-items: stretch;
     overflow: hidden;
+    flex: 1 1 auto;
+    height: 100%;
+    max-height: 100%;
     min-height: 0;
+  }
+
+  .artwork-lightbox-image {
+    width: auto;
+    min-width: 0;
+    min-height: 100%;
+    height: 100%;
     align-self: stretch;
+    justify-self: stretch;
+    overflow: hidden;
+    padding: 0;
   }
 
   .artwork-lightbox-image img {
-    height: 100%;
-    min-height: 360px;
-    max-height: none;
-    object-fit: cover;
+    padding: 1.25rem;
   }
 
   .artwork-lightbox-info {
-    width: 42%;
+    width: auto;
+    min-width: 0;
     min-height: 0;
+    height: auto;
     overflow-y: auto;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
     padding: 2.5rem;
+  }
+}
+
+/* Gallery prev/next — positioned around the viewer, not on the painting. */
+.artwork-lightbox-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 1.25rem;
+  border-top: 1px solid rgba(184, 150, 90, 0.16);
+  border-bottom: 1px solid rgba(184, 150, 90, 0.16);
+  background: rgba(20, 20, 18, 0.28);
+}
+
+.artwork-lightbox-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 2.5rem;
+  padding: 0 0.35rem;
+  background: transparent;
+  border: none;
+  color: rgba(247, 244, 239, 0.62);
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.artwork-lightbox-nav:hover,
+.artwork-lightbox-nav:focus-visible {
+  color: var(--gold);
+  outline: none;
+}
+
+.artwork-lightbox-nav-edge {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .artwork-lightbox-nav-bar {
+    display: none;
+  }
+
+  .artwork-lightbox-nav-edge {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 12;
+    width: 2.75rem;
+    height: 2.75rem;
+    min-height: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(247, 244, 239, 0.14);
+    background: rgba(20, 20, 18, 0.42);
+    color: rgba(247, 244, 239, 0.7);
+  }
+
+  .artwork-lightbox-nav-edge:hover,
+  .artwork-lightbox-nav-edge:focus-visible {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .artwork-lightbox-nav-edge.prev {
+    left: 0.65rem;
+  }
+
+  .artwork-lightbox-nav-edge.next {
+    right: 0.65rem;
   }
 }
