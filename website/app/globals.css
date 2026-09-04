@@ -266,15 +266,28 @@ html.artwork-lightbox-open body {
 
 .artwork-lightbox-image {
   position: relative;
-  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #141412;
+  padding: 0.75rem;
+  width: 100%;
+  height: 55vh;
+  max-height: 28rem;
+  min-height: 12rem;
 }
 
+/* Contain the full source photograph so the physical canvas is never
+   clipped to fill the viewport. Surrounding wall/easel in the original
+   photo may remain visible; that is preferred to cropping the artwork. */
 .artwork-lightbox-image img {
   display: block;
-  width: 100%;
+  width: auto;
   height: auto;
-  max-height: min(70dvh, 70vh);
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
 .artwork-lightbox-info {
@@ -304,7 +317,8 @@ html.artwork-lightbox-open body {
 
   .artwork-lightbox-dialog {
     flex-direction: column;
-    max-height: 100%;
+    height: min(42rem, calc(100vh - 5rem));
+    max-height: calc(100vh - 5rem);
     min-height: 0;
     overflow: hidden;
     margin-block: 0;
@@ -313,26 +327,36 @@ html.artwork-lightbox-open body {
   .artwork-lightbox-body {
     flex-direction: row;
     overflow: hidden;
+    flex: 1 1 auto;
+    height: 100%;
     max-height: 100%;
     min-height: 0;
   }
 
   .artwork-lightbox-image {
     width: 58%;
+    flex: 0 0 58%;
+    height: 100%;
     overflow: hidden;
+    min-width: 0;
     min-height: 0;
-    align-self: stretch;
+    padding: 1rem;
   }
 
   .artwork-lightbox-image img {
-    height: 100%;
-    min-height: 360px;
-    max-height: none;
-    object-fit: cover;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    min-height: 0;
+    object-fit: contain;
+    object-position: center;
   }
 
   .artwork-lightbox-info {
     width: 42%;
+    flex: 1 1 42%;
+    height: 100%;
     min-height: 0;
     overflow-y: auto;
     overscroll-behavior: contain;
