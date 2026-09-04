@@ -80,7 +80,6 @@ const fr = {
     heading: "Une collection personnelle à découvrir",
     body: "Chaque création reflète une vision artistique sensible, chaleureuse et profondément humaine. Communiquez directement pour toute demande d’information ou d’acquisition. ",
     cta_primary: "Voir la collection",
-    cta_phone: "819-572-2099",
     badge: "Toutes taxes incluses — aucuns frais cachés",
   },
 

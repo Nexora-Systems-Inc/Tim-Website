@@ -112,16 +112,9 @@ export default function CallToAction() {
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.34 }}
-          className="flex flex-col sm:flex-row items-center gap-3.5"
         >
           <a href="/collections" className="btn-gold">
             {c.cta_primary}
-          </a>
-          <a
-            href={`tel:${c.cta_phone.replace(/-/g, "")}`}
-            className="btn-outline"
-          >
-            {c.cta_phone}
           </a>
         </motion.div>
 

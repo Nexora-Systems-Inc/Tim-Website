@@ -71,7 +71,6 @@ const en: Translations = {
     heading: "A Personal Collection to Discover",
     body: "Each creation reflects a sensitive, warm, and deeply human artistic vision. Contact us directly for any inquiry or acquisition.",
     cta_primary: "View Collection",
-    cta_phone: "819-572-2099",
     badge: "All taxes included — no hidden fees",
   },
   footer: {
