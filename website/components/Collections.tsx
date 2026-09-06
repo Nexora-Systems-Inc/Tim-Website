@@ -77,7 +77,7 @@ function Card({
             {item.count}
           </span>
           <h3
-            className="font-serif mb-1 leading-[1.05]"
+            className="artwork-title uppercase font-serif mb-1 leading-[1.05]"
             style={{
               color: "var(--ivory)",
               fontSize: large ? "clamp(1.6rem, 2.8vw, 2.5rem)" : "clamp(1.1rem, 1.8vw, 1.5rem)",
@@ -205,6 +205,13 @@ export default function Collections() {
               href={artworkGalleryHref(work.ref)}
             />
           ))}
+        </div>
+
+        {/* Atelier visit CTA — static, always visible; no entrance animation */}
+        <div className="mt-14 md:mt-16 flex justify-center">
+          <a href="/contact#contact" className="atelier-visit-cta">
+            {c.cta_atelier}
+          </a>
         </div>
       </div>
     </section>
