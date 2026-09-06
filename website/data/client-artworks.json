@@ -31,17 +31,17 @@
   },
   {
     "ref": "C-0003",
-    "title": "FOLLE NUIT",
+    "title": "Sphère Mystique",
     "artist": "M Lalonde",
     "year": "s.d.",
-    "medium": "Acrylique et medium mixte",
+    "medium": "Acrylique / médium mixte",
     "dimensions": "31\" × 21\"",
-    "price": "300",
+    "price": "425",
     "sold": false,
     "category": "client",
     "image": "/images/artworks/C-0003.webp",
     "featured": false,
-    "source_file": "c__Users_Nucci_AppData_Roaming_Cursor_User_workspaceStorage_16dbe1598842a5227b42af850b221549_images_3_folle_nuit__acrylique_medium_mixte_31x21__300-fa22a573-13b8-4976-9e4c-98e452a5c91b.png",
+    "source_file": "3_sphere_mystique_acrylique_medium_mixte_31x21_$425.JPG",
     "ocr_raw": ""
   },
   {
@@ -76,7 +76,7 @@
   },
   {
     "ref": "C-0006",
-    "title": "Le Solitaire Acrylique Fini Epoxy",
+    "title": "Le Solitaire",
     "artist": "M Lalonde",
     "year": "s.d.",
     "medium": "Acrylique Fini Époxy",
@@ -241,7 +241,7 @@
   },
   {
     "ref": "C-0017",
-    "title": "Ma princesse indienne",
+    "title": "Amalgame",
     "artist": "M Lalonde",
     "year": "s.d.",
     "medium": "Acrylique",
@@ -251,7 +251,7 @@
     "category": "client",
     "image": "/images/artworks/C-0017.webp",
     "featured": false,
-    "source_file": "c__Users_Nucci_AppData_Roaming_Cursor_User_workspaceStorage_16dbe1598842a5227b42af850b221549_images_17_ma_princess_indienne_acrylique_30x15__225-2b37b3e6-dedc-44ad-8299-20b16ddfe780.png",
+    "source_file": "17_amalgame_acrylique_30x15_$225.jpg",
     "ocr_raw": ""
   },
   {
