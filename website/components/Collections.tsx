@@ -207,18 +207,11 @@ export default function Collections() {
           ))}
         </div>
 
-        {/* Atelier visit CTA — follows the distinction works, leaves the collections link alone */}
+        {/* Atelier visit CTA — static, always visible; no entrance animation */}
         <div className="mt-14 md:mt-16 flex justify-center">
-          <motion.a
-            href="/contact#contact"
-            className="atelier-visit-cta"
-            initial={{ y: 10 }}
-            whileInView={{ y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-          >
+          <a href="/contact#contact" className="atelier-visit-cta">
             {c.cta_atelier}
-          </motion.a>
+          </a>
         </div>
       </div>
     </section>

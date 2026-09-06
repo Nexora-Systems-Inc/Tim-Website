@@ -216,10 +216,8 @@ body {
   text-transform: uppercase !important;
 }
 
-/* Homepage atelier visit CTA — thin-line editorial, not a filled button */
+/* Homepage atelier visit CTA — thin-line editorial, always visible */
 .atelier-visit-cta {
-  /* Visible by default so static/export paints before motion hydrates */
-  opacity: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
