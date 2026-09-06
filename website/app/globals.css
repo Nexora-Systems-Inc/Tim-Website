@@ -213,11 +213,13 @@ body {
 
 /* Painting titles — visual capitalization only; source data stays title-cased */
 .artwork-title {
-  text-transform: uppercase;
+  text-transform: uppercase !important;
 }
 
 /* Homepage atelier visit CTA — thin-line editorial, not a filled button */
 .atelier-visit-cta {
+  /* Visible by default so static/export paints before motion hydrates */
+  opacity: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;

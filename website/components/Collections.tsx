@@ -77,7 +77,7 @@ function Card({
             {item.count}
           </span>
           <h3
-            className="artwork-title font-serif mb-1 leading-[1.05]"
+            className="artwork-title uppercase font-serif mb-1 leading-[1.05]"
             style={{
               color: "var(--ivory)",
               fontSize: large ? "clamp(1.6rem, 2.8vw, 2.5rem)" : "clamp(1.1rem, 1.8vw, 1.5rem)",
@@ -208,16 +208,18 @@ export default function Collections() {
         </div>
 
         {/* Atelier visit CTA — follows the distinction works, leaves the collections link alone */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.85, delay: 0.45 }}
-          className="mt-14 md:mt-16 flex justify-center"
-        >
-          <a href="/contact#contact" className="atelier-visit-cta">
+        <div className="mt-14 md:mt-16 flex justify-center">
+          <motion.a
+            href="/contact#contact"
+            className="atelier-visit-cta"
+            initial={{ y: 10 }}
+            whileInView={{ y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+          >
             {c.cta_atelier}
-          </a>
-        </motion.div>
+          </motion.a>
+        </div>
       </div>
     </section>
   );
