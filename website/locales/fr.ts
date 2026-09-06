@@ -47,6 +47,7 @@ const fr = {
     heading: "Œuvres de distinction",
     cta_all: "Toutes les collections",
     explore: "Explorer",
+    cta_atelier: "VISITE EN ATELIER POSSIBLE",
   },
 
   // ── Philosophy / About (homepage section)

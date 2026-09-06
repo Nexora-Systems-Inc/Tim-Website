@@ -274,7 +274,7 @@ function Lightbox({
 
             {/* Title */}
             <div className="flex flex-wrap items-center gap-3 mb-6">
-                <h2 id="artwork-lightbox-title" className="font-serif" aria-live="polite"
+                <h2 id="artwork-lightbox-title" className="artwork-title font-serif" aria-live="polite"
                 style={{ fontSize: "clamp(1.6rem, 2.8vw, 2.4rem)", fontWeight: 300, fontStyle: "italic", color: "var(--ivory)", lineHeight: 1.1 }}>
                 {work.title}
               </h2>
@@ -493,7 +493,7 @@ function ArtworkCard({ work, index, onOpen }: { work: Artwork; index: number; on
       {/* Metadata */}
       <div className="pr-2">
         <div className="flex items-start justify-between gap-2 mb-0.5">
-          <h3 className="font-serif leading-tight"
+          <h3 className="artwork-title font-serif leading-tight"
             style={{ color: "var(--charcoal)", fontSize: "1.05rem", fontWeight: 400, fontStyle: "italic" }}>
             {work.title}
           </h3>

@@ -152,7 +152,7 @@ export default function ArtworkShowcase() {
                     transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
                   >
                     <h3
-                      className="font-serif mb-2 leading-tight"
+                      className="artwork-title font-serif mb-2 leading-tight"
                       style={{
                         color: "var(--ivory)",
                         fontSize: "clamp(1.05rem, 2vw, 1.35rem)",

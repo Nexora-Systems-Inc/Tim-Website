@@ -44,6 +44,7 @@ const en: Translations = {
     heading: "Works of Distinction",
     cta_all: "All Collections",
     explore: "Explore",
+    cta_atelier: "VISITE EN ATELIER POSSIBLE",
   },
   philosophy: {
     eyebrow: "The Artist",

@@ -211,6 +211,59 @@ body {
 }
 .link-arrow:hover { gap: 1rem; }
 
+/* Painting titles — visual capitalization only; source data stays title-cased */
+.artwork-title {
+  text-transform: uppercase;
+}
+
+/* Homepage atelier visit CTA — thin-line editorial, not a filled button */
+.atelier-visit-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  padding: 1.05rem 0.25rem;
+  font-size: 10px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(184, 150, 90, 0.55);
+  transition: color 0.4s ease, border-color 0.4s ease, letter-spacing 0.4s ease, gap 0.4s ease;
+}
+.atelier-visit-cta::before,
+.atelier-visit-cta::after {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.7;
+  transition: width 0.4s ease, opacity 0.4s ease;
+}
+.atelier-visit-cta:hover {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+  letter-spacing: 0.42em;
+  gap: 1.35rem;
+}
+.atelier-visit-cta:hover::before,
+.atelier-visit-cta:hover::after {
+  width: 40px;
+  opacity: 1;
+}
+@media (max-width: 640px) {
+  .atelier-visit-cta {
+    letter-spacing: 0.28em;
+    font-size: 9.5px;
+    max-width: 100%;
+    text-align: center;
+  }
+  .atelier-visit-cta:hover {
+    letter-spacing: 0.32em;
+  }
+}
+
 /* ─────────────────────────────────────────
    ARTWORK LIGHTBOX
    Overlay is the scroll surface on small screens.
