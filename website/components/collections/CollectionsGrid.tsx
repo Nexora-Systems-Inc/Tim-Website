@@ -471,12 +471,6 @@ function ArtworkCard({ work, index, onOpen }: { work: Artwork; index: number; on
           </motion.div>
         </motion.div>
 
-        {/* Ref tag */}
-        <span className="absolute top-3 left-3 text-[8.5px] tracking-[0.22em]"
-          style={{ color: "rgba(247,244,239,0.42)" }}>
-          {work.ref}
-        </span>
-
         {/* Sold stamp */}
         {work.sold && <SoldStamp label={c.sold_label} size="sm" />}
 
