@@ -489,18 +489,12 @@ function ArtworkCard({ work, index, onOpen }: { work: Artwork; index: number; on
         )}
       </div>
 
-      {/* Metadata */}
-      <div className="pr-2">
-        <div className="flex items-start justify-between gap-2 mb-0.5">
-          <h3 className="artwork-title uppercase font-serif leading-tight"
-            style={{ color: "var(--charcoal)", fontSize: "1.05rem", fontWeight: 400, fontStyle: "italic" }}>
-            {work.title}
-          </h3>
-          <span className="font-serif text-[0.9rem] shrink-0 pt-0.5"
-            style={{ color: work.sold ? "rgba(28,28,26,0.38)" : "var(--gold)", fontWeight: 300, letterSpacing: work.sold ? "0.18em" : undefined, fontSize: work.sold ? "0.72rem" : undefined, textTransform: work.sold ? "uppercase" : undefined }}>
-            {work.sold ? c.sold_label : `${work.price} $`}
-          </span>
-        </div>
+      {/* Metadata — price lives in the lightbox only */}
+      <div className="artwork-card-meta">
+        <h3 className="artwork-title uppercase font-serif leading-tight mb-0.5"
+          style={{ color: "var(--charcoal)", fontSize: "1.05rem", fontWeight: 400, fontStyle: "italic" }}>
+          {work.title}
+        </h3>
         <p className="text-[10px] tracking-[0.18em] uppercase mb-0.5" style={{ color: "var(--warm-gray)" }}>
           {work.artist}
         </p>
@@ -657,7 +651,6 @@ export default function CollectionsGrid() {
                 <style>{`
                   @media (max-width: 640px) { .masonry-grid { columns: 2 !important; } }
                   @media (min-width: 641px) and (max-width: 900px) { .masonry-grid { columns: 3 !important; } }
-                  .masonry-grid > article { break-inside: avoid; margin-bottom: 1.5rem; }
                 `}</style>
                 {filtered.map((work, i) => (
                   <ArtworkCard
