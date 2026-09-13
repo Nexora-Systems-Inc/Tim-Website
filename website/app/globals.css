@@ -265,6 +265,56 @@ body {
 }
 
 /* ─────────────────────────────────────────
+   GALLERY CARDS
+   Masonry cells keep their editorial aspect boxes.
+   Paintings contain-scale inside the cell (never
+   cover-crop), matching the lightbox treatment.
+───────────────────────────────────────── */
+.artwork-card-image {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background: #141412;
+}
+
+.artwork-card-image img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  padding: 0.7rem;
+  margin: 0;
+  object-fit: contain;
+  object-position: center center;
+}
+
+.masonry-grid > article {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.artwork-card-meta {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.artwork-card-meta .artwork-title {
+  display: block;
+  width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* ─────────────────────────────────────────
    ARTWORK LIGHTBOX
    Overlay is the scroll surface on small screens.
    Desktop keeps a contained two-column card; the
@@ -323,6 +373,7 @@ html.artwork-lightbox-open body {
   width: 100%;
   height: 58vh;
   min-height: 14rem;
+  overflow: hidden;
 }
 
 /* Absolutely fill the left viewport, then contain-scale the photograph
@@ -339,7 +390,9 @@ html.artwork-lightbox-open body {
   height: 100%;
   max-width: none;
   max-height: none;
-  padding: 0.75rem;
+  /* Extra top inset so catalog numbers baked into the photograph
+     sit clearly inside the black well instead of crowding the frame. */
+  padding: 2rem 1.5rem 1.5rem;
   margin: 0;
   object-fit: contain;
   object-position: center center;
@@ -403,7 +456,7 @@ html.artwork-lightbox-open body {
   }
 
   .artwork-lightbox-image img {
-    padding: 1.25rem;
+    padding: 2.75rem 2.15rem 2.15rem;
   }
 
   .artwork-lightbox-info {
