@@ -443,11 +443,10 @@ function ArtworkCard({ work, index, onOpen }: { work: Artwork; index: number; on
       onClick={onOpen}
     >
       {/* Image container */}
-      <div className={`relative overflow-hidden mb-4 ${aspectClass}`}>
+      <div className={`artwork-card-image ${aspectClass}`}>
         <motion.img
           src={work.image}
           alt={work.title}
-          className="w-full h-full object-cover"
           animate={{ scale: hovered ? 1.055 : 1 }}
           transition={{ duration: 1.1, ease: [0.25, 0.1, 0.25, 1] }}
         />

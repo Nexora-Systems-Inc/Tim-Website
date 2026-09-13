@@ -265,6 +265,36 @@ body {
 }
 
 /* ─────────────────────────────────────────
+   GALLERY CARDS
+   Masonry cells keep their editorial aspect boxes.
+   Paintings contain-scale inside the cell (never
+   cover-crop), matching the lightbox treatment.
+───────────────────────────────────────── */
+.artwork-card-image {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background: #141412;
+}
+
+.artwork-card-image img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  padding: 0.7rem;
+  margin: 0;
+  object-fit: contain;
+  object-position: center center;
+}
+
+/* ─────────────────────────────────────────
    ARTWORK LIGHTBOX
    Overlay is the scroll surface on small screens.
    Desktop keeps a contained two-column card; the
