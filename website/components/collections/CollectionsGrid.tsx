@@ -345,26 +345,30 @@ function Lightbox({
             )}
           </div>
 
-          {/* Contact CTA — every painting, every breakpoint */}
-          <div className="flex flex-col gap-4 mt-8">
-            <p
-              className="font-serif"
-              style={{
-                color: "rgba(247,244,239,0.72)",
-                fontSize: "1.15rem",
-                fontWeight: 300,
-                fontStyle: "italic",
-                lineHeight: 1.35,
-              }}
-            >
-              {c.inquiry_heading}
-            </p>
-            <Link
-              href={artworkContactHref(work.ref)}
-              className="btn-gold justify-center"
-            >
-              {c.inquiry_cta}
-            </Link>
+          {/* Contact CTA — available works only */}
+          <div className={`flex flex-col gap-4 ${work.sold ? "mt-4" : "mt-8"}`}>
+            {!work.sold && (
+              <>
+                <p
+                  className="font-serif"
+                  style={{
+                    color: "rgba(247,244,239,0.72)",
+                    fontSize: "1.15rem",
+                    fontWeight: 300,
+                    fontStyle: "italic",
+                    lineHeight: 1.35,
+                  }}
+                >
+                  {c.inquiry_heading}
+                </p>
+                <Link
+                  href={artworkContactHref(work.ref)}
+                  className="btn-gold justify-center"
+                >
+                  {c.inquiry_cta}
+                </Link>
+              </>
+            )}
             <button
               onClick={onClose}
               className="text-[10px] tracking-[0.28em] uppercase py-2 text-center transition-colors duration-300"
