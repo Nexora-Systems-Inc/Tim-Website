@@ -1,12 +1,35 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { I18nProvider } from "@/lib/i18n";
-import { SITE_TITLE } from "@/lib/site";
+import {
+  PRODUCTION_SITE_URL,
+  SITE_TITLE,
+  absoluteUrl,
+  createMetadata,
+} from "@/lib/site";
 import fr from "@/locales/fr";
 
-export const metadata: Metadata = {
-  title: `${SITE_TITLE} — Sherbrooke`,
-  description: "Une sélection de plus de 950 œuvres d'artistes peintres québécois. Des créations uniques pour compléter votre univers, taxes incluses.",
+export const metadata: Metadata = createMetadata();
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${PRODUCTION_SITE_URL}/#website`,
+      name: SITE_TITLE,
+      url: PRODUCTION_SITE_URL,
+    },
+    {
+      "@type": "Person",
+      "@id": `${PRODUCTION_SITE_URL}/#person`,
+      name: "Manon Lalonde",
+      alternateName: SITE_TITLE,
+      url: PRODUCTION_SITE_URL,
+      jobTitle: "Artiste peintre",
+      image: absoluteUrl("/images/manon-painting.jpg"),
+    },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -14,6 +37,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="fr">
       {/* lang="fr" for current locale — swap to "en" when toggle is wired */}
       <body className="grain">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {/*
           i18n: Default locale is "fr".
           When adding the EN toggle:
