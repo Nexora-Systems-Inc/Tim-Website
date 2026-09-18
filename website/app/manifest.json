@@ -1,0 +1,10 @@
+{
+  "name": "M Lalonde Artiste Peintre",
+  "short_name": "M Lalonde",
+  "description": "Une sélection de plus de 950 œuvres d'artistes peintres québécois. Des créations uniques pour compléter votre univers, taxes incluses.",
+  "start_url": "/",
+  "display": "browser",
+  "lang": "fr",
+  "background_color": "#F7F4EF",
+  "theme_color": "#1C1C1A"
+}
