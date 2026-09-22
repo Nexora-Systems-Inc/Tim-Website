@@ -24,7 +24,7 @@ MANIFEST = REPO / "source-assets" / "artworks" / "refresh-manifest.json"
 
 MAX_EDGE = 1600
 WEBP_QUALITY = 86
-SOLD_REFS = {"C-0551", "C-1342", "C-1351", "C-1890", "C-1936"}
+SOLD_REFS = {"C-0027", "C-0551", "C-1342", "C-1351", "C-1890", "C-1936"}
 
 # Expand matched painting face outward to include full frame + thin wall margin.
 # Angled room photos need ~24% so trapezoid corners aren't clipped.

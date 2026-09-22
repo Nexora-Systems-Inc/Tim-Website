@@ -246,7 +246,7 @@
     "year": "2023",
     "medium": "Acrylique",
     "dimensions": "30\" × 15\"",
-    "price": "225",
+    "price": "425",
     "sold": false,
     "category": "client",
     "image": "/images/artworks/C-0017.webp",
@@ -462,6 +462,21 @@
     "image": "/images/artworks/C-1936.webp",
     "featured": false,
     "source_file": "c__Users_Nucci_AppData_Roaming_Cursor_User_workspaceStorage_16dbe1598842a5227b42af850b221549_images_IMG_1936_copy-d419888e-69bc-45dd-b88c-37357665785e.png",
+    "ocr_raw": ""
+  },
+  {
+    "ref": "C-0027",
+    "title": "Saint-Jean-Baptiste",
+    "artist": "M Lalonde",
+    "year": "s.d.",
+    "medium": "",
+    "dimensions": "",
+    "price": "",
+    "sold": true,
+    "category": "client",
+    "image": "/images/artworks/C-0027.webp",
+    "featured": false,
+    "source_file": "manon_vendu.jpg",
     "ocr_raw": ""
   }
 ]
