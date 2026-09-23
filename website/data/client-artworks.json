@@ -390,6 +390,21 @@
     "ocr_raw": ""
   },
   {
+    "ref": "C-0028",
+    "title": "MER-VEILLE",
+    "artist": "M Lalonde",
+    "year": "2026",
+    "medium": "Acrylique",
+    "dimensions": "18\" × 18\"",
+    "price": "400",
+    "sold": false,
+    "category": "client",
+    "image": "/images/artworks/C-0028.webp",
+    "featured": false,
+    "source_file": "28_mer_veille_acrylique_18x18_$400_2026.jpg",
+    "ocr_raw": ""
+  },
+  {
     "ref": "C-0551",
     "title": "Village sous la neige",
     "artist": "M Lalonde",
