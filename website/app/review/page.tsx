@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import ReviewPresentation from "@/components/review/ReviewPresentation";
-import { PRODUCTION_SITE_URL, SITE_TITLE } from "@/lib/site";
+import { PRODUCTION_SITE_URL, SITE_TITLE, createMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMetadata({
   title: `Website Review — ${SITE_TITLE}`,
   description: "Private client review page for the latest website presentation.",
-  robots: { index: false, follow: false },
-};
+  path: "/review",
+  index: false,
+});
 
 export default function ReviewPage() {
   return (

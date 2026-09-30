@@ -4,12 +4,13 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import CollectionsHero from "@/components/collections/CollectionsHero";
 import CollectionsGrid from "@/components/collections/CollectionsGrid";
-import { SITE_TITLE } from "@/lib/site";
+import { SITE_TITLE, createMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMetadata({
   title: `Collections — ${SITE_TITLE}`,
   description: "Parcourez plus de 950 œuvres originales d'artistes peintres québécois. Huiles, acryliques et techniques mixtes. Toutes taxes incluses.",
-};
+  path: "/collections",
+});
 
 export default function CollectionsPage() {
   return (
