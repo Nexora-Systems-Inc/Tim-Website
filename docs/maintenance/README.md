@@ -43,6 +43,8 @@ Durable counts that belong in JSON `summary`:
 - `last_maintenance_date`
 - `approximate_total_labour_minutes` (sum of known request labour; `null` if none recorded)
 
+Labour fields are explicitly labelled: `labour_estimate_minutes` is the estimated duration for an individual change; request-level `approximate_labour_minutes` is the approximate request/work-session roll-up. Use `labour_time_basis: "estimated"` or `"actual"` on requests so estimates are never presented as measured time.
+
 ## Update procedure
 
 After EVERY approved production change to Manon's website:
@@ -51,7 +53,7 @@ After EVERY approved production change to Manon's website:
 2. Verify production.
 3. Append/update the maintenance ledger.
 4. Record PR/merge information.
-5. Record approximate labour time when known.
+5. Record approximate or actual labour time for the request and its individual changes when known; label the basis as `estimated` or `actual`.
 6. Only mark the entry LIVE after production verification.
 7. Regenerate the Nexora maintenance visual once that generator exists.
 
@@ -60,6 +62,7 @@ After EVERY approved production change to Manon's website:
 1. Add a new object to `requests[]` with a new `id` (e.g. `REQ-2026-10-A`).
 2. Fill PR number, branch, verified merge SHA (`gh pr view <n> --json mergeCommit`), and production status.
 3. List each artwork action under `changes[]` with `category`, `artwork_id`, `artwork_title`, `description`.
-4. Categories: `artwork_addition`, `artwork_correction`, `artwork_update`.
-5. Recompute `summary` durable counts from all requests.
-6. Keep website catalog JSON, artwork images, and site behavior out of this docs-only PR unless the approved change itself is a separate production PR.
+4. Record `labour_estimate_minutes` on each change when estimated, and request-level `approximate_labour_minutes` plus `labour_time_basis` (`estimated` or `actual`).
+5. Categories: `artwork_addition`, `artwork_correction`, `artwork_update`.
+6. Recompute `summary` durable counts from all requests.
+7. Keep website catalog JSON, artwork images, and site behavior out of this docs-only PR unless the approved change itself is a separate production PR.
