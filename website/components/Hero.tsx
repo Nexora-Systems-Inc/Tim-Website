@@ -34,7 +34,6 @@ export default function Hero() {
   const [mounted, setMounted] = useState(false);
 
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 900], [0, 240]);
   const opacity = useTransform(scrollY, [0, 650], [1, 0]);
 
   useEffect(() => {
@@ -50,29 +49,36 @@ export default function Hero() {
   const current = exhibitions[activeIndex];
 
   return (
-    <section ref={containerRef} className="relative w-full h-screen overflow-hidden">
-      {/* Background slides */}
+    <section
+      ref={containerRef}
+      className="hero-exhibition relative w-full h-screen overflow-hidden"
+    >
+      {/* Exhibition photographs — contain, no cover-crop */}
       {HERO_SLIDE_IMAGES.map((slide, i) => (
         <motion.div
           key={slide.src}
-          className="absolute inset-0"
+          className="hero-exhibition-frame"
           animate={{ opacity: i === activeIndex ? 1 : 0 }}
           transition={{ duration: 2, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <motion.div className="absolute inset-0" style={{ y, scale: 1.06 }}>
-            <img src={slide.src} alt={slide.alt} className="w-full h-full object-cover" aria-hidden />
-          </motion.div>
+          <img
+            src={slide.src}
+            alt={slide.alt}
+            width={slide.width}
+            height={slide.height}
+            className="hero-exhibition-photo"
+            aria-hidden
+          />
         </motion.div>
       ))}
 
-      {/* Cinematic gradient — heavier left vignette, soft bottom */}
+      {/* Local washes only — keep the photograph readable */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
           background: [
-            "linear-gradient(to right,  rgba(20,20,18,0.82) 0%, rgba(20,20,18,0.42) 45%, rgba(20,20,18,0.18) 100%)",
-            "linear-gradient(to top,    rgba(20,20,18,0.65) 0%, transparent 40%)",
-            "linear-gradient(to bottom, rgba(20,20,18,0.30) 0%, transparent 18%)",
+            "linear-gradient(to bottom, rgba(20,20,18,0.55) 0%, rgba(20,20,18,0.12) 14%, transparent 28%)",
+            "linear-gradient(to top,    rgba(20,20,18,0.92) 0%, rgba(20,20,18,0.55) 28%, transparent 46%)",
           ].join(", "),
         }}
       />
