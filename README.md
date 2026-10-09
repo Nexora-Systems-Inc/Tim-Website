@@ -1,6 +1,6 @@
 # Tim Website
 
-Galerie Artistes Peintres — Sherbrooke gallery website.
+Galerie Artistes Peintres gallery website.
 
 ## Project structure
 

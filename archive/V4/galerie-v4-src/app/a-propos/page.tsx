@@ -10,7 +10,7 @@ import AboutContact from "@/components/about/AboutContact";
 
 export const metadata: Metadata = {
   title: "À propos — Galerie Artistes Peintres",
-  description: "Fondée en 1994 à Sherbrooke, la Galerie Artistes Peintres est le sanctuaire de l'art québécois. Découvrez notre histoire, notre équipe et prenez contact.",
+  description: "Fondée en 1994, la Galerie Artistes Peintres est le sanctuaire de l'art québécois. Découvrez notre histoire, notre équipe et prenez contact.",
 };
 
 export default function AboutPage() {

@@ -10,7 +10,7 @@ const fr = {
     cta: "Voir la collection",
     gallery_title: "M Lalonde",
     gallery_subtitle: "Artiste Peintre",
-    mobile_location: "Sherbrooke, Québec",
+    mobile_location: "",
     links: [
       { label: "Accueil", href: "/" },
       { label: "À propos", href: "/a-propos" },
@@ -95,7 +95,7 @@ const fr = {
     newsletter_placeholder: "Votre adresse courriel",
     newsletter_cta: "S'abonner",
     copyright:
-      "© 2025 M Lalonde Artiste Peintre, Sherbrooke. Tous droits réservés.",
+      "© 2025 M Lalonde Artiste Peintre. Tous droits réservés.",
     legal: ["Confidentialité", "Conditions", "Accessibilité"],
   },
 

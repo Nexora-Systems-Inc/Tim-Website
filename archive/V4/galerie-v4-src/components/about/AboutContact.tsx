@@ -250,7 +250,7 @@ export default function AboutContact() {
               <div className="w-full h-full relative">
                 <img
                   src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=600&q=80&fit=crop"
-                  alt="Sherbrooke"
+                  alt=""
                   className="w-full h-full object-cover opacity-60"
                 />
                 <div className="absolute inset-0" style={{ background: "rgba(20,20,18,0.45)" }} />

@@ -8,7 +8,7 @@ const fr = {
     contact: "Contact",
     cta: "Voir la collection",
     gallery_subtitle: "Artistes Peintres",
-    mobile_location: "Sherbrooke, Québec",
+    mobile_location: "",
     links: [
       { label: "Collections", href: "/collections" },
       { label: "Artistes",    href: "/collections#artistes" },
@@ -50,7 +50,7 @@ const fr = {
     eyebrow: "Notre philosophie",
     heading: "Là où l'art trouve sa juste demeure",
     body_1: "Depuis plus de trois décennies, nous nous consacrons à présenter les œuvres les plus remarquables des artistes québécois — des maîtres reconnus aux voix émergentes qui dessinent le canon de demain.",
-    body_2: "Notre galerie à Sherbrooke n'est pas simplement un lieu de transaction, mais un véritable sanctuaire de la culture. Nous croyons que l'art exceptionnel devrait être accessible à ceux qui savent véritablement l'apprécier — raison pour laquelle nous absorbons l'ensemble des taxes applicables à chaque acquisition.",
+    body_2: "Notre galerie n'est pas simplement un lieu de transaction, mais un véritable sanctuaire de la culture. Nous croyons que l'art exceptionnel devrait être accessible à ceux qui savent véritablement l'apprécier — raison pour laquelle nous absorbons l'ensemble des taxes applicables à chaque acquisition.",
     body_3: "Chaque œuvre de notre collection est sélectionnée avec soin pour sa valeur artistique, sa résonance émotionnelle et sa portée culturelle durable.",
     cta: "Découvrir notre histoire",
     quote: "L'art, ce n'est pas ce que vous voyez, mais ce que vous faites voir aux autres.",
@@ -94,13 +94,13 @@ const fr = {
   footer: {
     tagline: "Un sanctuaire de l'art québécois depuis 1994. Plus de 950 œuvres originales présentées par les peintres les plus distingués de la province.",
     location_label: "Adresse",
-    location_value: "Sherbrooke, Québec, Canada",
+    location_value: "Québec, Canada",
     contact_label: "Contact",
     newsletter_heading: "Restez informé",
     newsletter_body: "Nouvelles acquisitions, vernissages et réflexions pour les collectionneurs.",
     newsletter_placeholder: "Votre adresse courriel",
     newsletter_cta: "S'abonner",
-    copyright: "© 2025 Galerie Artistes Peintres, Sherbrooke. Tous droits réservés.",
+    copyright: "© 2025 Galerie Artistes Peintres. Tous droits réservés.",
     legal: ["Confidentialité", "Conditions", "Accessibilité"],
     columns: {
       Collection: ["Toutes les œuvres", "Moins de 500 $", "Plus de 500 $", "Nouvelles arrivées", "Œuvres vendues"],
@@ -160,12 +160,12 @@ const fr = {
     // Hero
     hero_eyebrow: "Notre histoire",
     hero_heading: "Un demi-siècle\nde passion",
-    hero_sub: "Fondée en 1994 à Sherbrooke, la Galerie Artistes Peintres est devenue l'une des références incontournables de l'art québécois.",
+    hero_sub: "Fondée en 1994, la Galerie Artistes Peintres est devenue l'une des références incontournables de l'art québécois.",
 
     // Story section
     story_eyebrow: "La fondation",
     story_heading: "Nés d'une vision",
-    story_body_1: "La galerie a vu le jour en 1994 dans une ancienne manufacture du centre-ville de Sherbrooke, transformée en espace d'exposition lumineux par son fondateur, Claude Beaumont. Sa conviction était simple : l'art québécois méritait une vitrine digne de son talent.",
+    story_body_1: "La galerie a vu le jour en 1994 dans une ancienne manufacture du centre-ville, transformée en espace d'exposition lumineux par son fondateur, Claude Beaumont. Sa conviction était simple : l'art québécois méritait une vitrine digne de son talent.",
     story_body_2: "Au fil des années, nous avons développé des relations profondes avec plus de quarante artistes de la province, des maîtres établis comme Jules Michel et Stefan Hagiu aux talents émergents que nous avons eu le privilège de révéler au grand public.",
     story_body_3: "Notre engagement envers les collectionneurs se traduit également par une politique tarifaire unique : nous absorbons l'ensemble des taxes applicables sur chaque acquisition, rendant l'art exceptionnel plus accessible à ceux qui l'apprécient vraiment.",
 
@@ -219,7 +219,7 @@ const fr = {
     contact_info: [
       { label: "Galerie",   value: "819 572-2099" },
       { label: "Courriel",  value: "bonjour@artistes-peintres.ca" },
-      { label: "Adresse",   value: "245 rue King Ouest, Sherbrooke (Québec) J1H 1P9" },
+      { label: "Adresse",   value: "245 rue King Ouest (Québec) J1H 1P9" },
       { label: "Horaires",  value: "Mar–Sam : 10h – 17h30  ·  Dim–Lun : fermé" },
     ],
     form_name: "Nom complet",
@@ -233,8 +233,8 @@ const fr = {
 
     // Map
     map_eyebrow: "Nous trouver",
-    map_heading: "Au cœur de Sherbrooke",
-    map_address: "245 rue King Ouest\nSherbrooke (Québec) J1H 1P9",
+    map_heading: "Au cœur de la galerie",
+    map_address: "245 rue King Ouest\n(Québec) J1H 1P9",
     map_directions: "Obtenir l'itinéraire",
   },
 } as const;

@@ -255,7 +255,7 @@ export default function ArtistesPlaceholder() {
           className="text-[9px] tracking-[0.38em] uppercase"
           style={{ color: "rgba(184,150,90,0.35)" }}
         >
-          Galerie Artistes Peintres · Sherbrooke
+          Galerie Artistes Peintres
         </span>
         <div style={{ height: "1px", flex: 1, background: "rgba(184,150,90,0.12)" }} />
       </motion.div>
