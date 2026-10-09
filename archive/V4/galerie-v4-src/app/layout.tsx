@@ -4,7 +4,7 @@ import { I18nProvider } from "@/lib/i18n";
 import fr from "@/locales/fr";
 
 export const metadata: Metadata = {
-  title: "Galerie Artistes Peintres — Sherbrooke",
+  title: "Galerie Artistes Peintres",
   description: "Une sélection de plus de 950 œuvres d'artistes peintres québécois. Des créations uniques pour compléter votre univers, taxes incluses.",
 };
 

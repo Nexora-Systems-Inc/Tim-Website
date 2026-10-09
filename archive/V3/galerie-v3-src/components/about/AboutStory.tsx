@@ -75,7 +75,7 @@ export default function AboutStory() {
               style={{ borderTop: "1px solid rgba(184,150,90,0.15)" }}
             >
               {[
-                { value: "1994", label: "Fondée à Sherbrooke" },
+                { value: "1994", label: "Fondée" },
                 { value: "40+",  label: "Artistes représentés" },
                 { value: "0 %",  label: "Taxes sur vos acquisitions" },
               ].map((s, i) => (

@@ -32,7 +32,7 @@ export default function Footer() {
             <div className="space-y-2">
               <div className="text-[11px]" style={{ color: "rgba(247,244,239,0.35)" }}>
                 <span className="tracking-wider" style={{ color: "var(--gold-muted)" }}>Location</span>
-                <div className="mt-1 leading-relaxed">Sherbrooke, Québec, Canada</div>
+                <div className="mt-1 leading-relaxed">Québec, Canada</div>
               </div>
               <div className="text-[11px] mt-3" style={{ color: "rgba(247,244,239,0.35)" }}>
                 <span className="tracking-wider" style={{ color: "var(--gold-muted)" }}>Contact</span>
@@ -111,7 +111,7 @@ export default function Footer() {
           style={{ borderTop: "1px solid rgba(184,150,90,0.08)" }}
         >
           <p className="text-[10px] tracking-wider" style={{ color: "rgba(247,244,239,0.2)" }}>
-            © 2025 Galerie Artistes Peintres, Sherbrooke. All rights reserved.
+            © 2025 Galerie Artistes Peintres. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             {["Privacy", "Terms", "Accessibility"].map((item) => (

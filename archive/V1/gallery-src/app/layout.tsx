@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Galerie Artistes — Sherbrooke",
+  title: "Galerie Artistes",
   description: "A curated collection of Québécois masters. Timeless works for discerning collectors.",
 };
 

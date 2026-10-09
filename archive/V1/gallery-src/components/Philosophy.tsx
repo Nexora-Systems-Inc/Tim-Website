@@ -101,7 +101,7 @@ export default function Philosophy() {
             </motion.h2>
 
             {["For over three decades, we have dedicated ourselves to presenting the finest works of Québécois artists — from seasoned masters to emerging voices shaping tomorrow's canon.",
-              "Our gallery in Sherbrooke is not merely a place of transaction, but a sanctuary of culture. We believe that exceptional art should be accessible to those who truly appreciate it — which is why we absorb all applicable taxes on every acquisition.",
+              "Our gallery is not merely a place of transaction, but a sanctuary of culture. We believe that exceptional art should be accessible to those who truly appreciate it — which is why we absorb all applicable taxes on every acquisition.",
               "Each work in our collection is carefully selected for its artistic merit, emotional resonance, and enduring cultural significance."
             ].map((text, i) => (
               <motion.p

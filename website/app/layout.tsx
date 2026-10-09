@@ -5,7 +5,7 @@ import { SITE_TITLE } from "@/lib/site";
 import fr from "@/locales/fr";
 
 export const metadata: Metadata = {
-  title: `${SITE_TITLE} — Sherbrooke`,
+  title: SITE_TITLE,
   description: "Une sélection de plus de 950 œuvres d'artistes peintres québécois. Des créations uniques pour compléter votre univers, taxes incluses.",
 };
 
