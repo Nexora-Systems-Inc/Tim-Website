@@ -336,7 +336,7 @@ export default function ExpositionsPlaceholder() {
             {SITE_TITLE}
           </span>
           <Link
-            href="/a-propos#contact"
+            href="/contact#contact"
             className="link-arrow text-[9.5px]"
             style={{ color: "rgba(247,244,239,0.3)" }}
           >
