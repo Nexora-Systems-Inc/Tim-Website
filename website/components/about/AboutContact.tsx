@@ -87,9 +87,40 @@ export default function AboutContact() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
   const [selectedSubject, setSelectedSubject] = useState("");
   const [message, setMessage] = useState("");
   const [artwork, setArtwork] = useState<ClientArtwork | null>(null);
+
+  async function submitInquiry(formData: FormData) {
+    setError("");
+    setSubmitting(true);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: String(formData.get("name") ?? ""),
+          email: String(formData.get("email") ?? ""),
+          phone: String(formData.get("phone") ?? ""),
+          subject: String(formData.get("subject") ?? ""),
+          message: String(formData.get("message") ?? ""),
+          artwork: String(formData.get("artwork") ?? ""),
+        }),
+      });
+      const payload = (await response.json().catch(() => null)) as { success?: boolean; id?: string } | null;
+      if (!response.ok || !payload?.success || !payload.id) {
+        setError(a.form_error);
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setError(a.form_error);
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   const artworkParam = searchParams.get(ARTWORK_INQUIRY_PARAM);
 
@@ -137,7 +168,12 @@ export default function AboutContact() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    if (submitting) return;
+                    const formData = new FormData(e.currentTarget);
+                    void submitInquiry(formData);
+                  }}
                   className="space-y-8"
                 >
                   {artwork && (
@@ -205,7 +241,7 @@ export default function AboutContact() {
                   />
 
                   <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-2">
-                    <button type="submit" className="btn-gold">
+                    <button type="submit" className="btn-gold" disabled={submitting} aria-busy={submitting}>
                       {a.form_submit}
                       <svg width="14" height="9" viewBox="0 0 14 9" fill="none">
                         <path d="M0 4.5H12M8.5 1L12 4.5L8.5 8" stroke="currentColor" strokeWidth="1" />
@@ -215,6 +251,11 @@ export default function AboutContact() {
                       {a.form_note}
                     </p>
                   </div>
+                  {error && (
+                    <p className="text-[12px]" style={{ color: "var(--charcoal)", lineHeight: 1.6 }} role="alert">
+                      {error}
+                    </p>
+                  )}
                 </motion.form>
               ) : (
                 <motion.div
@@ -239,7 +280,7 @@ export default function AboutContact() {
                   <button
                     className="link-arrow mt-4"
                     style={{ color: "var(--gold)" }}
-                    onClick={() => setSubmitted(false)}
+                    onClick={() => { setError(""); setSubmitted(false); }}
                   >
                     Envoyer un autre message
                     <svg width="16" height="7" viewBox="0 0 16 7" fill="none">
