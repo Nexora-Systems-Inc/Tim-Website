@@ -91,8 +91,6 @@ const en: Translations = {
     meta_title: "Collections — M Lalonde Artiste Peintre",
     hero_eyebrow: "Complete Catalogue",
     hero_heading: "The Collection",
-    hero_sub:
-      "Over 950 original works by Québécois painters, carefully selected.",
     filter_all: "All",
     filter_label: "Filter by",
     sort_label: "Sort",
