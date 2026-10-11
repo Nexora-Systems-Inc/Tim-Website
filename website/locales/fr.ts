@@ -106,8 +106,6 @@ const fr = {
     meta_title: "Collections — M Lalonde Artiste Peintre",
     hero_eyebrow: "Catalogue complet",
     hero_heading: "La collection",
-    hero_sub:
-      "Plus de 950 œuvres originales d'artistes peintres québécois, soigneusement sélectionnées.",
     filter_all: "Tout",
     filter_label: "Filtrer par",
     sort_label: "Trier",

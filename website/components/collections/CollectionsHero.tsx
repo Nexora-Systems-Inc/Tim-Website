@@ -60,25 +60,10 @@ export default function CollectionsHero() {
               color: "var(--ivory)",
               lineHeight: 0.97,
               letterSpacing: "-0.015em",
-              marginBottom: "1.2rem",
             }}
           >
             {c.hero_heading}
           </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.65 }}
-            style={{
-              color: "rgba(247,244,239,0.55)",
-              fontSize: "14px",
-              maxWidth: "440px",
-              lineHeight: 1.8,
-            }}
-          >
-            {c.hero_sub}
-          </motion.p>
         </div>
       </motion.div>
     </section>
