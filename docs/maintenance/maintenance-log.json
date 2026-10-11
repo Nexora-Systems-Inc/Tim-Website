@@ -1,0 +1,110 @@
+{
+  "client": "Manon Lalonde — M. Lalonde Artiste Peintre",
+  "domain": "www.mlalondeartistepeintre.ca",
+  "launch_date": "2026-09-18",
+  "purpose": "Post-launch maintenance ledger for approved production changes to Manon's gallery website after custom-domain cutover (2026-09-18). One customer request/work session may contain multiple individual artwork changes. Do not record pre-launch work (DNS cutover, initial email setup, original imports).",
+  "notes": [
+    "days_since_launch is NOT stored here; compute at read time as: floor((as_of_date - launch_date).days) where as_of_date defaults to today in America/Toronto.",
+    "approximate_labour_minutes is null for historical backfill when labour was not recorded; when known, record request-level approximate labour and label the basis as estimated or actual.",
+    "labour_estimate_minutes on a change is an estimated individual-change duration unless explicitly documented otherwise; request-level approximate_labour_minutes is the request/work-session roll-up.",
+    "Only mark production_status LIVE after production verification. Future visual: docs/maintenance/manon-maintenance-summary.png (not built yet)."
+  ],
+  "summary": {
+    "launch_date": "2026-09-18",
+    "total_requests": 3,
+    "total_changes": 4,
+    "artwork_additions": 2,
+    "artwork_corrections_or_updates": 2,
+    "last_maintenance_date": "2026-09-30",
+    "approximate_total_labour_minutes": 35
+  },
+  "requests": [
+    {
+      "id": "REQ-2026-09-A",
+      "request_date_start": "2026-09-21",
+      "request_date_end": "2026-09-22",
+      "completed_date": "2026-09-22",
+      "requested_by": "Tim (via client email / Brock)",
+      "source": "Client email via Brock; Tim requested gallery updates",
+      "git_branch": "chore/manon-vendu-saint-jean-baptiste-amalgame-425",
+      "pr_number": 15,
+      "pr_url": "https://github.com/Nexora-Systems-Inc/Tim-Website/pull/15",
+      "commit_or_merge_sha": "f4894eb09f9973fcccd7e8f379a7a9bd8f9e88b9",
+      "production_status": "LIVE",
+      "production_verified": true,
+      "approximate_labour_minutes": 15,
+      "notes": "Verified merge SHA via gh (PR #15 merged 2026-09-22). Two artwork changes in one request. Production assets C-0027.webp present on www.mlalondeartistepeintre.ca.",
+      "changes": [
+        {
+          "category": "artwork_addition",
+          "artwork_id": "C-0027",
+          "artwork_title": "SAINT-JEAN-BAPTISTE",
+          "description": "Added supplied artwork to catalog, marked SOLD/VENDU (sold: true).",
+          "labour_estimate_minutes": 10
+        },
+        {
+          "category": "artwork_correction",
+          "artwork_id": "C-0017",
+          "artwork_title": "AMALGAME",
+          "description": "Price corrected $225 → $425. Title, dimensions, medium, year, image, and placement unchanged.",
+          "labour_estimate_minutes": 5
+        }
+      ],
+      "labour_time_basis": "estimated"
+    },
+    {
+      "id": "REQ-2026-09-B",
+      "request_date_start": "2026-09-23",
+      "request_date_end": "2026-09-23",
+      "completed_date": "2026-09-23",
+      "requested_by": "Tim",
+      "source": "Routine catalog update for Tim / Manon",
+      "git_branch": "chore/manon-add-mer-veille-c-0028",
+      "pr_number": 16,
+      "pr_url": "https://github.com/Nexora-Systems-Inc/Tim-Website/pull/16",
+      "commit_or_merge_sha": "3bbc8a2546db089fdae022098db75614340493e1",
+      "change_commit_sha": "a62edb9b386e89e3450c3c57a8f72505b7a7b622",
+      "production_status": "LIVE",
+      "production_verified": true,
+      "approximate_labour_minutes": 10,
+      "notes": "Verified merge SHA 3bbc8a25 and change commit a62edb9b via gh (PR #16 merged 2026-09-23). Production asset C-0028.webp present on www.mlalondeartistepeintre.ca.",
+      "changes": [
+        {
+          "category": "artwork_addition",
+          "artwork_id": "C-0028",
+          "artwork_title": "MER-VEILLE",
+          "description": "Added MER-VEILLE — Acrylique, 18\"×18\", 2026, $400, available (sold: false).",
+          "labour_estimate_minutes": 10
+        }
+      ],
+      "labour_time_basis": "estimated"
+    },
+    {
+      "id": "REQ-2026-09-C",
+      "request_date_start": "2026-09-29",
+      "request_date_end": "2026-09-30",
+      "completed_date": "2026-09-30",
+      "requested_by": "Tim",
+      "source": "Client artwork image/year update for FEES NOCTURNES",
+      "git_branch": "chore/manon-fees-nocturnes-2026-image",
+      "pr_number": 17,
+      "pr_url": "https://github.com/Nexora-Systems-Inc/Tim-Website/pull/17",
+      "commit_or_merge_sha": "f656b7928ecfc4479430e5028899b6adec2cfd81",
+      "change_commit_sha": "7e5ce9d1a0dd395159882da3bc433c4fb1fa1f8b",
+      "production_status": "LIVE",
+      "production_verified": true,
+      "approximate_labour_minutes": 10,
+      "notes": "Verified merge SHA f656b792 and change commit 7e5ce9d1 via gh (PR #17 merged 2026-09-30T19:51:54Z). Vercel production deployment dpl_CPnoKBw1JTrFJrudHrbYngMhFcaC state READY for that SHA. C-0005.webp HTTP 200 on www.mlalondeartistepeintre.ca (last-modified ~2026-09-30T19:53Z). Catalog year confirmed 2026 on main.",
+      "changes": [
+        {
+          "category": "artwork_update",
+          "artwork_id": "C-0005",
+          "artwork_title": "FEES NOCTURNES",
+          "description": "Replaced image in place; year 2023 → 2026. Medium, dimensions, price, and sold status unchanged.",
+          "labour_estimate_minutes": 10
+        }
+      ],
+      "labour_time_basis": "estimated"
+    }
+  ]
+}
