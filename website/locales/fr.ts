@@ -204,6 +204,7 @@ const fr = {
     form_message: "Votre message",
     form_submit: "Envoyer le message",
     form_note: "Nous vous répondrons dans les 24 heures ouvrables.",
+    form_error: "Le message n'a pas pu être envoyé. Veuillez réessayer.",
     form_artwork_context: "Au sujet de : {title} ({ref})",
   },
 } as const;

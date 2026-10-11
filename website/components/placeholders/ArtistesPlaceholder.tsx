@@ -232,7 +232,7 @@ export default function ArtistesPlaceholder() {
           transition={{ duration: 0.8, delay: 1.35 }}
           className="flex flex-col sm:flex-row items-center gap-4"
         >
-          <Link href="/a-propos#contact" className="btn-gold">
+          <Link href="/contact#contact" className="btn-gold">
             Nous contacter
             <svg width="14" height="9" viewBox="0 0 14 9" fill="none" aria-hidden>
               <path d="M0 4.5H12M8.5 1L12 4.5L8.5 8" stroke="currentColor" strokeWidth="1" />

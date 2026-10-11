@@ -172,6 +172,7 @@ const en: Translations = {
     form_message: "Your message",
     form_submit: "Send Message",
     form_note: "We will respond within 24 business hours.",
+    form_error: "The message could not be sent. Please try again.",
     form_artwork_context: "Regarding: {title} ({ref})",
   },
 };
