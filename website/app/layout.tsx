@@ -6,7 +6,7 @@ import fr from "@/locales/fr";
 
 export const metadata: Metadata = {
   title: SITE_TITLE,
-  description: "Une sélection de plus de 950 œuvres d'artistes peintres québécois. Des créations uniques pour compléter votre univers, taxes incluses.",
+  description: "Œuvres originales de Manon Lalonde, artiste peintre. Des créations uniques pour compléter votre univers, taxes incluses.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
