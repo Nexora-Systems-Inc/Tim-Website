@@ -8,7 +8,7 @@ import { SITE_TITLE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: `Collections — ${SITE_TITLE}`,
-  description: "Parcourez plus de 950 œuvres originales d'artistes peintres québécois. Huiles, acryliques et techniques mixtes. Toutes taxes incluses.",
+  description: "Parcourez les œuvres originales de Manon Lalonde. Huiles, acryliques et techniques mixtes. Toutes taxes incluses.",
 };
 
 export default function CollectionsPage() {
