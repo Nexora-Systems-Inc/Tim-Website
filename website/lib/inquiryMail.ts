@@ -4,6 +4,8 @@
  * It is not read from the environment, so a missing or unrelated env var cannot redirect mail.
  */
 
+import catalog from "../data/client-artworks.json" with { type: "json" };
+
 export const INQUIRY_INBOX = "info@mlalondeartistepeintre.ca";
 
 /** Domain already verified for Resend (resend._domainkey.nexorasystems.ca). */
@@ -73,7 +75,129 @@ export function validateInquiry(
   return { ok: true, data: { name, email, phone, subject, message, artwork } };
 }
 
-export function buildInquiryEmail(data: InquiryInput) {
+export type InquiryArtwork = {
+  ref: string;
+  title: string;
+  year?: string;
+  medium?: string;
+  dimensions?: string;
+  price?: string;
+  sold?: boolean;
+};
+
+/**
+ * Resolve an inquiry's artwork server-side from the catalogue (source of truth).
+ * Only the ref sent by the browser is trusted; title/price never come from the client.
+ */
+export function findInquiryArtwork(
+  ref: string,
+  works: readonly InquiryArtwork[] = catalog as InquiryArtwork[],
+): InquiryArtwork | null {
+  if (!ref) return null;
+  return works.find((work) => work.ref === ref) ?? null;
+}
+
+function formatPrice(price: string) {
+  const value = price.trim();
+  if (!value) return "";
+  return /\$/.test(value) ? value : `${value} $`;
+}
+
+/** Catalogue details as label/value pairs; empty fields are omitted. */
+export function artworkDetailRows(work: InquiryArtwork): [string, string][] {
+  const rows: [string, string][] = [
+    ["Titre", work.title.trim()],
+    ["Référence", work.ref],
+    ["Année", (work.year ?? "").trim()],
+    ["Médium", (work.medium ?? "").trim()],
+    ["Dimensions", (work.dimensions ?? "").trim()],
+  ];
+  if (work.sold) {
+    rows.push(["Statut", "VENDU (Sold)"]);
+  } else {
+    rows.push(["Prix", formatPrice(work.price ?? "")]);
+    rows.push(["Statut", "Disponible"]);
+  }
+  return rows.filter(([, value]) => value);
+}
+
+export function artworkHeading(work: InquiryArtwork) {
+  const title = work.title.trim();
+  return title ? `${title} — ${work.ref}` : work.ref;
+}
+
+export function buildInquiryEmail(
+  data: InquiryInput,
+  lookup: (ref: string) => InquiryArtwork | null = findInquiryArtwork,
+) {
+  if (!data.artwork) return buildGeneralInquiryEmail(data);
+  return buildArtworkInquiryEmail(data, lookup(data.artwork));
+}
+
+function buildArtworkInquiryEmail(data: InquiryInput, work: InquiryArtwork | null) {
+  const heading = work ? artworkHeading(work) : data.artwork;
+  const subject = [
+    "Demande — mlalondeartistepeintre.ca",
+    data.subject,
+    `œuvre ${heading}`,
+  ]
+    .filter(Boolean)
+    .join(" — ")
+    .slice(0, 180);
+
+  const rows: [string, string][] = work
+    ? artworkDetailRows(work)
+    : [
+        ["Référence", data.artwork],
+        ["Note", "Référence introuvable dans le catalogue"],
+      ];
+
+  const text = [
+    "Nouvelle demande envoyée depuis le site mlalondeartistepeintre.ca",
+    "",
+    "=== ŒUVRE CONCERNÉE ===",
+    heading,
+    ...rows.map(([label, value]) => `${label}: ${value}`),
+    "",
+    "=== VISITEUR ===",
+    `Nom: ${data.name}`,
+    `Courriel: ${data.email}`,
+    `Téléphone: ${data.phone || "—"}`,
+    `Objet: ${data.subject || "—"}`,
+    "",
+    "Message:",
+    data.message,
+  ].join("\n");
+
+  const cell = 'style="padding: 6px 0;"';
+  const label = 'style="padding: 6px 0; font-weight: bold; width: 110px;"';
+  const html = `
+    <div style="font-family: Arial, sans-serif; color: #111; line-height: 1.6;">
+      <p style="margin: 0 0 16px;">Nouvelle demande envoyée depuis <strong>mlalondeartistepeintre.ca</strong></p>
+      <div style="max-width: 560px; border: 1px solid #ddd; background: #f7f5f0; padding: 12px 16px; margin: 0 0 20px;">
+        <p style="margin: 0 0 4px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #666;">Œuvre concernée</p>
+        <p style="margin: 0 0 8px; font-size: 18px; font-weight: bold;">${escapeHtml(heading)}</p>
+        <table style="border-collapse: collapse; width: 100%;">
+          ${rows.map(([k, v]) => `<tr><td ${label}>${escapeHtml(k)}</td><td ${cell}>${escapeHtml(v)}</td></tr>`).join("\n          ")}
+        </table>
+      </div>
+      <p style="margin: 0 0 4px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #666;">Visiteur</p>
+      <table style="border-collapse: collapse; width: 100%; max-width: 560px;">
+        <tr><td ${label}>Nom</td><td ${cell}>${escapeHtml(data.name)}</td></tr>
+        <tr><td style="padding: 6px 0; font-weight: bold;">Courriel</td><td ${cell}><a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></td></tr>
+        <tr><td style="padding: 6px 0; font-weight: bold;">Téléphone</td><td ${cell}>${escapeHtml(data.phone || "—")}</td></tr>
+        <tr><td style="padding: 6px 0; font-weight: bold;">Objet</td><td ${cell}>${escapeHtml(data.subject || "—")}</td></tr>
+      </table>
+      <p style="margin: 20px 0 8px; font-weight: bold;">Message</p>
+      <p style="margin: 0; white-space: pre-wrap;">${escapeHtml(data.message)}</p>
+    </div>
+  `.trim();
+
+  return { subject, text, html };
+}
+
+/** General (non-painting) inquiry: unchanged output. */
+function buildGeneralInquiryEmail(data: InquiryInput) {
   const subject = [
     "Demande — mlalondeartistepeintre.ca",
     data.subject,
