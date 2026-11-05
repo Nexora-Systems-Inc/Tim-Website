@@ -36,9 +36,9 @@ export default function Navigation() {
         transition={{ duration: 1.1, ease: [0.25, 0.1, 0.25, 1] }}
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-700"
         style={{
-          background: forceLight ? "rgba(247,244,239,0.95)" : "transparent",
-          backdropFilter: forceLight ? "blur(24px) saturate(180%)" : "none",
-          boxShadow: forceLight ? "0 1px 0 rgba(184,150,90,0.12)" : "none",
+          background: forceLight ? "rgba(247,244,239,0.95)" : "rgba(20,20,18,0.62)",
+          backdropFilter: forceLight ? "blur(24px) saturate(180%)" : "blur(16px) saturate(140%)",
+          boxShadow: forceLight ? "0 1px 0 rgba(184,150,90,0.12)" : "0 1px 0 rgba(184,150,90,0.14)",
         }}
       >
         <div className="container flex items-center justify-between h-[72px]">
